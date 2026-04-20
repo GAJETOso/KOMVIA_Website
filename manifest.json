@@ -4,8 +4,8 @@
   "description": "KOMVIA is a global technology powerhouse driving business intelligence and financial inclusion through modular ERP systems and integrated financial ecosystems (IFE).",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#0a0f1e",
-  "theme_color": "#22c55e",
+  "background_color": "#001a33",
+  "theme_color": "#002d5b",
   "icons": [
     {
       "src": "assets/icon.png",
