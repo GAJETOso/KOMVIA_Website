@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KOMVIA Launch Suite | Institutional SSO</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* Specific styles for split-screen login */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      background-color: var(--navy-950);
+      overflow: hidden;
+    }
+    
+    .login-left {
+      flex: 1;
+      position: relative;
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px;
+      overflow: hidden;
+    }
+    
+    .login-left::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 1;
+    }
+    
+    .login-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 0;
+    }
+    .orb-a { width: 400px; height: 400px; background: rgba(34,197,94,0.15); top: -100px; left: -100px; }
+    .orb-b { width: 300px; height: 300px; background: rgba(59,130,246,0.15); bottom: -50px; right: -50px; }
+    
+    .login-content {
+      position: relative;
+      z-index: 2;
+      max-width: 500px;
+    }
+    
+    .login-content h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    
+    .login-content p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--glass-bg);
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+    }
+    
+    .login-right {
+      flex: 1;
+      max-width: 600px;
+      background: var(--navy-900);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 80px;
+      position: relative;
+      border-left: 1px solid var(--border);
+    }
+    
+    .auth-header {
+      margin-bottom: 40px;
+    }
+    
+    .auth-header h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    
+    .auth-header p {
+      color: var(--text-secondary);
+    }
+    
+    .auth-form .form-group {
+      margin-bottom: 24px;
+    }
+    
+    .auth-form label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    
+    .auth-form input {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    .auth-form input:focus {
+      outline: none;
+      border-color: var(--green-400);
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.1);
+    }
+    
+    .auth-footer {
+      margin-top: 32px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    
+    .back-btn {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+    }
+    
+    @media (max-width: 900px) {
+      .login-left { display: none; }
+      .login-right { max-width: 100%; padding: 0 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-left">
+    <div class="login-orb orb-a"></div>
+    <div class="login-orb orb-b"></div>
+    
+    <div class="login-content">
+      <div class="nav-logo" style="margin-bottom: 40px;">
+        <div class="logo-mark">K</div>
+        <span class="logo-text">KOMVIA</span>
+      </div>
+      
+      <h1>Unified Ecosystem <span class="gradient-text">SSO</span></h1>
+      <p>Secure, institutional access to the KOMVIA suite. Manage your enterprise resources and global financial liquidity from one master control center.</p>
+      
+      <div class="feature-list">
+        <div class="feature-item">
+          <div style="font-size: 1.5rem;">🏢</div>
+          <div>
+            <strong style="display:block; color:var(--text-primary);">KOMVIA ERP</strong>
+            <span style="font-size: 0.85rem; color:var(--text-secondary);">Enterprise Operations & Analytics</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div style="font-size: 1.5rem;">🏦</div>
+          <div>
+            <strong style="display:block; color:var(--text-primary);">KOMVIA IFE</strong>
+            <span style="font-size: 0.85rem; color:var(--text-secondary);">Global Settlements & Liquidity</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div style="font-size: 1.5rem;">🪙</div>
+          <div>
+            <strong style="display:block; color:var(--text-primary);">KOMVIA TOKEN</strong>
+            <span style="font-size: 0.85rem; color:var(--text-secondary);">Sovereign Treasury</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-right">
+    <a href="index.html" class="btn btn-ghost back-btn">← Home</a>
+    
+    <div class="auth-header">
+      <h2>Institutional Login</h2>
+      <p>Enter your credentials to access the Launch Suite.</p>
+    </div>
+    
+    <form class="auth-form" action="dashboard.html" method="GET">
+      <div class="form-group">
+        <label for="email">Corporate Email ID</label>
+        <input type="email" id="email" placeholder="ceo@institution.com" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Master Password</label>
+        <input type="password" id="password" placeholder="••••••••••••" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="mfa">MFA Token (If enabled)</label>
+        <input type="text" id="mfa" placeholder="6-digit authenticator code" />
+      </div>
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; font-size: 0.85rem;">
+        <label style="display: flex; align-items: center; gap: 8px; margin: 0; cursor: pointer;">
+          <input type="checkbox" style="width: auto; margin: 0;" /> Remember this device
+        </label>
+        <a href="#" style="color: var(--green-400); text-decoration: none;">Security Recovery?</a>
+      </div>
+      
+      <button type="submit" class="btn btn-primary btn-full btn-lg" style="font-size: 1.1rem;">
+        Authenticate & Launch Suite
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+    
+    <div class="auth-footer">
+      <p>Protected by AES-256 and Enterprise SSO infrastructure.<br>Unregistered institutions must <a href="index.html#sales" style="color: var(--blue-400);">contact sales</a>.</p>
+    </div>
+  </div>
+
+</body>
+</html>
