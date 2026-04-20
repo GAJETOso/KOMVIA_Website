@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join the Waitlist | KOMVIA LIMITED</title>
+  <meta name="description" content="Secure early access to the KOMVIA ERP, IFE, and Token ecosystem. Join the institutional waitlist today.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .waitlist-page { min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* Hero banner */
+    .wl-hero {
+      padding: 130px 24px 60px;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(34,197,94,0.12) 0%, transparent 70%);
+      border-bottom: 1px solid var(--border);
+    }
+    .wl-hero h1 { font-family: 'Outfit'; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 900; margin-bottom: 16px; }
+    .wl-hero p { color: var(--text-secondary); font-size: 18px; max-width: 580px; margin: 0 auto 12px; line-height: 1.7; }
+    .wl-counter { display: inline-flex; align-items: center; gap: 8px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); padding: 8px 20px; border-radius: 50px; color: var(--green-400); font-size: 14px; font-weight: 600; margin-top: 16px; }
+    .wl-counter-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-400); animation: pulse 1.5s infinite; }
+
+    /* Main layout */
+    .wl-main { flex: 1; padding: 60px 24px 80px; max-width: 960px; margin: 0 auto; width: 100%; }
+
+    /* Product cards */
+    .product-select-label { color: var(--text-secondary); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; display: block; }
+    .product-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 40px; }
+    .product-card {
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      background: var(--navy-800);
+      user-select: none;
+    }
+    .product-card:hover { border-color: var(--green-500); transform: translateY(-3px); }
+    .product-card.selected { border-color: var(--green-400); background: rgba(34,197,94,0.07); }
+    .product-card .pc-icon { font-size: 36px; margin-bottom: 12px; }
+    .product-card h3 { font-family: 'Outfit'; font-size: 18px; color: var(--text-primary); margin-bottom: 6px; }
+    .product-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+    .pc-check {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .product-card.selected .pc-check { background: var(--green-400); border-color: var(--green-400); color: #000; font-size: 13px; font-weight: 700; }
+
+    /* Form */
+    .wl-form { background: var(--navy-800); border: 1px solid var(--border); border-radius: 24px; padding: 40px; }
+    .wl-form h2 { font-family: 'Outfit'; font-size: 24px; margin-bottom: 28px; color: var(--text-primary); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } .wl-form { padding: 24px; } }
+    .wl-form label { display: block; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 8px; }
+    .wl-form input, .wl-form select, .wl-form textarea {
+      width: 100%;
+      background: var(--navy-950);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: var(--text-primary);
+      font-size: 15px;
+      font-family: 'Inter';
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+    .wl-form input:focus, .wl-form select:focus, .wl-form textarea:focus { outline: none; border-color: var(--green-400); }
+    .form-full { grid-column: 1 / -1; }
+    .wl-submit-row { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .wl-submit-row p { color: var(--text-muted); font-size: 13px; }
+    #wl-submit { min-width: 220px; }
+
+    /* Required star */
+    .req { color: var(--green-400); }
+
+    /* Success state */
+    .wl-success {
+      display: none;
+      text-align: center;
+      padding: 80px 40px;
+    }
+    .success-icon { font-size: 72px; margin-bottom: 24px; }
+    .wl-success h2 { font-family: 'Outfit'; font-size: 32px; color: var(--text-primary); margin-bottom: 12px; }
+    .wl-success p { color: var(--text-secondary); font-size: 17px; max-width: 480px; margin: 0 auto 32px; line-height: 1.7; }
+
+    /* Urgency badge */
+    .urgency-bar {
+      background: linear-gradient(90deg, rgba(34,197,94,0.15), rgba(59,130,246,0.15));
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 12px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+    .urgency-bar span { font-size: 14px; color: var(--text-secondary); }
+    .urgency-bar strong { color: var(--green-400); }
+  </style>
+</head>
+<body class="dark-mode waitlist-page">
+
+  <!-- NAV -->
+  <nav class="navbar active" style="background: rgba(10,15,30,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-mark">K</div>
+        <span class="logo-text">KOMVIA</span>
+      </a>
+      <div style="margin-left: auto; display: flex; gap: 12px; align-items: center;">
+        <a href="index.html" class="btn btn-ghost">← Home</a>
+        <a href="index.html#contact" class="btn btn-primary">Book Demo</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="wl-hero">
+    <div class="section-tag">Early Access Programme</div>
+    <h1>Join the KOMVIA <span class="gradient-text">Waitlist</span></h1>
+    <p>Secure priority access to our ERP, IFE, and Token ecosystems before public launch. Institutional partners receive dedicated onboarding and pricing advantages.</p>
+    <div class="wl-counter">
+      <span class="wl-counter-dot"></span>
+      Places filling fast — institutional spots are limited
+    </div>
+  </header>
+
+  <!-- MAIN FORM -->
+  <main class="wl-main">
+
+    <!-- URGENCY -->
+    <div class="urgency-bar">
+      <span>🔒</span>
+      <span>Your information is protected under <strong>NDPR & GDPR</strong>. We will never sell or share your data.</span>
+    </div>
+
+    <!-- PRODUCT SELECTION -->
+    <span class="product-select-label">Step 1 — Select products you're interested in (choose all that apply)</span>
+    <div class="product-cards" id="product-cards">
+      <div class="product-card selected" data-product="ERP">
+        <div class="pc-check">✓</div>
+        <div class="pc-icon">🏢</div>
+        <h3>KOMVIA ERP</h3>
+        <p>Modular enterprise resource planning with AI-driven business intelligence.</p>
+      </div>
+      <div class="product-card" data-product="IFE">
+        <div class="pc-check"></div>
+        <div class="pc-icon">🏦</div>
+        <h3>KOMVIA IFE</h3>
+        <p>Integrated Financial Ecosystem for institutional payments and digital banking.</p>
+      </div>
+      <div class="product-card" data-product="TOKEN">
+        <div class="pc-check"></div>
+        <div class="pc-icon">🪙</div>
+        <h3>KOMVIA Token</h3>
+        <p>Governance and utility asset for cross-border settlement and ecosystem voting.</p>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="wl-form" id="wl-form-container">
+      <h2>Step 2 — Your Details</h2>
+      <form id="wl-form" novalidate>
+        <div class="form-grid">
+          <div>
+            <label for="wl-name">Full Name <span class="req">*</span></label>
+            <input type="text" id="wl-name" name="name" placeholder="e.g. Adaobi Okonkwo" required />
+          </div>
+          <div>
+            <label for="wl-email">Email Address <span class="req">*</span></label>
+            <input type="email" id="wl-email" name="email" placeholder="you@company.com" required />
+          </div>
+          <div>
+            <label for="wl-company">Company / Organisation</label>
+            <input type="text" id="wl-company" name="company" placeholder="e.g. Lagos Commerce Group" />
+          </div>
+          <div>
+            <label for="wl-role">Your Role</label>
+            <select id="wl-role" name="role">
+              <option value="">Select role...</option>
+              <option>CEO / Founder</option>
+              <option>CTO / Engineering</option>
+              <option>CFO / Finance</option>
+              <option>Operations / Logistics</option>
+              <option>Government / Regulator</option>
+              <option>Investor</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="wl-country">Country</label>
+            <input type="text" id="wl-country" name="country" placeholder="e.g. Nigeria" />
+          </div>
+          <div>
+            <label for="wl-team-size">Team Size</label>
+            <select id="wl-team-size" name="team_size">
+              <option value="">Select size...</option>
+              <option>1–10</option>
+              <option>11–50</option>
+              <option>51–200</option>
+              <option>200–1000</option>
+              <option>1000+</option>
+            </select>
+          </div>
+          <div class="form-full">
+            <label for="wl-message">What problem are you solving? <span style="font-weight:400; text-transform:none; letter-spacing:0;">(optional)</span></label>
+            <textarea id="wl-message" name="message" rows="3" placeholder="Briefly describe your current challenge or goal..."></textarea>
+          </div>
+          <div class="wl-submit-row">
+            <p>✓ No credit card required &nbsp;·&nbsp; ✓ Early access pricing &nbsp;·&nbsp; ✓ Cancel anytime</p>
+            <button type="submit" class="btn btn-primary btn-lg" id="wl-submit">
+              Secure My Spot
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- SUCCESS STATE -->
+      <div class="wl-success" id="wl-success">
+        <div class="success-icon">🎉</div>
+        <h2>You're on the list!</h2>
+        <p>Thank you for joining the KOMVIA waitlist. Our institutional team will contact you within <strong>48 hours</strong> with next steps and early access details.</p>
+        <a href="index.html" class="btn btn-primary">Back to Home</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p style="text-align: center; color: var(--text-muted);">© 2026 KOMVIA LIMITED (RC-20252283). Built for Growth, Engineered for Profits.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Product card selection
+    const cards = document.querySelectorAll('.product-card');
+    const selectedProducts = new Set(['ERP']);
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const product = card.dataset.product;
+        const checkEl = card.querySelector('.pc-check');
+        if (selectedProducts.has(product)) {
+          if (selectedProducts.size === 1) return; // keep at least one selected
+          selectedProducts.delete(product);
+          card.classList.remove('selected');
+          checkEl.textContent = '';
+        } else {
+          selectedProducts.add(product);
+          card.classList.add('selected');
+          checkEl.textContent = '✓';
+        }
+      });
+    });
+
+    // Form submission
+    document.getElementById('wl-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('wl-name').value.trim();
+      const email = document.getElementById('wl-email').value.trim();
+      if (!name || !email) {
+        alert('Please fill in your name and email address.');
+        return;
+      }
+      const btn = document.getElementById('wl-submit');
+      btn.textContent = 'Submitting...';
+      btn.disabled = true;
+
+      // Simulate submission (replace with Formspree or API action)
+      setTimeout(() => {
+        document.getElementById('wl-form').style.display = 'none';
+        document.getElementById('wl-success').style.display = 'block';
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
