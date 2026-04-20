@@ -12,6 +12,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  
+  <!-- PWA & Mobile Web App Metadata -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0a0f1e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="KOMVIA" />
+  <link rel="apple-touch-icon" href="assets/icon.png" />
+
   <!-- SEO / AEO / GEO Optimization -->
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://komvia.com/" />
@@ -54,6 +63,7 @@
       </ul>
       <div class="nav-actions">
         <a href="waitlist.html" class="btn btn-primary" id="nav-waitlist">Join Waitlist</a>
+        <button class="btn btn-ghost" id="pwa-install-btn" style="display: none;">📲 Install App</button>
         <a href="#contact" class="btn btn-ghost" id="nav-demo-btn">Consultation</a>
         <a href="login.html" class="btn btn-primary" id="nav-signin-btn">Launch Suite</a>
         <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">

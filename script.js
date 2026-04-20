@@ -87,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '.what-content', '.what-visual', '.cta-card',
     '.contact-info', '.contact-form-wrap'
   ];
-  let globalDelay = 0;
   animatableSelectors.forEach(selector => {
     document.querySelectorAll(selector).forEach((el, i) => {
       el.style.opacity = '0';
@@ -199,19 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroSection = document.getElementById('hero');
   if (heroSection) heroSection.addEventListener('mousemove', parallaxHandler, { passive: true });
 
-  // ===== TYPING EFFECT IN HERO TITLE =====
-  const heroTitle = document.getElementById('hero-title');
-  if (heroTitle) {
-    // Already has content — just ensure visibility
-    heroTitle.style.visibility = 'visible';
-  }
-
-  // ===== DYNAMIC STATS TICKER =====
-  const statItems = {
-    'transactions': 0,
-    'users': 0
-  };
-
   // ===== WHY CARDS — TILT EFFECT =====
   const tiltCards = document.querySelectorAll('.why-card, .module-card, .who-card');
   tiltCards.forEach(card => {
@@ -230,13 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.transition = 'transform 0.4s ease';
     });
   });
-
-  // ===== LIVE CLOCK IN HERO BADGE =====
-  // (optional enhancement — real-time badge)
-  const heroBadge = document.getElementById('hero-badge');
-  if (heroBadge) {
-    // Subtle badge pulse already handled via CSS
-  }
 
   // ===== SCROLL PROGRESS INDICATOR =====
   const progressBar = document.createElement('div');
@@ -259,12 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
     progressBar.style.width = progress + '%';
   }, { passive: true });
 
-  // ===== INIT =====
-  scrollHandler(); // check initial scroll position
-  console.log('%c KOMVIA Ecosystem ', 'background: #22c55e; color: #fff; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 14px;');
-  console.log('%c Powering Global Business & Finance dYs? ', 'color: #22c55e; font-size: 12px;');
-
-  // CHATBOT LOGIC
+  // ===== CHATBOT LOGIC =====
   const chatToggle = document.getElementById('chatbot-toggle');
   const chatWindow = document.getElementById('chatbot-window');
   const chatClose = document.getElementById('chat-close');
@@ -295,7 +269,6 @@ document.addEventListener('DOMContentLoaded', () => {
         addMessage(text, true);
         chatInput.value = '';
         
-        // Simulating bot response
         setTimeout(() => {
           const lowerText = text.toLowerCase();
           if (lowerText.includes('price') || lowerText.includes('cost')) {
@@ -314,4 +287,50 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'Enter') handleSend();
     });
   }
+
+  // ===== PWA SERVICE WORKER REGISTRATION =====
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(registration => {
+          console.log('SW registered: ', registration);
+        })
+        .catch(registrationError => {
+          console.log('SW registration failed: ', registrationError);
+        });
+    });
+  }
+
+  // ===== PWA INSTALL PROMPT =====
+  let deferredPrompt;
+  const installBtn = document.getElementById('pwa-install-btn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (installBtn) {
+      installBtn.style.display = 'inline-flex';
+    }
+    console.log('PWA Install Prompt available');
+  });
+
+  if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`User response to install prompt: ${outcome}`);
+        deferredPrompt = null;
+        installBtn.style.display = 'none';
+      }
+    });
+  }
+
+  window.addEventListener('appinstalled', () => {
+    console.log('PWA was installed');
+    if (installBtn) installBtn.style.display = 'none';
+  });
+
+  scrollHandler();
+  console.log('%c KOMVIA Ecosystem Backend Ready ', 'background: #22c55e; color: #fff; padding: 4px; font-weight: bold;');
 });

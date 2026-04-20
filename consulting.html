@@ -31,7 +31,7 @@
   </nav>
 
   <!-- ========== HERO ========== -->
-  <section class="hero" style="min-height: 60vh;">
+  <section class="hero" style="min-height: 60vh; padding-bottom: 0;">
     <div class="hero-bg-overlay"></div>
     <div class="hero-container">
       <div class="hero-content">
@@ -39,7 +39,7 @@
         <h1 class="hero-title">KOMVIA <span class="gradient-text">Consulting & Implementation</span></h1>
         <p class="hero-sub">Expert advisory and technical deployment services to guarantee rapid adoption, seamless integration, and maximum ROI for the KOMVIA ecosystem.</p>
         <div class="hero-ctas" style="margin-top: 24px;">
-           <a href="index.html#contact" class="btn btn-primary btn-lg">Engage Our Experts</a>
+           <a href="#scoper" class="btn btn-primary btn-lg">Calculate Transformation Roadmap</a>
         </div>
       </div>
       <div class="hero-visual">
@@ -52,7 +52,158 @@
     </div>
   </section>
 
-  <!-- ========== SERVICES GRID ========== -->
+  <!-- ========== TRANSFORMATION SCOPER (WIZARD) ========== -->
+  <section class="section" id="scoper" style="background: var(--navy-950);">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Automated <span class="gradient-text">Implementation Scoper</span></h2>
+            <p class="section-sub">Define your goals and generate a high-level digital transformation roadmap in minutes.</p>
+        </div>
+
+        <div class="wizard-container">
+            <div class="wizard-steps">
+                <div class="wiz-step active" id="s1">1</div>
+                <div class="wiz-step" id="s2">2</div>
+                <div class="wiz-step" id="s3">3</div>
+                <div class="wiz-step" id="s4">4</div>
+            </div>
+
+            <div id="step-1" class="wiz-content active">
+                <h3 style="margin-bottom: 24px;">Step 1: Entity Profile</h3>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label>Institution Type</label>
+                    <select id="w-type">
+                        <option value="gov">Government / Central Bank</option>
+                        <option value="conglom">Multi-National Conglomerate</option>
+                        <option value="fintech">Financial Institution / Bank</option>
+                        <option value="smb">High-Growth Enterprise</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Operational Scale (Employees/Users)</label>
+                    <select id="w-scale">
+                        <option value="100">100 - 1,000</option>
+                        <option value="1000">1,001 - 10,000</option>
+                        <option value="10000">10,000+</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" style="margin-top: 32px;" onclick="nextStep(2)">Continue to Step 2</button>
+            </div>
+
+            <div id="step-2" class="wiz-content" style="display:none;">
+                <h3 style="margin-bottom: 24px;">Step 2: Core Objectives</h3>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label>Primary Transformation Goal</label>
+                    <select id="w-goal">
+                        <option value="erp">Unified ERP Intelligence</option>
+                        <option value="ife">Financial Infrastructure Upgrade</option>
+                        <option value="both">Full Ecosystem Integration</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Legacy System Complexity</label>
+                    <select id="w-legacy">
+                        <option value="low">Minimal Legacy Tech</option>
+                        <option value="mid">Fragmented Multi-Vendor Stack</option>
+                        <option value="high">Complex SAP/Oracle Legacy Environment</option>
+                    </select>
+                </div>
+                <div style="display:flex; gap:12px; margin-top:32px;">
+                    <button class="btn btn-ghost" onclick="prevStep(1)">Back</button>
+                    <button class="btn btn-primary" onclick="nextStep(3)">Continue to Step 3</button>
+                </div>
+            </div>
+
+            <div id="step-3" class="wiz-content" style="display:none;">
+                <h3 style="margin-bottom: 24px;">Step 3: Geographic Reach</h3>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label>Deployment Scope</label>
+                    <select id="w-scope">
+                        <option value="local">Single Jurisdiction</option>
+                        <option value="regional">Pan-African / Regional</option>
+                        <option value="global">Multi-Continental</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Reporting Transparency Level</label>
+                    <select id="w-trans">
+                        <option value="std">Standard Audit Logs</option>
+                        <option value="imm">Immutable Sovereign Audit Rails (Token Hashed)</option>
+                    </select>
+                </div>
+                <div style="display:flex; gap:12px; margin-top:32px;">
+                    <button class="btn btn-ghost" onclick="prevStep(2)">Back</button>
+                    <button class="btn btn-primary" onclick="nextStep(4)">Generate Roadmap</button>
+                </div>
+            </div>
+
+            <div id="step-4" class="wiz-content" style="display:none; text-align: center;">
+                <div style="font-size: 50px; margin-bottom: 20px;">📋</div>
+                <h3 style="margin-bottom: 12px;">Roadmap Generated Successfully!</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 32px;">Your bespoke implementation strategy for <strong id="res-type">Sovereign Infrastructure</strong> is ready for review.</p>
+                
+                <div class="why-card" style="text-align: left; background: var(--navy-900); margin-bottom: 32px;">
+                    <h4 style="color: var(--green-400); margin-bottom: 8px;">Estimated Transformation Timeline:</h4>
+                    <p style="font-size: 1.5rem; font-weight: 700; font-family: 'Outfit';">14 - 18 Weeks</p>
+                    <hr style="border: 0; border-top: 1px solid var(--border); margin: 16px 0;">
+                    <h4 style="color: var(--green-400); margin-bottom: 8px;">Key Milestones:</h4>
+                    <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: var(--text-secondary);">
+                        <li style="margin-bottom: 8px;">• Week 1-4: Institutional Node Setup & Data Mapping</li>
+                        <li style="margin-bottom: 8px;">• Week 5-10: Phased Module Deployment</li>
+                        <li style="margin-bottom: 8px;">• Week 11-14: Stakeholder Training & UAT</li>
+                    </ul>
+                </div>
+
+                <button class="btn btn-primary btn-lg" onclick="location.href='index.html#contact'">Book Strategy Briefing with an Expert</button>
+                <p style="margin-top: 16px; font-size: 0.8rem; color: var(--text-muted);">A copy of this roadmap has been cached for your session.</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- ========== SOVEREIGN BLUEPRINTS ========== -->
+  <section class="section" id="blueprints">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Institutional <span class="gradient-text">Blueprints</span></h2>
+            <p class="section-sub">Standardized implementation frameworks for specific institutional use cases.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <span class="card-featured-badge">G2G</span>
+                <div class="why-icon">🏗️</div>
+                <h3>National Revenue Collection</h3>
+                <p>A blueprint for governments to digitize tax collection and procurement via the KOMVIA ERP, integrated with public treasury rails.</p>
+                <div style="border-top:1px solid var(--border); margin-top:16px; padding-top:16px;">
+                    <strong style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Key Tech:</strong>
+                    <p style="font-size:0.85rem; color:var(--green-300);">ERP Intelligence + Sovereign Ledger</p>
+                </div>
+            </div>
+            <div class="why-card">
+                <span class="card-featured-badge">Banking</span>
+                <div class="why-icon">🏦</div>
+                <h3>Cross-Border Pan-African Liquidity</h3>
+                <p>Designed for multi-national banks to bridge fragmented currency zones using the IFE Ecosystem and PAPSS messaging standards.</p>
+                <div style="border-top:1px solid var(--border); margin-top:16px; padding-top:16px;">
+                    <strong style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Key Tech:</strong>
+                    <p style="font-size:0.85rem; color:var(--green-300);">IFE Core + ISO 20022 Hub</p>
+                </div>
+            </div>
+            <div class="why-card">
+                <span class="card-featured-badge">Conglomerate</span>
+                <div class="why-icon">🏢</div>
+                <h3>Supply Chain Sovereignty</h3>
+                <p>Enable large-scale conglomerates to own their data and automate logistics across disparate markets with AI-driven ERP predictive nodes.</p>
+                <div style="border-top:1px solid var(--border); margin-top:16px; padding-top:16px;">
+                    <strong style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Key Tech:</strong>
+                    <p style="font-size:0.85rem; color:var(--green-300);">Modular ERP + Predictive AI</p>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES GRID (ORIGINAL) ========== -->
   <section class="section" id="services">
     <div class="container">
         <div class="section-header">
@@ -61,26 +212,24 @@
         </div>
         <div class="why-grid">
             <div class="why-card">
-                <div class="why-icon">🏗️</div>
+                <div class="why-icon">📦</div>
                 <h3>ERP Deployment</h3>
-                <p>Tailored implementation of the KOMVIA ERP suite. We handle data migration, system configuration, user training, and phased go-lives to minimize operational disruption.</p>
-                <a href="erp.html" class="btn btn-ghost mt-2">Explore ERP</a>
+                <p>Tailored implementation of the KOMVIA ERP suite. We handle data migration, system configuration, user training, and phased go-lives.</p>
             </div>
             <div class="why-card">
-                <div class="why-icon">🏦</div>
-                <h3>Financial System Transformation</h3>
-                <p>Upgrading legacy banking cores to the KOMVIA IFE. We ensure full ISO 20022 compliance, PAPSS readiness, and integration with modern digital asset networks.</p>
-                <a href="ife.html" class="btn btn-ghost mt-2">Explore IFE</a>
+                <div class="why-icon">💸</div>
+                <h3>Financial Transformation</h3>
+                <p>Upgrading legacy banking cores to the KOMVIA IFE. We ensure full ISO 20022 compliance and PAPSS readiness.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon">🧭</div>
-                <h3>Digital Transformation Advisory</h3>
-                <p>Strategic roadmapping for conglomerates and governments. We assess your legacy tech debt and chart a clear, phased path to a fully digitized, AI-driven future.</p>
+                <h3>Transformation Advisory</h3>
+                <p>Strategic roadmapping for conglomerates and governments based on legacy tech debt assessment.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon">⚙️</div>
                 <h3>Process Re-engineering</h3>
-                <p>Software is only as good as the processes it runs. Our consultants optimize your workflows, procurement, and HR pipelines to match global best practices before writing a line of code.</p>
+                <p>Optimizing your workflows, procurement, and HR pipelines to match global best practices.</p>
             </div>
         </div>
     </div>
@@ -93,7 +242,7 @@
         <div class="cta-orb cta-orb-1"></div>
         <div class="cta-content" style="text-align: center; max-width: 800px; margin: 0 auto;">
           <h2 class="cta-title">Guarantee Operational <span class="gradient-text">Success</span></h2>
-          <p class="cta-desc">Failure to adopt is the greatest risk in any digital transformation. Our implementation team ensures the KOMVIA products become the lifeblood of your organization, driving immediate value.</p>
+          <p class="cta-desc">Failure to adopt is the greatest risk in any digital transformation. Our implementation team ensures the KOMVIA products become the lifeblood of your organization.</p>
           <div style="display: flex; gap: 16px; justify-content: center;">
             <a href="index.html#contact" class="btn btn-primary btn-lg">Book Implementation Scoping</a>
           </div>
@@ -107,6 +256,28 @@
        <p style="text-align: center; color: var(--text-muted);">© 2026 KOMVIA LIMITED (RC-20252283). Built for Growth, Engineered for Profits.</p>
     </div>
   </footer>
-  <script src="script.js"></script>
+  
+  <script>
+    function nextStep(s) {
+        document.querySelectorAll('.wiz-content').forEach(c => c.style.display = 'none');
+        document.getElementById('step-' + s).style.display = 'block';
+        
+        document.querySelectorAll('.wiz-step').forEach(step => {
+            const stepNum = parseInt(step.id.replace('s', ''));
+            if(stepNum < s) step.className = 'wiz-step complete';
+            if(stepNum == s) step.className = 'wiz-step active';
+            if(stepNum > s) step.className = 'wiz-step';
+        });
+
+        if(s == 4) {
+             const type = document.getElementById('w-type').options[document.getElementById('w-type').selectedIndex].text;
+             document.getElementById('res-type').innerText = type;
+        }
+    }
+    
+    function prevStep(s) {
+        nextStep(s);
+    }
+  </script>
 </body>
 </html>

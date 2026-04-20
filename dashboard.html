@@ -85,6 +85,9 @@
     .lc-ife { background: linear-gradient(180deg, rgba(59,130,246,0.05) 0%, rgba(10,15,30,1) 100%); }
     .lc-token { background: linear-gradient(180deg, rgba(245,158,11,0.05) 0%, rgba(10,15,30,1) 100%); }
     
+    .dashboard-panel { display: none; }
+    .dashboard-panel.active { display: block; animation: fade-in-up 0.4s ease both; }
+
     @media (max-width: 1024px) {
       .kpi-grid { grid-template-columns: repeat(2, 1fr); }
       .launch-grid { grid-template-columns: 1fr; }
@@ -98,9 +101,14 @@
     <div class="app-brand">
       <div class="logo-mark" style="width: 32px; height: 32px; font-size: 1rem;">K</div>
       <span class="logo-text" style="font-size: 1.1rem;">Launch Suite</span>
-      <span class="app-badge">ENTERPRISE TIER</span>
+      <span class="app-badge" id="env-badge">ENTERPRISE TIER</span>
     </div>
     
+    <div style="margin-left: 40px; display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">SANDBOX MODE:</span>
+        <button class="btn btn-ghost" id="sandbox-toggle" style="padding: 4px 12px; font-size: 0.75rem; border-radius: 50px;">OFF</button>
+    </div>
+
     <div class="app-user">
       <button class="btn btn-ghost" style="padding: 8px 12px; font-size: 0.85rem;">Settings</button>
       <div style="width: 1px; height: 24px; background: var(--border); margin: 0 8px;"></div>
@@ -114,62 +122,181 @@
 
   <!-- Main View -->
   <main class="dashboard-container">
-    <h1 class="view-title">Welcome to the Universal Dashboard</h1>
-    <p class="view-subtitle">Cross-Ecosystem Analytics & Navigation Hub</p>
+    <h1 class="view-title">Universal Dashboard</h1>
     
-    <!-- Cross-Ecosystem Analytics (KPIs) -->
-    <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-h">ERP: Active Logistics Nodes</div>
-        <div class="kpi-val">1,248</div>
-        <div class="kpi-trend">↑ 12% uptime from last month</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-h">IFE: Gross Settlement (24H)</div>
-        <div class="kpi-val">$48.2M</div>
-        <div class="kpi-trend">PAPSS integration fully active</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-h">TOKEN: Sovereign Treasury</div>
-        <div class="kpi-val">142,500 KVT</div>
-        <div class="kpi-trend">Locked in Governance</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-h">SYSTEM UPTIME</div>
-        <div class="kpi-val">99.999%</div>
-        <div class="kpi-trend" style="color: var(--text-secondary);">No active incidents</div>
-      </div>
+    <nav class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('overview')">Ecosystem Overview</button>
+        <button class="tab-btn" onclick="switchTab('compliance')">Compliance Monitor</button>
+        <button class="tab-btn" onclick="switchTab('audit')">Immutable Audit Logs</button>
+    </nav>
+
+    <!-- OVERVIEW PANEL -->
+    <div id="overview" class="dashboard-panel active">
+        <p class="view-subtitle">Cross-Ecosystem Analytics & Navigation Hub</p>
+        
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-h">ERP: Active Logistics Nodes</div>
+            <div class="kpi-val" id="kpi-erp">1,248</div>
+            <div class="kpi-trend">↑ 12% uptime from last month</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-h">IFE: Gross Settlement (24H)</div>
+            <div class="kpi-val" id="kpi-ife">$48.2M</div>
+            <div class="kpi-trend">PAPSS integration fully active</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-h">TOKEN: Sovereign Treasury</div>
+            <div class="kpi-val" id="kpi-token">142,500 KVT</div>
+            <div class="kpi-trend">Locked in Governance</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-h">SYSTEM UPTIME</div>
+            <div class="kpi-val">99.999%</div>
+            <div class="kpi-trend" style="color: var(--text-secondary);">No active incidents</div>
+          </div>
+        </div>
+        
+        <div class="launch-grid">
+          <div class="launch-card lc-erp">
+            <div class="launch-icon">🏢</div>
+            <h3>KOMVIA ERP Suite</h3>
+            <p>Access your Enterprise Resource Planning suite. Manage global inventory, human capital, and AI-driven business intelligence for supply chain operations.</p>
+            <a href="https://komvia-erp-web.vercel.app/" class="btn btn-primary btn-full" target="_blank" rel="noopener noreferrer">Launch ERP Terminal</a>
+          </div>
+          <div class="launch-card lc-ife">
+            <div class="launch-icon">🏦</div>
+            <h3>KOMVIA IFE Ecosystem</h3>
+            <p>Enter the Integrated Financial Ecosystem. Monitor real-time ISO 20022 messaging, approve large wire settlements, and manage USSD banking flows.</p>
+            <a href="https://komvia-ife-web-app.vercel.app/" class="btn btn-primary btn-full" target="_blank" rel="noopener noreferrer">Launch IFE Banking</a>
+          </div>
+          <div class="launch-card lc-token">
+            <div class="launch-icon">🪙</div>
+            <h3>KOMVIA Treasury Vault</h3>
+            <p>Manage your institutional digital assets. View your KOMVIA-TOKEN analytics, participate in network governance, and handle cross-border liquidity.</p>
+            <a href="https://komvia-token.vercel.app/" class="btn btn-primary btn-full" target="_blank" rel="noopener noreferrer" style="background: var(--gradient-gold); box-shadow: 0 4px 20px rgba(245,158,11,0.35);">Access Token Treasury</a>
+          </div>
+        </div>
     </div>
-    
-    <!-- Application Launchers -->
-    <div class="launch-grid">
-      
-      <!-- ERP App -->
-      <div class="launch-card lc-erp">
-        <div class="launch-icon">🏢</div>
-        <h3>KOMVIA ERP Suite</h3>
-        <p>Access your Enterprise Resource Planning suite. Manage global inventory, human capital, and AI-driven business intelligence for supply chain operations.</p>
-        <a href="https://komvia-erp-web.vercel.app/" class="btn btn-primary btn-full" target="_blank" rel="noopener noreferrer">Launch ERP Terminal</a>
-      </div>
-      
-      <!-- IFE App -->
-      <div class="launch-card lc-ife">
-        <div class="launch-icon">🏦</div>
-        <h3>KOMVIA IFE Ecosystem</h3>
-        <p>Enter the Integrated Financial Ecosystem. Monitor real-time ISO 20022 messaging, approve large wire settlements, and manage USSD banking flows.</p>
-        <a href="https://komvia-ife-web-app.vercel.app/" class="btn btn-primary btn-full" target="_blank" rel="noopener noreferrer">Launch IFE Banking</a>
-      </div>
-      
-      <!-- Token App -->
-      <div class="launch-card lc-token">
-        <div class="launch-icon">🪙</div>
-        <h3>KOMVIA Treasury Vault</h3>
-        <p>Manage your institutional digital assets. View your KOMVIA-TOKEN analytics, participate in network governance, and handle cross-border liquidity.</p>
-        <a href="https://komvia-token.vercel.app/" class="btn btn-primary btn-full" target="_blank" rel="noopener noreferrer" style="background: var(--gradient-gold); box-shadow: 0 4px 20px rgba(245,158,11,0.35);">Access Token Treasury</a>
-      </div>
-      
+
+    <!-- COMPLIANCE PANEL -->
+    <div id="compliance" class="dashboard-panel">
+        <p class="view-subtitle">Real-time Regulatory & Performance Resilience Monitor</p>
+        <div class="grid-compliance">
+            <div class="why-card">
+                <div class="status-ring">
+                    <div style="text-align: center;">
+                        <span style="font-size: 1.5rem; font-weight: 800; display: block; color: var(--green-400);">98%</span>
+                        <span style="font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase;">ISO 20022</span>
+                    </div>
+                </div>
+                <h3 style="text-align: center;">Messaging Health</h3>
+                <p style="text-align: center; font-size: 0.8rem;">Frictionless message exchange across PAPSS and Pan-African rails.</p>
+            </div>
+            <div class="why-card">
+                <div class="status-ring">
+                    <div style="text-align: center;">
+                        <span style="font-size: 1.5rem; font-weight: 800; display: block; color: var(--green-400);">Active</span>
+                        <span style="font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase;">NDPR/GDPR</span>
+                    </div>
+                </div>
+                <h3 style="text-align: center;">Data Residency</h3>
+                <p style="text-align: center; font-size: 0.8rem;">Sovereign data nodes are fully localized within the primary jurisdiction.</p>
+            </div>
+            <div class="why-card">
+                <div class="status-ring warning">
+                    <div style="text-align: center;">
+                        <span style="font-size: 1.5rem; font-weight: 800; display: block; color: var(--gold-400);">92%</span>
+                        <span style="font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase;">Encryption</span>
+                    </div>
+                </div>
+                <h3 style="text-align: center;">Cryptographic Guard</h3>
+                <p style="text-align: center; font-size: 0.8rem;">AES-256 rotating keys. 8% of legacy endpoints require upgrade.</p>
+            </div>
+        </div>
+
+        <div class="why-card" style="margin-top: 32px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="margin:0;">Institutional Certifications</h3>
+                <span class="app-badge">Verified 2026</span>
+            </div>
+            <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+                <div style="color: var(--text-secondary); display: flex; align-items: center; gap: 8px;"><span class="check-icon">✓</span> PCI-DSS Level 1</div>
+                <div style="color: var(--text-secondary); display: flex; align-items: center; gap: 8px;"><span class="check-icon">✓</span> SOC 2 Type II</div>
+                <div style="color: var(--text-secondary); display: flex; align-items: center; gap: 8px;"><span class="check-icon">✓</span> ISO 27001 Certified</div>
+            </div>
+        </div>
     </div>
+
+    <!-- AUDIT LOG PANEL -->
+    <div id="audit" class="dashboard-panel">
+        <p class="view-subtitle">Immutable Administrative Accountability (Hashed on KOMVIA Network)</p>
+        <div class="why-card">
+            <div id="audit-log">
+                <div class="log-entry">
+                    <div class="log-time">04:15:22 UTC</div>
+                    <div>
+                        <div class="log-msg">Administrator <strong>[Admin_CB_01]</strong> authorized a liquidity transfer of <strong>$1.2M</strong> from Central Vault.</div>
+                        <span class="log-hash">Hash: 0x8f3e...b412 (Verified by Token Governance)</span>
+                    </div>
+                </div>
+                <div class="log-entry">
+                    <div class="log-time">03:52:10 UTC</div>
+                    <div>
+                        <div class="log-msg">System node <strong>[NODE_LAGOS_04]</strong> successfully rotated AES encryption keys.</div>
+                        <span class="log-hash">Hash: 0xf2a1...d98c (Verified by Token Governance)</span>
+                    </div>
+                </div>
+                <div class="log-entry">
+                    <div class="log-time">02:20:00 UTC</div>
+                    <div>
+                        <div class="log-msg">Enterprise Policy Update: Multi-factor authentication required for all ERP inventory leads.</div>
+                        <span class="log-hash">Hash: 0xa8c3...e45f (Verified by Token Governance)</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-ghost" style="margin-top: 24px; width: 100%;">View Full On-Chain Ledger</button>
+        </div>
+    </div>
+
   </main>
+
+  <script>
+    function switchTab(tabId) {
+        document.querySelectorAll('.dashboard-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // Sandbox Toggle Simulation
+    const sandboxToggle = document.getElementById('sandbox-toggle');
+    const envBadge = document.getElementById('env-badge');
+    let sandboxActive = false;
+
+    sandboxToggle.addEventListener('click', () => {
+        sandboxActive = !sandboxActive;
+        if(sandboxActive) {
+            sandboxToggle.innerText = 'ON';
+            sandboxToggle.style.backgroundColor = 'var(--green-500)';
+            envBadge.innerText = 'SANDBOX ENVIRONMENT';
+            envBadge.style.backgroundColor = 'var(--gold-400)';
+            updateKPIs(true);
+        } else {
+            sandboxToggle.innerText = 'OFF';
+            sandboxToggle.style.backgroundColor = 'transparent';
+            envBadge.innerText = 'ENTERPRISE TIER';
+            envBadge.style.backgroundColor = 'var(--green-500)';
+            updateKPIs(false);
+        }
+    });
+
+    function updateKPIs(isSandbox) {
+        document.getElementById('kpi-erp').innerText = isSandbox ? '50 (SIMULATED)' : '1,248';
+        document.getElementById('kpi-ife').innerText = isSandbox ? '$1,000 (DEMO)' : '$48.2M';
+        document.getElementById('kpi-token').innerText = isSandbox ? '0.00 KVT' : '142,500 KVT';
+    }
+  </script>
 
 </body>
 </html>

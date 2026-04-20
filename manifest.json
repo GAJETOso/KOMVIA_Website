@@ -1,0 +1,17 @@
+{
+  "name": "KOMVIA | The Universal ERP & Fintech Ecosystem",
+  "short_name": "KOMVIA",
+  "description": "KOMVIA is a global technology powerhouse driving business intelligence and financial inclusion through modular ERP systems and integrated financial ecosystems (IFE).",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0a0f1e",
+  "theme_color": "#22c55e",
+  "icons": [
+    {
+      "src": "assets/icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

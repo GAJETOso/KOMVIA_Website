@@ -1109,6 +1109,31 @@ input, select, textarea { font-family: inherit; }
   color: var(--text-secondary);
 }
 
+/* ===== DASHBOARD UTILITIES ===== */
+.tab-nav { display: flex; gap: 12px; margin-bottom: 32px; border-bottom: 1px solid var(--border); padding-bottom: 2px; }
+.tab-btn { background: none; border: none; padding: 12px 20px; color: var(--text-muted); font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: var(--transition); border-bottom: 2px solid transparent; }
+.tab-btn:hover { color: var(--text-primary); }
+.tab-btn.active { color: var(--green-400); border-bottom-color: var(--green-400); }
+
+.status-ring { width: 120px; height: 120px; border-radius: 50%; border: 8px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; margin: 0 auto 20px; }
+.status-ring::after { content: ''; position: absolute; inset: -8px; border-radius: 50%; border: 8px solid transparent; border-top-color: var(--green-400); border-right-color: var(--green-400); transform: rotate(-45deg); }
+.status-ring.warning::after { border-top-color: var(--gold-400); border-right-color: var(--gold-400); }
+
+.grid-compliance { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.log-entry { display: flex; gap: 16px; padding: 16px; border-bottom: 1px solid var(--border); }
+.log-time { color: var(--text-muted); font-size: 0.8rem; font-family: monospace; width: 100px; flex-shrink: 0; }
+.log-msg { font-size: 0.9rem; }
+.log-hash { font-size: 0.7rem; color: var(--green-500); font-family: monospace; opacity: 0.6; margin-top: 4px; display: block; }
+
+/* ===== WIZARD STYLES ===== */
+.wizard-container { background: var(--glass-bg); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 40px; margin-top: 48px; }
+.wizard-steps { display: flex; justify-content: space-between; margin-bottom: 40px; position: relative; }
+.wizard-steps::before { content: ''; position: absolute; top: 20px; left: 0; right: 0; height: 2px; background: var(--border); z-index: 1; }
+.wiz-step { position: relative; z-index: 2; width: 40px; height: 40px; background: var(--navy-800); border: 2px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--text-muted); }
+.wiz-step.active { border-color: var(--green-400); color: var(--green-400); background: var(--glow-green); }
+.wiz-step.complete { background: var(--green-400); border-color: var(--green-400); color: white; }
+
+
 /* ===== CHATBOT STYLES ===== */
 .chatbot-trigger {
   position: fixed;
