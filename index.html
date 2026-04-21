@@ -4,6 +4,39 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>KOMVIA — The Digital Economy Stack for Africa</title>
+<meta name="description" content="KOMVIA LIMITED (RC-20252283) provides mission-critical digital infrastructure for the modern economy. From modular ERP intelligence to Integrated Financial Ecosystems (IFE)."/>
+<meta property="og:title" content="KOMVIA — The Universal Digital Economy Stack for Africa"/>
+<meta property="og:description" content="Powering the next generation of enterprises and fintechs with AI-driven ERP and ISO 20022 compliant financial ecosystems."/>
+<meta property="og:image" content="assets/og-image.jpg"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://komvia.com/"/>
+
+<!-- PWA Metadata -->
+<meta name="theme-color" content="#050608"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+<!-- JSON-LD Structured Data (AEO/GEO Optimized) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "KOMVIA LIMITED",
+  "url": "https://komvia.com",
+  "logo": "https://komvia.com/assets/logo.png",
+  "description": "KOMVIA LIMITED is a private technology conglomerate providing innovative ERP systems and integrated financial ecosystems (IFE) for the global digital economy.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "NG",
+    "addressLocality": "Lagos"
+  },
+  "sameAs": [
+    "https://twitter.com/komvia",
+    "https://linkedin.com/company/komvia"
+  ]
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
   :root {
@@ -633,6 +666,62 @@
     .stack-label-text { writing-mode: horizontal-tb; transform: none; }
     .footer-grid { grid-template-columns: 1fr; }
   }
+
+  /* CHATBOT WIDGET STYLES */
+  .chatbot-trigger {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 1001;
+    width: 60px; height: 60px; background: var(--gold);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: transform .3s;
+  }
+  .chatbot-trigger:hover { transform: scale(1.1); }
+  .chatbot-window {
+    position: fixed; bottom: 6rem; right: 2rem; z-index: 1001;
+    width: 350px; height: 500px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 12px;
+    display: none; flex-direction: column; overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  }
+  .chat-header {
+    background: var(--surface2); padding: 1.2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .chat-header h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--gold); }
+  .chat-close { cursor: pointer; color: var(--text-dim); }
+  .chat-body { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+  .chat-msg { font-size: .82rem; line-height: 1.5; padding: .8rem 1rem; border-radius: 8px; max-width: 85%; }
+  .msg-bot { background: var(--surface2); color: var(--text); align-self: flex-start; }
+  .chat-footer { padding: 1rem; border-top: 1px solid var(--border); display: flex; gap: .5rem; }
+  .chat-input { flex: 1; background: var(--deep); border: 1px solid var(--border-subtle); color: var(--text); padding: .6rem .8rem; border-radius: 4px; outline: none; }
+  .chat-send { background: var(--gold); color: var(--black); border: none; padding: .6rem 1rem; border-radius: 4px; cursor: pointer; font-size: .7rem; font-weight: 600; }
+
+  /* FAQ STYLES */
+  .faq-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 2rem; padding: 0 3rem; max-width: 1400px; margin: 0 auto 8rem; }
+  .faq-item { background: var(--deep); padding: 2rem; border: 1px solid var(--border-subtle); transition: border-color .3s; }
+  .faq-item:hover { border-color: var(--gold); }
+  .faq-q { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--gold); margin-bottom: .8rem; }
+  .faq-a { font-size: .88rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+
+  /* TRUST STRIP */
+  .trust-strip { background: var(--deep); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); padding: 1.5rem 0; overflow: hidden; position: relative; z-index: 2; }
+  .trust-track { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
+  .trust-item { font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; color: var(--text-dim); display: flex; align-items: center; gap: .8rem; }
+  .trust-item span { color: var(--gold); }
+
+  /* PRICING STYLES */
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-subtle); border: 1px solid var(--border-subtle); max-width: 1200px; margin: 0 auto 8rem; }
+  .price-card { background: var(--deep); padding: 4rem 3rem; text-align: center; position: relative; }
+  .price-card.featured { background: var(--surface); border: 1px solid var(--gold-dim); z-index: 1; }
+  .price-tier { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: block; }
+  .price-val { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--text); margin-bottom: .5rem; }
+  .price-val span { font-size: 1rem; color: var(--text-dim); }
+  .price-desc { font-size: .82rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.6; }
+  .price-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: .8rem; margin-bottom: 3rem; }
+  .price-features li { font-size: .78rem; color: var(--text-dim); display: flex; align-items: center; gap: .8rem; }
+  .price-features li::before { content: '✓'; color: var(--gold); font-size: .7rem; }
+
 </style>
 </head>
 <body>
@@ -718,6 +807,17 @@
     Scroll to explore
   </div>
 </section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-track">
+    <div class="trust-item"><span>🛡️</span> PCI-DSS Certified</div>
+    <div class="trust-item"><span>🏦</span> ISO 20022 Ready</div>
+    <div class="trust-item"><span>🔒</span> SOC 2 Type II</div>
+    <div class="trust-item"><span>🌍</span> GDPR & NDPR</div>
+    <div class="trust-item"><span>☁️</span> Multi-Cloud Scalable</div>
+  </div>
+</div>
 
 <!-- DIVISIONS SECTION -->
 <div class="section-header fade-in">
@@ -1245,6 +1345,95 @@
   </div>
 </section>
 
+<!-- PRICING SECTION -->
+<div class="section-header fade-in">
+  <span class="section-eyebrow">Engagement</span>
+  <h2 class="section-title">Institutional <em>Access Tiers</em></h2>
+  <p class="section-body">Engineered for every level of the digital economy, from agile fintechs to sovereign governments.</p>
+</div>
+
+<section id="pricing">
+  <div class="pricing-grid fade-in">
+    <!-- Foundation -->
+    <div class="price-card">
+      <span class="price-tier">Foundation</span>
+      <div class="price-val">$2.5k <span>/mo</span></div>
+      <p class="price-desc">Ideal for high-growth startups and established SMBs looking for a unified ERP brain.</p>
+      <ul class="price-features">
+        <li>15 Full-Suite Modules</li>
+        <li>99.9% Uptime SLA</li>
+        <li>Standard API Access</li>
+        <li>Business Hours Support</li>
+      </ul>
+      <a href="#contact" class="btn-outline" style="width:100%; text-align:center;">Get Started</a>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="price-card featured">
+      <span class="price-tier">Enterprise</span>
+      <div class="price-val">Custom <span>/yr</span></div>
+      <p class="price-desc">For conglomerates and financial institutions requiring deep integration and custom rails.</p>
+      <ul class="price-features">
+        <li>Full Ecosystem Integration</li>
+        <li>24/7 Priority Support</li>
+        <li>Private Instance Hosting</li>
+        <li>Custom Development Credits</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="width:100%; text-align:center;">Connect with Sales</a>
+    </div>
+
+    <!-- Sovereign -->
+    <div class="price-card">
+      <span class="price-tier">Sovereign</span>
+      <div class="price-val">G2G <span>Deal</span></div>
+      <p class="price-desc">State-level infrastructure for central banks and government digital transformation.</p>
+      <ul class="price-features">
+        <li>National Settlement Rails</li>
+        <li>On-Premise Sovereign Deployment</li>
+        <li>Diplomatic-Level Support</li>
+        <li>Full Source-Code Audit Access</li>
+      </ul>
+      <a href="#contact" class="btn-outline" style="width:100%; text-align:center;">Request Briefing</a>
+    </div>
+  </div>
+</section>
+
+<!-- AEO / FAQ SECTION -->
+<div class="section-header fade-in" id="aeo-header">
+  <span class="section-eyebrow">Intelligence</span>
+  <h2 class="section-title">AEO <em>Common Questions</em></h2>
+  <p class="section-body">Quick, authoritative answers for search engines, generative AI, and institutional partners.</p>
+</div>
+
+<section id="faq">
+  <div class="faq-grid fade-in">
+    <div class="faq-item">
+      <div class="faq-q">What is KOMVIA LIMITED?</div>
+      <p class="faq-a">KOMVIA LIMITED (RC-20252283) is a technology conglomerate established to provide sovereign digital infrastructure, including ERP systems and financial ecosystems (IFE), for the global economy.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What problems does the KOMVIA ERP solve?</div>
+      <p class="faq-a">It eliminates operational fragmentation by unifying inventory, logistics, and supply chain data into a single, AI-driven sovereign dashboard built for the African market.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is the IFE Ecosystem compliant with global standards?</div>
+      <p class="faq-a">Yes, the Integrated Financial Ecosystem (IFE) is built on ISO 20022 messaging standards and is PAPSS-integrated for seamless pan-African payments and settlement.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How does KOMVIA handle data privacy?</div>
+      <p class="faq-a">We are fully compliant with NDPR (Nigeria) and GDPR (Global) standards, utilizing AES-256 encryption and blockchain-grade immutability for all sensitive data transfers.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is the utility of the KOMVIA-TOKEN?</div>
+      <p class="faq-a">The KOMVIA-TOKEN serves as the governance and liquidity asset for the entire ecosystem, facilitating institutional settlement, ecosystem voting, and deflationary value accrual.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Who owns the infrastructure behind KOMVIA?</div>
+      <p class="faq-a">KOMVIA operates on a sovereignty-first model, ensuring that the underlying data and digital rails remain under the control of the enterprises and governments that use them.</p>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-grid fade-in">
@@ -1421,6 +1610,32 @@
       setTimeout(()=>{ this.textContent='Send Message →'; this.style.background=''; },3000);
     });
   }
+
+  // Chatbot toggle
+  const chatToggle = document.getElementById('chatbot-toggle');
+  const chatWindow = document.getElementById('chatbot-window');
+  const chatClose = document.getElementById('chat-close');
+  if(chatToggle && chatWindow) {
+    chatToggle.addEventListener('click', () => { chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex'; });
+    chatClose.addEventListener('click', () => { chatWindow.style.display = 'none'; });
+  }
 </script>
+
+<!-- CHATBOT WIDGET -->
+<div class="chatbot-trigger" id="chatbot-toggle">💬</div>
+<div class="chatbot-window" id="chatbot-window">
+  <div class="chat-header">
+    <h4>KOMVIA Assistant</h4>
+    <div class="chat-close" id="chat-close">×</div>
+  </div>
+  <div class="chat-body" id="chat-messages">
+    <div class="chat-msg msg-bot">Welcome to KOMVIA. How can I assist your institution today?</div>
+  </div>
+  <div class="chat-footer">
+    <input type="text" class="chat-input" placeholder="Type your message..."/>
+    <button class="chat-send">Send</button>
+  </div>
+</div>
+
 </body>
 </html>
