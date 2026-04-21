@@ -648,24 +648,50 @@
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
   /* RESPONSIVE */
+  /* MOBILE NAV */
+  .nav-toggle {
+    display: none; flex-direction: column; gap: 4px;
+    background: none; border: none; cursor: pointer; padding: .5rem;
+  }
+  .nav-toggle span { width: 24px; height: 1px; background: var(--gold); transition: .3s; }
+  
   @media (max-width: 1024px) {
-    nav { padding: 0 2rem; }
-    .nav-links { display: none; }
-    #hero { padding: 100px 2rem 60px; }
-    .health-hero { grid-template-columns: 1fr; padding: 3rem 2rem; }
+    nav { padding: 0 1.5rem; }
+    .nav-links {
+      position: fixed; top: 70px; left: 0; right: 0;
+      background: var(--surface); flex-direction: column;
+      padding: 2rem; gap: 1.5rem; text-align: center;
+      border-bottom: 1px solid var(--border);
+      transform: translateY(-150%); transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 999; display: flex;
+    }
+    .nav-links.active { transform: translateY(0); }
+    .nav-toggle { display: flex; }
+    .nav-toggle.active span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+    .nav-toggle.active span:nth-child(2) { opacity: 0; }
+    .nav-toggle.active span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+    
+    #hero { padding: 100px 1.5rem 60px; }
+    .hero-title { font-size: 3.2rem; }
+    .hero-stats { flex-wrap: wrap; gap: 2rem; }
+    .health-hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
     .contact-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
     .form-row { grid-template-columns: 1fr; }
-    #divisions, #healthcare, #stack, #contact { padding-left: 2rem; padding-right: 2rem; }
+    #divisions, #upcoming, #healthcare, #stack, #contact, #faq { padding-left: 1.5rem; padding-right: 1.5rem; }
   }
   @media (max-width: 640px) {
+    .hero-title { font-size: 2.5rem; }
     .hero-stats { flex-direction: column; gap: 1.5rem; }
     .health-stats { grid-template-columns: 1fr; }
     .stack-layer { grid-template-columns: 1fr; }
     .stack-label { border-right: none; border-bottom: 1px solid var(--border-subtle); }
     .stack-label-text { writing-mode: horizontal-tb; transform: none; }
     .footer-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
   }
+
 
   /* CHATBOT WIDGET STYLES */
   .chatbot-trigger {
@@ -732,15 +758,23 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo">KOM<span>VIA</span></a>
-  <ul class="nav-links">
-    <li><a href="#divisions">Divisions</a></li>
+  <a href="#hero" class="nav-logo">
+    <img src="komvia_logo_gold_1776808795844.png" alt="KOMVIA Logo" style="height: 32px; width: auto; margin-right: 12px;"/>
+    KOM<span>VIA</span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#divisions">Ecosystem</a></li>
     <li><a href="#healthcare">Healthcare</a></li>
-    <li><a href="#stack">Stack</a></li>
-    <li><a href="#manifesto">Vision</a></li>
+    <li><a href="#pricing">Suite</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Request Demo</a>
+  <div style="display:flex; align-items:center; gap:1.5rem;">
+    <a href="#contact" class="nav-cta">Launch Suite</a>
+    <button class="nav-toggle" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- TICKER -->
@@ -829,22 +863,21 @@
 
     <!-- 01 ERP -->
     <a href="https://komvia-erp-web.vercel.app/" class="division-card fade-in">
-      <div class="card-num">01 / 06</div>
+      <div class="card-num">01 / 07</div>
       <span class="card-icon">⚙️</span>
-      <div class="card-title">KOMVIA ERP</div>
+      <div class="card-title">KOMVIA ERP Suite</div>
       <div class="card-subtitle">Enterprise Resource Planning</div>
-      <p class="card-desc">Full-suite ERP purpose-built for African enterprise — finance, HR, procurement, operations, and compliance in a single sovereignty-first platform.</p>
+      <p class="card-desc">Advanced modular ERP suite — unifying inventory, logistics, and multi-tenant operations into a single AI-optimized dashboard for global scale.</p>
       <div class="card-tags">
-        <span class="tag gold">Core Product</span>
-        <span class="tag">Finance</span>
-        <span class="tag">HR</span>
-        <span class="tag">Procurement</span>
+        <span class="tag gold">Core Suite</span>
+        <span class="tag">AI-Optimized</span>
+        <span class="tag">Modular</span>
       </div>
     </a>
 
     <!-- 02 IFE -->
     <a href="https://komvia-ife-web-app.vercel.app/" class="division-card fade-in">
-      <div class="card-num">02 / 06</div>
+      <div class="card-num">02 / 07</div>
       <span class="card-icon">🏗️</span>
       <div class="card-title">KOMVIA IFE</div>
       <div class="card-subtitle">Integrated Financial & Banking OS</div>
@@ -853,62 +886,71 @@
         <span class="tag gold">Core Product</span>
         <span class="tag">Payments</span>
         <span class="tag">Banking OS</span>
-        <span class="tag">Ledger</span>
       </div>
     </a>
 
-    <!-- 03 AI OS -->
+    <!-- 03 TOKEN -->
+    <a href="https://komvia-token.vercel.app/" class="division-card fade-in">
+      <div class="card-num">03 / 07</div>
+      <span class="card-icon">🪙</span>
+      <div class="card-title">KOMVIA Token</div>
+      <div class="card-subtitle">Economic Engine & Governance</div>
+      <p class="card-desc">The sovereign utility and governance engine facilitating institutional settlement and cross-border value transfer across the entire conglomerate stack.</p>
+      <div class="card-tags">
+        <span class="tag gold">Economic Engine</span>
+        <span class="tag">Governance</span>
+        <span class="tag">Liquidity</span>
+      </div>
+    </a>
+
+    <!-- 04 AI OS -->
     <a href="dashboard.html" class="division-card fade-in">
-      <div class="card-num">03 / 06</div>
+      <div class="card-num">04 / 07</div>
       <span class="card-icon">🤖</span>
       <div class="card-title">KOMVIA AI OS</div>
       <div class="card-subtitle">Decision Intelligence Layer</div>
-      <p class="card-desc">AI CFO, AI HR Manager, AI Compliance Officer, and Predictive Risk Engine embedded across the stack — transitioning KOMVIA from software to decision intelligence.</p>
+      <p class="card-desc">AI CFO, AI HR Manager, and Predictive Risk Engine embedded across the stack — transitioning KOMVIA from software to decision intelligence.</p>
       <div class="card-tags">
         <span class="tag blue">AI/ML</span>
         <span class="tag">Automation</span>
-        <span class="tag">Forecasting</span>
       </div>
     </a>
 
-    <!-- 04 REGTECH -->
+    <!-- 05 REGTECH -->
     <a href="compliance.html" class="division-card fade-in">
-      <div class="card-num">04 / 06</div>
+      <div class="card-num">05 / 07</div>
       <span class="card-icon">🧾</span>
       <div class="card-title">KOMVIA RegTech</div>
       <div class="card-subtitle">Tax & Regulatory Compliance</div>
-      <p class="card-desc">Automated tax filing with FIRS integration, regulatory reporting engine, audit-ready financial trails, and ESG reporting tools for enterprises and government agencies.</p>
+      <p class="card-desc">Automated tax filing with FIRS integration, regulatory reporting, and ESG tools for enterprises and government agencies.</p>
       <div class="card-tags">
         <span class="tag gold">Compliance</span>
         <span class="tag">FIRS</span>
-        <span class="tag">ESG</span>
       </div>
     </a>
 
-    <!-- 05 GOVERNMENT OS -->
+    <!-- 06 GOVERNMENT OS -->
     <a href="waitlist.html" class="division-card fade-in">
-      <div class="card-num">05 / 06</div>
+      <div class="card-num">06 / 07</div>
       <span class="card-icon">🌍</span>
       <div class="card-title">KOMVIA Government OS</div>
       <div class="card-subtitle">Digital Public Infrastructure</div>
-      <p class="card-desc">Revenue collection systems, public finance tracking, social payment rails (grants, palliatives), and digital procurement infrastructure — critical national infrastructure.</p>
+      <p class="card-desc">Revenue collection systems, public finance tracking, and digital procurement infrastructure — critical national infrastructure for sovereign growth.</p>
       <div class="card-tags">
         <span class="tag gold">Gov-Tech</span>
         <span class="tag">Revenue</span>
-        <span class="tag">Public Finance</span>
       </div>
     </a>
 
-    <!-- 06 CONSULTING -->
+    <!-- 07 CONSULTING -->
     <a href="consulting.html" class="division-card fade-in">
-      <div class="card-num">06 / 06</div>
+      <div class="card-num">07 / 07</div>
       <span class="card-icon">💼</span>
       <div class="card-title">KOMVIA Consulting</div>
       <div class="card-subtitle">Implementation & Advisory</div>
-      <p class="card-desc">ERP deployment, financial system transformation, digital transformation advisory, and process re-engineering services that drive deep product adoption across the platform.</p>
+      <p class="card-desc">ERP deployment, financial system transformation, and digital transformation advisory services that drive deep platform adoption.</p>
       <div class="card-tags">
         <span class="tag gold">Services</span>
-        <span class="tag">Advisory</span>
         <span class="tag">Implementation</span>
       </div>
     </a>
@@ -1569,6 +1611,23 @@
   if(chatToggle && chatWindow) {
     chatToggle.addEventListener('click', () => { chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex'; });
     chatClose.addEventListener('click', () => { chatWindow.style.display = 'none'; });
+  }
+
+  // Mobile Menu Toggle
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  if(navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
   }
 </script>
 
