@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       setTimeout(() => {
         btn.innerHTML = '✅ Request Received!';
-        btn.style.background = 'linear-gradient(135deg, #16a34a, #15803d)';
+        btn.style.background = 'linear-gradient(135deg, #c99d42, #a67f33)';
         showToast('🎉 Demo booked! We\'ll contact you within 24 hours.');
         
         setTimeout(() => {
