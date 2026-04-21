@@ -1,1963 +1,686 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>KOMVIA — The Digital Economy Stack for Africa</title>
-<meta name="description" content="KOMVIA LIMITED (RC-20252283) provides mission-critical digital infrastructure for the modern economy. From modular ERP intelligence to Integrated Financial Ecosystems (IFE)."/>
-<meta property="og:title" content="KOMVIA — The Universal Digital Economy Stack for Africa"/>
-<meta property="og:description" content="Powering the next generation of enterprises and fintechs with AI-driven ERP and ISO 20022 compliant financial ecosystems."/>
-<meta property="og:image" content="assets/og-image.jpg"/>
-<meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://komvia.com/"/>
-
-<!-- PWA Metadata -->
-<meta name="theme-color" content="#050608"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-
-<!-- JSON-LD Structured Data (AEO/GEO Optimized) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "KOMVIA LIMITED",
-  "url": "https://komvia.com",
-  "logo": "https://komvia.com/assets/logo.png",
-  "description": "KOMVIA LIMITED is a private technology conglomerate providing innovative ERP systems and integrated financial ecosystems (IFE) for the global digital economy.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "NG",
-    "addressLocality": "Lagos"
-  },
-  "sameAs": [
-    "https://twitter.com/komvia",
-    "https://linkedin.com/company/komvia"
-  ]
-}
-</script>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
-<style>
-  :root {
-    --black: #050608;
-    --deep: #0a0c10;
-    --surface: #0f1218;
-    --surface2: #161b24;
-    --gold: #c9a84c;
-    --gold-light: #e8c96a;
-    --gold-dim: #6b5520;
-    --electric: #00d4ff;
-    --electric-dim: #003d4d;
-    --red: #e63946;
-    --green: #2d9c6e;
-    --text: #e8eaf0;
-    --text-dim: #6b7280;
-    --text-muted: #9ca3af;
-    --border: rgba(201,168,76,0.15);
-    --border-subtle: rgba(255,255,255,0.06);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--black);
-    color: var(--text);
-    overflow-x: hidden;
-    cursor: none;
-  }
-
-  /* CUSTOM CURSOR */
-  .cursor {
-    position: fixed; width: 10px; height: 10px;
-    background: var(--gold); border-radius: 50%;
-    pointer-events: none; z-index: 9999;
-    transform: translate(-50%,-50%);
-    transition: width .2s, height .2s, background .2s;
-    mix-blend-mode: difference;
-  }
-  .cursor-ring {
-    position: fixed; width: 36px; height: 36px;
-    border: 1px solid var(--gold); border-radius: 50%;
-    pointer-events: none; z-index: 9998;
-    transform: translate(-50%,-50%);
-    transition: transform .1s ease, width .3s, height .3s, opacity .3s;
-    opacity: 0.5;
-  }
-
-  /* NOISE OVERLAY */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 1; opacity: 0.4;
-  }
-
-  /* SCROLLBAR */
-  ::-webkit-scrollbar { width: 3px; }
-  ::-webkit-scrollbar-track { background: var(--black); }
-  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
-
-  /* ──────────────────────────── NAV ──────────────────────────── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 3rem; height: 70px;
-    background: rgba(5,6,8,0.92);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.7rem; font-weight: 600;
-    color: var(--gold); letter-spacing: .12em;
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--electric); }
-  .nav-links {
-    display: flex; gap: 2.2rem;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: .72rem; font-weight: 500; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--text-dim);
-    text-decoration: none;
-    transition: color .2s;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-    height: 1px; background: var(--gold);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform .3s;
-  }
-  .nav-links a:hover { color: var(--gold); }
-  .nav-links a:hover::after { transform: scaleX(1); }
-  .nav-cta {
-    background: var(--gold); color: var(--black);
-    font-size: .72rem; font-weight: 600; letter-spacing: .1em;
-    text-transform: uppercase; padding: .6rem 1.6rem;
-    border: none; cursor: pointer; text-decoration: none;
-    transition: background .2s, transform .2s;
-    display: inline-block;
-  }
-  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
-
-  /* ──────────────────────────── HERO ──────────────────────────── */
-  #hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 120px 3rem 80px;
-    position: relative; overflow: hidden;
-  }
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
-    background-size: 80px 80px;
-    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-  }
-  .hero-glow {
-    position: absolute; top: -200px; left: 50%;
-    transform: translateX(-50%);
-    width: 900px; height: 600px;
-    background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: .6rem;
-    font-size: .7rem; font-weight: 500; letter-spacing: .15em;
-    text-transform: uppercase; color: var(--gold);
-    border: 1px solid var(--border); padding: .4rem 1rem;
-    margin-bottom: 2.5rem; width: fit-content;
-  }
-  .hero-tag-dot { width: 6px; height: 6px; background: var(--electric); border-radius: 50%; animation: blink 1.4s infinite; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    font-weight: 300; line-height: 1.0;
-    letter-spacing: -.01em;
-    max-width: 900px;
-  }
-  .hero-title em { font-style: italic; color: var(--gold); }
-  .hero-title strong { font-weight: 600; display: block; }
-
-  .hero-sub {
-    margin-top: 2rem;
-    font-size: 1.05rem; line-height: 1.7;
-    color: var(--text-muted); max-width: 560px;
-    font-weight: 300;
-  }
-
-  .hero-stats {
-    display: flex; gap: 3rem; margin-top: 4rem;
-  }
-  .hero-stat-val {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.8rem; font-weight: 300; color: var(--gold);
-    line-height: 1;
-  }
-  .hero-stat-lbl {
-    font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--text-dim); margin-top: .4rem;
-  }
-
-  .hero-actions { display: flex; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--gold); color: var(--black);
-    font-size: .8rem; font-weight: 600; letter-spacing: .1em;
-    text-transform: uppercase; padding: .9rem 2.2rem;
-    border: none; cursor: pointer; text-decoration: none;
-    display: inline-block; transition: all .25s;
-  }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.3); }
-  .btn-outline {
-    background: transparent; color: var(--text);
-    font-size: .8rem; font-weight: 500; letter-spacing: .1em;
-    text-transform: uppercase; padding: .9rem 2.2rem;
-    border: 1px solid var(--border-subtle); cursor: pointer;
-    text-decoration: none; display: inline-block; transition: all .25s;
-  }
-  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-  .hero-scroll {
-    position: absolute; bottom: 3rem; left: 3rem;
-    display: flex; align-items: center; gap: .8rem;
-    font-size: .65rem; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--text-dim);
-  }
-  .scroll-line { width: 40px; height: 1px; background: var(--gold-dim); }
-
-  /* ──────────────────────────── SECTIONS ──────────────────────────── */
-  section { position: relative; z-index: 2; }
-
-  .section-header {
-    text-align: center; padding: 7rem 3rem 4rem;
-  }
-  .section-eyebrow {
-    font-size: .68rem; letter-spacing: .25em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.2rem; display: block;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 4vw, 3.6rem);
-    font-weight: 300; line-height: 1.15;
-  }
-  .section-title em { font-style: italic; color: var(--gold); }
-  .section-body {
-    font-size: .95rem; color: var(--text-muted); max-width: 560px;
-    margin: 1.2rem auto 0; line-height: 1.8; font-weight: 300;
-  }
-
-  /* DIVIDER */
-  .divider {
-    width: 60px; height: 1px; background: var(--gold);
-    margin: 0 auto 0; opacity: 0.5;
-  }
-
-  /* ──────────────────────────── DIVISIONS GRID ──────────────────────────── */
-  #divisions { padding: 0 3rem 8rem; }
-
-  .divisions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1px;
-    background: var(--border-subtle);
-    border: 1px solid var(--border-subtle);
-    max-width: 1400px; margin: 0 auto;
-  }
-  .division-card {
-    background: var(--deep);
-    padding: 2.4rem;
-    position: relative; overflow: hidden;
-    transition: background .3s;
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    color: inherit;
-  }
-  .division-card::before {
-    content: ''; position: absolute; top: 0; left: 0;
-    width: 2px; height: 0;
-    background: linear-gradient(180deg, var(--gold), transparent);
-    transition: height .4s;
-  }
-  .division-card:hover { background: var(--surface); }
-  .division-card:hover::before { height: 100%; }
-
-  .card-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: .65rem; color: var(--gold-dim); letter-spacing: .1em;
-    margin-bottom: 1rem;
-  }
-  .card-icon {
-    font-size: 1.8rem; margin-bottom: 1rem;
-    display: block; line-height: 1;
-  }
-  .card-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.35rem; font-weight: 500;
-    color: var(--text); margin-bottom: .6rem; line-height: 1.2;
-  }
-  .card-subtitle {
-    font-size: .72rem; color: var(--gold); letter-spacing: .08em;
-    text-transform: uppercase; margin-bottom: 1rem;
-  }
-  .card-desc {
-    font-size: .82rem; color: var(--text-muted); line-height: 1.7;
-    font-weight: 300;
-  }
-  .card-tags {
-    display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.4rem;
-  }
-  .tag {
-    font-size: .62rem; letter-spacing: .08em; text-transform: uppercase;
-    padding: .25rem .7rem; border: 1px solid var(--border-subtle);
-    color: var(--text-dim);
-  }
-  .tag.gold { border-color: var(--gold-dim); color: var(--gold); }
-  .tag.blue { border-color: var(--electric-dim); color: var(--electric); }
-
-  /* ──────────────────────────── HEALTHCARE FEATURE ──────────────────────────── */
-  #healthcare {
-    padding: 0 3rem 10rem;
-    max-width: 1400px; margin: 0 auto;
-  }
-  .health-hero {
-    position: relative; overflow: hidden;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 5rem;
-    margin-bottom: 2px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-    align-items: center;
-  }
-  .health-hero::before {
-    content: ''; position: absolute;
-    top: -100px; right: -100px;
-    width: 400px; height: 400px;
-    background: radial-gradient(ellipse, rgba(45,156,110,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .health-eyebrow {
-    display: flex; align-items: center; gap: .8rem;
-    font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--green); margin-bottom: 1.5rem;
-  }
-  .health-badge {
-    background: rgba(45,156,110,0.15); color: var(--green);
-    font-size: .6rem; letter-spacing: .1em; padding: .2rem .7rem;
-    text-transform: uppercase;
-  }
-  .health-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3.5vw, 3.2rem);
-    font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem;
-  }
-  .health-title em { font-style: italic; color: var(--green); }
-  .health-desc {
-    font-size: .9rem; line-height: 1.8; color: var(--text-muted);
-    font-weight: 300; margin-bottom: 2rem;
-  }
-  .health-stats {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-  }
-  .health-stat {
-    padding: 1.2rem; background: var(--deep);
-    border-top: 2px solid var(--green);
-    text-align: center;
-  }
-  .health-stat-val {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem; font-weight: 300; color: var(--green);
-    display: block; line-height: 1;
-  }
-  .health-stat-lbl {
-    font-size: .62rem; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--text-dim); margin-top: .4rem;
-  }
-
-  /* blockchain visual */
-  .health-visual {
-    position: relative; display: flex; flex-direction: column; gap: 1rem;
-  }
-  .blockchain-chain {
-    display: flex; flex-direction: column; gap: 0;
-    position: relative;
-  }
-  .block-node {
-    background: var(--deep);
-    border: 1px solid var(--border-subtle);
-    padding: 1rem 1.4rem;
-    display: flex; align-items: center; gap: 1rem;
-    position: relative;
-    transition: border-color .3s, background .3s;
-    text-decoration: none;
-    color: inherit;
-  }
-  .block-node:hover { border-color: var(--green); background: var(--surface2); }
-  .block-node::after {
-    content: ''; position: absolute; left: 2rem; bottom: -12px;
-    width: 1px; height: 12px; background: var(--green); opacity: 0.4;
-  }
-  .block-node:last-child::after { display: none; }
-  .block-hash {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: .58rem; color: var(--green); opacity: 0.7;
-    letter-spacing: .05em;
-  }
-  .block-icon { font-size: 1.2rem; }
-  .block-info { flex: 1; }
-  .block-title { font-size: .78rem; font-weight: 500; color: var(--text); }
-  .block-meta { font-size: .62rem; color: var(--text-dim); margin-top: .2rem; }
-  .block-status {
-    font-size: .6rem; letter-spacing: .08em; text-transform: uppercase;
-    padding: .2rem .6rem;
-    background: rgba(45,156,110,0.12); color: var(--green);
-  }
-
-  /* HEALTH MODULES GRID */
-  .health-modules {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1px; background: var(--border-subtle);
-    border: 1px solid var(--border-subtle);
-    border-top: none;
-  }
-  .health-module {
-    background: var(--deep); padding: 2rem 2.2rem;
-    position: relative; overflow: hidden;
-    transition: background .3s;
-    text-decoration: none;
-    display: block;
-    color: inherit;
-  }
-  .health-module:hover { background: var(--surface); }
-  .health-module::after {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--green), transparent);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform .4s;
-  }
-  .health-module:hover::after { transform: scaleX(1); }
-  .hm-icon { font-size: 1.6rem; margin-bottom: .8rem; display: block; }
-  .hm-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem; font-weight: 500; margin-bottom: .5rem;
-  }
-  .hm-desc { font-size: .78rem; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
-  .hm-features {
-    list-style: none; margin-top: 1rem;
-  }
-  .hm-features li {
-    font-size: .72rem; color: var(--text-dim);
-    padding: .25rem 0; border-bottom: 1px solid var(--border-subtle);
-    display: flex; align-items: center; gap: .5rem;
-  }
-  .hm-features li::before {
-    content: ''; width: 4px; height: 4px;
-    background: var(--green); border-radius: 50%; flex-shrink: 0;
-  }
-
-  /* ──────────────────────────── PLATFORM STACK ──────────────────────────── */
-  #stack { padding: 0 3rem 10rem; }
-  .stack-wrap { max-width: 1000px; margin: 0 auto; }
-  .stack-layer {
-    display: grid; grid-template-columns: 180px 1fr;
-    align-items: stretch; border: 1px solid var(--border-subtle);
-    margin-bottom: -1px; transition: border-color .3s;
-  }
-  .stack-layer:hover { border-color: var(--gold); z-index: 1; }
-  .stack-label {
-    background: var(--surface);
-    border-right: 1px solid var(--border-subtle);
-    padding: 1.6rem;
-    display: flex; align-items: center;
-  }
-  .stack-label-text {
-    font-size: .62rem; letter-spacing: .15em; text-transform: uppercase;
-    color: var(--gold); writing-mode: vertical-rl;
-    transform: rotate(180deg); text-align: center;
-    line-height: 1;
-  }
-  .stack-items {
-    padding: 1.6rem; display: flex; flex-wrap: wrap; gap: .8rem;
-    align-items: center;
-  }
-  .stack-item {
-    font-size: .72rem; letter-spacing: .06em;
-    padding: .4rem 1rem; border: 1px solid var(--border-subtle);
-    color: var(--text-muted); transition: all .2s;
-    white-space: nowrap;
-    text-decoration: none;
-  }
-  .stack-item:hover { border-color: var(--gold); color: var(--gold); }
-  .stack-item.featured { border-color: var(--gold-dim); color: var(--gold); }
-  .stack-item.health { border-color: rgba(45,156,110,0.3); color: var(--green); }
-
-  /* ──────────────────────────── MANIFESTO ──────────────────────────── */
-  #manifesto {
-    padding: 10rem 3rem;
-    background: linear-gradient(180deg, var(--black) 0%, var(--surface) 50%, var(--black) 100%);
-    text-align: center; position: relative; overflow: hidden;
-  }
-  .manifesto-bg {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
-  .manifesto-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 3.8rem);
-    font-weight: 300; line-height: 1.3;
-    max-width: 860px; margin: 0 auto;
-    position: relative; z-index: 1;
-  }
-  .manifesto-quote em { font-style: italic; color: var(--gold); }
-  .manifesto-attr {
-    font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--text-dim); margin-top: 2rem;
-    position: relative; z-index: 1;
-  }
-
-  /* ──────────────────────────── CONTACT ──────────────────────────── */
-  #contact { padding: 8rem 3rem; max-width: 1400px; margin: 0 auto; }
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-    align-items: start;
-  }
-  .contact-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3vw, 3rem); font-weight: 300; margin-bottom: 1.2rem;
-  }
-  .contact-title em { font-style: italic; color: var(--gold); }
-  .contact-body {
-    font-size: .88rem; color: var(--text-muted); line-height: 1.8; font-weight: 300;
-    margin-bottom: 2.5rem;
-  }
-  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
-  .contact-link {
-    display: flex; align-items: center; gap: 1rem;
-    font-size: .8rem; color: var(--text-muted); text-decoration: none;
-    transition: color .2s; padding: .8rem 0;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-  .contact-link:hover { color: var(--gold); }
-  .contact-link-icon { font-size: 1rem; }
-  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .form-field {
-    display: flex; flex-direction: column; gap: .4rem;
-  }
-  .form-field label {
-    font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
-    color: var(--text-dim);
-  }
-  .form-field input,
-  .form-field select,
-  .form-field textarea {
-    background: var(--surface); border: 1px solid var(--border-subtle);
-    color: var(--text); padding: .8rem 1rem;
-    font-family: 'DM Sans', sans-serif; font-size: .82rem;
-    transition: border-color .2s; outline: none;
-    resize: none;
-  }
-  .form-field input:focus,
-  .form-field select:focus,
-  .form-field textarea:focus { border-color: var(--gold); }
-  .form-field select option { background: var(--surface); }
-  .form-submit {
-    background: var(--gold); color: var(--black);
-    font-size: .78rem; font-weight: 600; letter-spacing: .12em;
-    text-transform: uppercase; padding: 1rem 2rem;
-    border: none; cursor: pointer; transition: all .25s;
-    align-self: flex-start;
-  }
-  .form-submit:hover { background: var(--gold-light); }
-
-  /* ──────────────────────────── FOOTER ──────────────────────────── */
-  footer {
-    border-top: 1px solid var(--border-subtle);
-    padding: 4rem 3rem 3rem;
-  }
-  .footer-grid {
-    display: grid; grid-template-columns: 2fr repeat(4, 1fr);
-    gap: 3rem; max-width: 1400px; margin: 0 auto;
-    padding-bottom: 3rem; border-bottom: 1px solid var(--border-subtle);
-  }
-  .footer-brand-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem; font-weight: 600;
-    color: var(--gold); letter-spacing: .12em;
-    margin-bottom: 1rem; display: block;
-  }
-  .footer-brand-desc {
-    font-size: .8rem; color: var(--text-dim); line-height: 1.7; font-weight: 300;
-    max-width: 260px;
-  }
-  .footer-col-title {
-    font-size: .65rem; letter-spacing: .15em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.4rem;
-  }
-  .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
-  .footer-col-links a {
-    font-size: .78rem; color: var(--text-dim); text-decoration: none;
-    transition: color .2s;
-  }
-  .footer-col-links a:hover { color: var(--text); }
-  .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-    max-width: 1400px; margin: 2.5rem auto 0;
-    font-size: .68rem; color: var(--text-dim); letter-spacing: .06em;
-  }
-  .footer-bottom a { color: var(--gold); text-decoration: none; }
-
-  /* TICKER */
-  .ticker-wrap {
-    overflow: hidden; border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
-    padding: .8rem 0; background: var(--surface);
-    position: relative; z-index: 2;
-  }
-  .ticker-track {
-    display: flex; gap: 0;
-    animation: ticker 35s linear infinite;
-    white-space: nowrap;
-  }
-  .ticker-item {
-    display: inline-flex; align-items: center; gap: 2rem;
-    padding: 0 2rem;
-    font-size: .65rem; letter-spacing: .12em; text-transform: uppercase;
-    color: var(--text-dim);
-  }
-  .ticker-item span { color: var(--gold); }
-  .ticker-sep { color: var(--gold-dim); }
-  @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-
-  /* ANIMATIONS */
-  .fade-in { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-  /* RESPONSIVE */
-  /* MOBILE NAV */
-  .nav-toggle {
-    display: none; flex-direction: column; gap: 4px;
-    background: none; border: none; cursor: pointer; padding: .5rem;
-  }
-  .nav-toggle span { width: 24px; height: 1px; background: var(--gold); transition: .3s; }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KOMVIA — Africa's Sovereign Digital Economy Stack</title>
   
-  @media (max-width: 1024px) {
-    nav { padding: 0 1.5rem; }
-    .nav-links {
-      position: fixed; top: 70px; left: 0; right: 0;
-      background: var(--surface); flex-direction: column;
-      padding: 2rem; gap: 1.5rem; text-align: center;
-      border-bottom: 1px solid var(--border);
-      transform: translateY(-150%); transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 999; display: flex;
+  <!-- SEO / GEO / AEO Metadata -->
+  <meta name="description" content="KOMVIA LIMITED (RC-20252283) provides the mission-critical infrastructure for Africa's digital economy — from modular ERP intelligence to Integrated Financial Ecosystems (IFE)."/>
+  <meta name="keywords" content="KOMVIA, ERP Africa, IFE, Financial Ecosystem, Digital Sovereignty, African Tech, Institutional Finance, GovTech Africa, Healthcare OS"/>
+  <meta name="author" content="KOMVIA LIMITED"/>
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="KOMVIA — The Digital Economy Stack for Africa"/>
+  <meta property="og:description" content="Mission-critical infrastructure for the modern digital economy. Modular ERP, Integrated Financial Ecosystems, and Sovereign AI."/>
+  <meta property="og:image" content="komvia_ecosystem_map_1776811162073.png"/>
+  <meta property="og:type" content="website"/>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  
+  <style>
+    :root {
+      --black: #050608;
+      --deep: #0a0c10;
+      --surface: #0f1218;
+      --surface2: #161b24;
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --gold-dim: #6b5520;
+      --electric: #00d4ff;
+      --electric-dim: #003d4d;
+      --red: #e63946;
+      --green: #2d9c6e;
+      --text: #e8eaf0;
+      --text-dim: #6b7280;
+      --text-muted: #9ca3af;
+      --border: rgba(201,168,76,0.15);
+      --border-subtle: rgba(255,255,255,0.06);
     }
-    .nav-links.active { transform: translateY(0); }
-    .nav-toggle { display: flex; }
-    .nav-toggle.active span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
-    .nav-toggle.active span:nth-child(2) { opacity: 0; }
-    .nav-toggle.active span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
-    
-    #hero { padding: 100px 1.5rem 60px; }
-    .hero-title { font-size: 3.2rem; }
-    .hero-stats { flex-wrap: wrap; gap: 2rem; }
-    .health-hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .form-row { grid-template-columns: 1fr; }
-    #divisions, #upcoming, #healthcare, #stack, #contact, #faq { padding-left: 1.5rem; padding-right: 1.5rem; }
-  }
-  @media (max-width: 640px) {
-    .hero-title { font-size: 2.5rem; }
-    .hero-stats { flex-direction: column; gap: 1.5rem; }
-    .health-stats { grid-template-columns: 1fr; }
-    .stack-layer { grid-template-columns: 1fr; }
-    .stack-label { border-right: none; border-bottom: 1px solid var(--border-subtle); }
-    .stack-label-text { writing-mode: horizontal-tb; transform: none; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .pricing-grid { grid-template-columns: 1fr; }
-    .faq-grid { grid-template-columns: 1fr; }
-  }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background-color: var(--black); color: var(--text);
+      font-family: 'DM Sans', sans-serif; line-height: 1.6;
+      overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    }
 
-  /* CHATBOT WIDGET STYLES */
-  .chatbot-trigger {
-    position: fixed; bottom: 2rem; right: 2rem; z-index: 1001;
-    width: 60px; height: 60px; background: var(--gold);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    transition: transform .3s;
-  }
-  .chatbot-trigger:hover { transform: scale(1.1); }
-  .chatbot-window {
-    position: fixed; bottom: 6rem; right: 2rem; z-index: 1001;
-    width: 350px; height: 500px; background: var(--surface);
-    border: 1px solid var(--border); border-radius: 12px;
-    display: none; flex-direction: column; overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-  }
-  .chat-header {
-    background: var(--surface2); padding: 1.2rem;
-    display: flex; justify-content: space-between; align-items: center;
-    border-bottom: 1px solid var(--border);
-  }
-  .chat-header h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--gold); }
-  .chat-close { cursor: pointer; color: var(--text-dim); }
-  .chat-body { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
-  .chat-msg { font-size: .82rem; line-height: 1.5; padding: .8rem 1rem; border-radius: 8px; max-width: 85%; }
-  .msg-bot { background: var(--surface2); color: var(--text); align-self: flex-start; }
-  .chat-footer { padding: 1rem; border-top: 1px solid var(--border); display: flex; gap: .5rem; }
-  .chat-input { flex: 1; background: var(--deep); border: 1px solid var(--border-subtle); color: var(--text); padding: .6rem .8rem; border-radius: 4px; outline: none; }
-  .chat-send { background: var(--gold); color: var(--black); border: none; padding: .6rem 1rem; border-radius: 4px; cursor: pointer; font-size: .7rem; font-weight: 600; }
+    /* ──────────────────────────── TYPOGRAPHY ──────────────────────────── */
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+    em { font-style: italic; font-family: 'Cormorant Garamond', serif; }
 
-  /* FAQ STYLES */
-  .faq-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 2rem; padding: 0 3rem; max-width: 1400px; margin: 0 auto 8rem; }
-  .faq-item { background: var(--deep); padding: 2rem; border: 1px solid var(--border-subtle); transition: border-color .3s; }
-  .faq-item:hover { border-color: var(--gold); }
-  .faq-q { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--gold); margin-bottom: .8rem; }
-  .faq-a { font-size: .88rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+    /* ──────────────────────────── LAYOUT ──────────────────────────── */
+    section { position: relative; width: 100%; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-  /* TRUST STRIP */
-  .trust-strip { background: var(--deep); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); padding: 1.5rem 0; overflow: hidden; position: relative; z-index: 2; }
-  .trust-track { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
-  .trust-item { font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; color: var(--text-dim); display: flex; align-items: center; gap: .8rem; }
-  .trust-item span { color: var(--gold); }
+    /* ──────────────────────────── NAV ──────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 3rem; background: rgba(5,6,8,0.92);
+      backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav-logo {
+      display: flex; align-items: center; text-decoration: none;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.8rem;
+      font-weight: 700; color: var(--gold); letter-spacing: .12em;
+    }
+    .nav-logo span { color: var(--text); }
+    .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+    .nav-links a {
+      text-decoration: none; color: var(--text-dim); font-size: .75rem;
+      text-transform: uppercase; letter-spacing: .15em; transition: color .3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--black);
+      padding: .7rem 1.8rem; font-size: .7rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .1em; text-decoration: none;
+      transition: all .3s;
+    }
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
 
-  /* PRICING STYLES */
-  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-subtle); border: 1px solid var(--border-subtle); max-width: 1200px; margin: 0 auto 8rem; }
-  .price-card { background: var(--deep); padding: 4rem 3rem; text-align: center; position: relative; }
-  .price-card.featured { background: var(--surface); border: 1px solid var(--gold-dim); z-index: 1; }
-  .price-tier { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: block; }
-  .price-val { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--text); margin-bottom: .5rem; }
-  .price-val span { font-size: 1rem; color: var(--text-dim); }
-  .price-desc { font-size: .82rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.6; }
-  .price-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: .8rem; margin-bottom: 3rem; }
-  .price-features li { font-size: .78rem; color: var(--text-dim); display: flex; align-items: center; gap: .8rem; }
-  .price-features li::before { content: '✓'; color: var(--gold); font-size: .7rem; }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background:none; border:none; }
+    .nav-toggle span { display: block; width: 25px; height: 1px; background: var(--gold); transition: .3s; }
 
-</style>
+    @media (max-width: 1024px) {
+      .nav-links {
+        position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+        background: var(--black); flex-direction: column; justify-content: center;
+        align-items: center; transition: 0.5s; gap: 3rem;
+      }
+      .nav-links.active { right: 0; }
+      .nav-toggle { display: flex; z-index: 1001; }
+      .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+      .nav-toggle.active span:nth-child(2) { opacity: 0; }
+      .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+    }
+
+    /* ──────────────────────────── TICKER ──────────────────────────── */
+    .ticker-wrap { background: var(--deep); border-bottom: 1px solid var(--border-subtle); height: 35px; overflow: hidden; white-space: nowrap; }
+    .ticker-track { display: inline-block; animation: ticker 40s linear infinite; }
+    .ticker-item { display: inline-block; padding: 0 3rem; color: var(--text-dim); font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; line-height: 35px; }
+    .ticker-item span { color: var(--gold); }
+    @keyframes ticker { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-50%,0,0); } }
+
+    /* ──────────────────────────── HERO ──────────────────────────── */
+    #hero {
+      min-height: 90vh; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; padding: 0 2rem; overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+      background-size: 60px 60px; mask-image: radial-gradient(circle at center, black, transparent 80%);
+    }
+    .hero-glow {
+      position: absolute; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      filter: blur(60px); top: 20%; pointer-events: none;
+    }
+    .hero-tag {
+      background: rgba(201,168,76,0.08); border: 1px solid var(--border);
+      padding: .5rem 1.2rem; border-radius: 100px; color: var(--gold);
+      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+      margin-bottom: 2.5rem; display: flex; align-items: center; gap: .8rem;
+    }
+    .hero-tag-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 10px var(--gold); }
+    .hero-title { font-size: clamp(2.5rem, 8vw, 5.5rem); line-height: 0.95; margin-bottom: 2rem; }
+    .hero-title em { color: var(--gold); font-weight: 300; }
+    .hero-sub { max-width: 700px; color: var(--text-muted); font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 300; margin-bottom: 3.5rem; }
+    .hero-stats { display: flex; gap: 5rem; margin-bottom: 4rem; flex-wrap: wrap; justify-content: center; }
+    .hero-stat-val { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--gold); line-height: 1; }
+    .hero-stat-lbl { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--text-dim); margin-top: .5rem; }
+
+    .btn-primary {
+      background: var(--gold); color: var(--black); padding: 1.2rem 2.8rem;
+      text-decoration: none; font-size: .8rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .15em; transition: .3s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(201,168,76,0.2); }
+    .btn-outline {
+      border: 1px solid var(--border); color: var(--gold); padding: 1.2rem 2.8rem;
+      text-decoration: none; font-size: .8rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: .15em; transition: .3s; margin-left: 1.5rem; display: inline-block;
+    }
+    .btn-outline:hover { background: rgba(201,168,76,0.05); border-color: var(--gold); }
+
+    /* ──────────────────────────── SECTIONS ──────────────────────────── */
+    .section-header { text-align: center; padding: 10rem 2rem 5rem; max-width: 900px; margin: 0 auto; }
+    .section-eyebrow { font-size: .75rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.5rem; }
+    .section-title { font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.1; margin-bottom: 1.8rem; }
+    .section-body { color: var(--text-muted); font-size: 1.1rem; font-weight: 300; line-height: 1.8; }
+
+    /* ──────────────────────────── DIVISIONS GRID ──────────────────────────── */
+    #divisions { padding: 0 3rem 10rem; max-width: 1600px; margin: 0 auto; }
+    .divisions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+    .division-card {
+      background: var(--deep); border: 1px solid var(--border-subtle);
+      padding: 3.5rem 2.5rem; text-decoration: none; position: relative;
+      transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1); overflow: hidden;
+      display: flex; flex-direction: column; height: 100%;
+    }
+    .division-card:hover { transform: translateY(-10px); border-color: var(--gold); background: var(--surface); }
+    .card-num { font-size: .65rem; color: var(--text-dim); letter-spacing: .2em; margin-bottom: 2rem; }
+    .card-icon { font-size: 2.2rem; color: var(--gold); margin-bottom: 1.5rem; display: block; }
+    .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--text); margin-bottom: .8rem; }
+    .card-subtitle { font-size: .75rem; color: var(--gold); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1.2rem; }
+    .card-desc { font-size: .88rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; flex: 1; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2rem; }
+    .tag { font-size: .6rem; text-transform: uppercase; letter-spacing: .1em; padding: .3rem .8rem; border: 1px solid var(--border-subtle); color: var(--text-dim); }
+    .tag.gold { border-color: var(--gold-dim); color: var(--gold); }
+
+    /* ──────────────────────────── UPCOMING MODULES ──────────────────────────── */
+    .health-hero {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center; margin-bottom: 1px; position: relative; overflow: hidden;
+    }
+    .health-eyebrow { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; display: flex; align-items: center; gap: .8rem; margin-bottom: 1.5rem; }
+    .health-title { font-size: clamp(2rem, 3.5vw, 3.2rem); line-height: 1.1; margin-bottom: 1.5rem; }
+    .health-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    .health-stat { padding: 1.2rem; background: var(--deep); text-align: center; border-top: 2px solid var(--gold); }
+    .health-stat-val { font-size: 2rem; color: var(--gold); display: block; }
+    .health-stat-lbl { font-size: .6rem; text-transform: uppercase; color: var(--text-dim); margin-top: .4rem; }
+
+    .health-modules { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: var(--border-subtle); border: 1px solid var(--border-subtle); border-top:none; }
+    .health-module { background: var(--deep); padding: 2.5rem; transition: .3s; text-decoration: none; color: inherit; display: block; }
+    .health-module:hover { background: var(--surface); }
+    .hm-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+    .hm-title { font-size: 1.2rem; font-weight: 500; margin-bottom: .8rem; }
+    .hm-desc { font-size: .8rem; color: var(--text-muted); line-height: 1.6; }
+    .hm-features { list-style: none; margin-top: 1.5rem; }
+    .hm-features li { font-size: .72rem; color: var(--text-dim); padding: .3rem 0; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; gap: .6rem; }
+    .hm-features li::before { content: '●'; font-size: .4rem; color: var(--gold); }
+
+    .health-visual { position: relative; }
+    .block-node { background: var(--deep); border: 1px solid var(--border-subtle); padding: 1.2rem; display: flex; align-items: center; gap: 1.2rem; margin-bottom: .8rem; transition: .3s; }
+    .block-node:hover { border-color: var(--gold); }
+    .block-hash { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--gold); opacity: 0.6; }
+    .block-info { flex: 1; }
+    .block-title { font-size: .8rem; font-weight: 500; }
+    .block-status { font-size: .6rem; text-transform: uppercase; background: rgba(201,168,76,0.1); color: var(--gold); padding: .2rem .6rem; }
+
+    /* ──────────────────────────── PLATFORM STACK ──────────────────────────── */
+    .stack-wrap { max-width: 1100px; margin: 0 auto; }
+    .stack-layer { display: grid; grid-template-columns: 160px 1fr; border: 1px solid var(--border-subtle); margin-bottom: -1px; transition: .3s; }
+    .stack-layer:hover { border-color: var(--gold); z-index: 1; }
+    .stack-label { background: var(--surface); padding: 1.5rem; display: flex; align-items: center; justify-content: center; border-right: 1px solid var(--border-subtle); }
+    .stack-label-text { font-size: .65rem; text-transform: uppercase; letter-spacing: .2em; color: var(--gold); writing-mode: vertical-rl; transform: rotate(180deg); }
+    .stack-items { padding: 1.5rem; display: flex; flex-wrap: wrap; gap: .8rem; }
+    .stack-item { padding: .5rem 1.2rem; border: 1px solid var(--border-subtle); font-size: .75rem; color: var(--text-muted); text-decoration: none; transition: .2s; }
+    .stack-item:hover { border-color: var(--gold); color: var(--gold); }
+    .stack-item.featured { border-color: var(--gold-dim); color: var(--gold); }
+    .stack-item.health { border-color: rgba(45,156,110,0.3); color: var(--green); }
+
+    /* ──────────────────────────── MANIFESTO ──────────────────────────── */
+    #manifesto { padding: 12rem 3rem; text-align: center; background: linear-gradient(180deg, var(--black) 0%, var(--surface) 50%, var(--black) 100%); position: relative; }
+    .manifesto-quote { font-size: clamp(2rem, 4vw, 3.8rem); max-width: 900px; margin: 0 auto; }
+    .manifesto-attr { font-size: .75rem; letter-spacing: .3em; text-transform: uppercase; color: var(--text-dim); margin-top: 3rem; }
+
+    /* ──────────────────────────── PRICING ──────────────────────────── */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-subtle); border: 1px solid var(--border-subtle); max-width: 1200px; margin: 0 auto; }
+    .price-card { background: var(--deep); padding: 4rem 3rem; text-align: center; }
+    .price-card.featured { background: var(--surface); border: 1px solid var(--gold-dim); z-index: 1; }
+    .price-tier { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: block; }
+    .price-val { font-size: 3.5rem; color: var(--text); margin-bottom: .5rem; }
+    .price-val span { font-size: 1rem; color: var(--text-dim); }
+    .price-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0 3rem; }
+    .price-features li { font-size: .8rem; color: var(--text-dim); display: flex; gap: 1rem; }
+    .price-features li::before { content: '✓'; color: var(--gold); }
+
+    /* ──────────────────────────── FOOTER ──────────────────────────── */
+    footer { border-top: 1px solid var(--border-subtle); padding: 6rem 3rem 3rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr repeat(4, 1fr); gap: 4rem; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid var(--border-subtle); padding-bottom: 4rem; }
+    .footer-col-title { font-size: .7rem; text-transform: uppercase; letter-spacing: .2em; color: var(--gold); margin-bottom: 2rem; }
+    .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .footer-col-links a { text-decoration: none; color: var(--text-muted); font-size: .8rem; transition: .2s; }
+    .footer-col-links a:hover { color: var(--gold); }
+    .footer-bottom { padding-top: 2rem; display: flex; justify-content: space-between; font-size: .7rem; color: var(--text-dim); }
+    .footer-bottom a { color: inherit; text-decoration: none; margin-left: 1.5rem; }
+
+    /* Cursor */
+    .cursor { position: fixed; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width .2s, height .2s; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid var(--gold); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: .1s ease-out; }
+
+    @media (max-width: 768px) {
+      .hero-stats { gap: 2rem; }
+      .health-hero { grid-template-columns: 1fr; padding: 3rem 2rem; }
+      .stack-layer { grid-template-columns: 1fr; }
+      .stack-label { writing-mode: horizontal-tb; transform: none; border-right: none; border-bottom: 1px solid var(--border-subtle); }
+      .stack-label-text { writing-mode: horizontal-tb; transform: none; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-logo">
-    <img src="assets/komvia_logo.png" alt="KOMVIA Logo" style="height: 32px; width: auto; margin-right: 12px;"/>
-    KOM<span>VIA</span>
-  </a>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#divisions">Ecosystem</a></li>
-    <li><a href="#data-cloud">Vision</a></li>
-    <li><a href="#pricing">Suite</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div style="display:flex; align-items:center; gap:1.2rem;">
-    <a href="waitlist.html" class="btn-outline" style="padding: .6rem 1.2rem; font-size: .65rem; border-color: var(--gold-dim);">Join Waitlist</a>
-    <a href="#contact" class="nav-cta">Launch Suite</a>
-    <button class="nav-toggle" id="nav-toggle">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- TICKER -->
-<div class="ticker-wrap" style="margin-top:70px">
-  <div class="ticker-track">
-    <div class="ticker-item">KOMVIA ERP <span>◆</span> Enterprise Intelligence</div>
-    <div class="ticker-item">KOMVIA IFE <span>◆</span> Sovereign Financial Rails</div>
-    <div class="ticker-item">KOMVIA AI OS <span>◆</span> Decision Intelligence</div>
-    <div class="ticker-item">KOMVIA HEALTH <span>◆</span> Life Sciences Platform</div>
-    <div class="ticker-item">KOMVIA GOV OS <span>◆</span> Digital Government Infrastructure</div>
-    <div class="ticker-item">KOMVIA REGTECH <span>◆</span> Automated Compliance</div>
-    <div class="ticker-item">KOMVIA ERP <span>◆</span> Enterprise Intelligence</div>
-    <div class="ticker-item">KOMVIA IFE <span>◆</span> Sovereign Financial Rails</div>
-    <div class="ticker-item">KOMVIA AI OS <span>◆</span> Decision Intelligence</div>
-    <div class="ticker-item">KOMVIA HEALTH <span>◆</span> Life Sciences Platform</div>
-    <div class="ticker-item">KOMVIA GOV OS <span>◆</span> Digital Government Infrastructure</div>
-    <div class="ticker-item">KOMVIA REGTECH <span>◆</span> Automated Compliance</div>
-  </div>
-</div>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-
-  <div class="hero-tag">
-    <span class="hero-tag-dot"></span>
-    Africa's Sovereign Digital Economy Stack
-  </div>
-
-  <h1 class="hero-title">
-    <em>Owning</em> the infrastructure<br/>
-    <strong>of tomorrow's Africa</strong>
-  </h1>
-
-  <p class="hero-sub">
-    KOMVIA builds the rails, intelligence, and sovereignty layer beneath enterprise operations, financial systems, healthcare, and government — from Lagos to Nairobi.
-  </p>
-
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-val">12+</div>
-      <div class="hero-stat-lbl">Ecosystem Divisions</div>
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <img src="assets/komvia_logo.png" alt="Logo" style="height:32px; margin-right:12px;"/>
+      KOM<span>VIA</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#divisions">Ecosystem</a></li>
+      <li><a href="#vision-intro">Vision</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#pricing">Access</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div style="display:flex; align-items:center; gap:1.2rem;">
+      <a href="waitlist.html" class="nav-cta">Join Waitlist</a>
+      <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
     </div>
-    <div class="hero-stat">
-      <div class="hero-stat-val">54</div>
-      <div class="hero-stat-lbl">African Markets</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-val">∞</div>
-      <div class="hero-stat-lbl">Compounding Moat</div>
+  </nav>
+
+  <div class="ticker-wrap" style="margin-top:80px">
+    <div class="ticker-track">
+      <div class="ticker-item">KOMVIA ERP <span>◆</span> Intelligence</div>
+      <div class="ticker-item">KOMVIA IFE <span>◆</span> Financial Rails</div>
+      <div class="ticker-item">KOMVIA AI OS <span>◆</span> Decision Core</div>
+      <div class="ticker-item">KOMVIA HEALTH <span>◆</span> Life Sciences</div>
+      <div class="ticker-item">KOMVIA GOV OS <span>◆</span> Public Infra</div>
+      <div class="ticker-item">KOMVIA ERP <span>◆</span> Intelligence</div>
     </div>
   </div>
 
-  <div class="hero-actions">
-    <a href="#divisions" class="btn-primary">Explore Platform</a>
-    <a href="#contact" class="btn-outline">Partner With Us</a>
-  </div>
-
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    Scroll to explore
-  </div>
-</section>
-
-<!-- TRUST STRIP -->
-<div class="trust-strip">
-  <div class="trust-track">
-    <div class="trust-item"><span>🛡️</span> PCI-DSS Certified</div>
-    <div class="trust-item"><span>🏦</span> ISO 20022 Ready</div>
-    <div class="trust-item"><span>🔒</span> SOC 2 Type II</div>
-    <div class="trust-item"><span>🌍</span> GDPR & NDPR</div>
-    <div class="trust-item"><span>☁️</span> Multi-Cloud Scalable</div>
-  </div>
-</div>
-
-<!-- CORE ECOSYSTEM SECTION -->
-<div class="section-header fade-in">
-  <span class="section-eyebrow">Core Ecosystem</span>
-  <h2 class="section-title">The <em>integrated</em><br/>digital economy stack</h2>
-  <p class="section-body">Six core divisions forming the mission-critical foundation of the KOMVIA ecosystem, enabling enterprise-grade operations and sovereign financial rails.</p>
-</div>
-
-<section id="divisions">
-  <div class="divisions-grid">
-
-    <!-- 01 ERP -->
-    <a href="https://komvia-erp-web.vercel.app/" class="division-card fade-in">
-      <div class="card-num">01 / 07</div>
-      <span class="card-icon">⚙️</span>
-      <div class="card-title">KOMVIA ERP Suite</div>
-      <div class="card-subtitle">Enterprise Resource Planning</div>
-      <p class="card-desc">Advanced modular ERP suite — unifying inventory, logistics, and multi-tenant operations into a single AI-optimized dashboard for global scale.</p>
-      <div class="card-tags">
-        <span class="tag gold">Core Suite</span>
-        <span class="tag">AI-Optimized</span>
-        <span class="tag">Modular</span>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-tag fade-in">
+      <span class="hero-tag-dot"></span>
+      Africa's Sovereign Digital Economy Stack
+    </div>
+    <h1 class="hero-title fade-in">
+      <em>Owning</em> the infrastructure<br/>
+      <strong>of tomorrow's Africa</strong>
+    </h1>
+    <p class="hero-sub fade-in">
+      KOMVIA builds the rails, intelligence, and sovereignty layer beneath enterprise operations, financial systems, healthcare, and government.
+    </p>
+    <div class="hero-stats fade-in">
+      <div class="hero-stat">
+        <div class="hero-stat-val">12+</div>
+        <div class="hero-stat-lbl">Ecosystem Divisions</div>
       </div>
-    </a>
-
-    <!-- 02 IFE -->
-    <a href="https://komvia-ife-web-app.vercel.app/" class="division-card fade-in">
-      <div class="card-num">02 / 07</div>
-      <span class="card-icon">🏗️</span>
-      <div class="card-title">KOMVIA IFE</div>
-      <div class="card-subtitle">Integrated Financial & Banking OS</div>
-      <p class="card-desc">The financial infrastructure layer — encompassing treasury management, digital banking OS, payments & card issuing, and automated reconciliation rails.</p>
-      <div class="card-tags">
-        <span class="tag gold">Core Product</span>
-        <span class="tag">Payments</span>
-        <span class="tag">Banking OS</span>
+      <div class="hero-stat">
+        <div class="hero-stat-val">50+</div>
+        <div class="hero-stat-lbl">Modular Units</div>
       </div>
-    </a>
-
-    <!-- 03 TOKEN -->
-    <a href="https://komvia-token.vercel.app/" class="division-card fade-in">
-      <div class="card-num">03 / 07</div>
-      <span class="card-icon">🪙</span>
-      <div class="card-title">KOMVIA Token</div>
-      <div class="card-subtitle">Economic Engine & Governance</div>
-      <p class="card-desc">The sovereign utility and governance engine facilitating institutional settlement and cross-border value transfer across the entire conglomerate stack.</p>
-      <div class="card-tags">
-        <span class="tag gold">Economic Engine</span>
-        <span class="tag">Governance</span>
-        <span class="tag">Liquidity</span>
-      </div>
-    </a>
-
-    <!-- 04 AI OS -->
-    <a href="dashboard.html" class="division-card fade-in">
-      <div class="card-num">04 / 07</div>
-      <span class="card-icon">🤖</span>
-      <div class="card-title">KOMVIA AI OS</div>
-      <div class="card-subtitle">Decision Intelligence Layer</div>
-      <p class="card-desc">AI CFO, AI HR Manager, and Predictive Risk Engine embedded across the stack — transitioning KOMVIA from software to decision intelligence.</p>
-      <div class="card-tags">
-        <span class="tag blue">AI/ML</span>
-        <span class="tag">Automation</span>
-      </div>
-    </a>
-
-    <!-- 05 REGTECH -->
-    <a href="compliance.html" class="division-card fade-in">
-      <div class="card-num">05 / 07</div>
-      <span class="card-icon">🧾</span>
-      <div class="card-title">KOMVIA RegTech</div>
-      <div class="card-subtitle">Tax & Regulatory Compliance</div>
-      <p class="card-desc">Automated tax filing with FIRS integration, regulatory reporting, and ESG tools for enterprises and government agencies.</p>
-      <div class="card-tags">
-        <span class="tag gold">Compliance</span>
-        <span class="tag">FIRS</span>
-      </div>
-    </a>
-
-    <!-- 06 GOVERNMENT OS -->
-    <a href="waitlist.html" class="division-card fade-in">
-      <div class="card-num">06 / 07</div>
-      <span class="card-icon">🌍</span>
-      <div class="card-title">KOMVIA Government OS</div>
-      <div class="card-subtitle">Digital Public Infrastructure</div>
-      <p class="card-desc">Revenue collection systems, public finance tracking, and digital procurement infrastructure — critical national infrastructure for sovereign growth.</p>
-      <div class="card-tags">
-        <span class="tag gold">Gov-Tech</span>
-        <span class="tag">Revenue</span>
-      </div>
-    </a>
-
-    <!-- 07 CONSULTING -->
-    <a href="consulting.html" class="division-card fade-in">
-      <div class="card-num">07 / 07</div>
-      <span class="card-icon">💼</span>
-      <div class="card-title">KOMVIA Consulting</div>
-      <div class="card-subtitle">Implementation & Advisory</div>
-      <p class="card-desc">ERP deployment, financial system transformation, and digital transformation advisory services that drive deep platform adoption.</p>
-      <div class="card-tags">
-        <span class="tag gold">Services</span>
-        <span class="tag">Implementation</span>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-<!-- UPCOMING INFRASTRUCTURE EXPANDED -->
-<div class="section-header fade-in">
-  <span class="section-eyebrow">Vision & Expansion</span>
-  <h2 class="section-title">Upcoming <em>Infrastructure</em></h2>
-  <p class="section-body">Future layers of the KOMVIA stack currently under development, modeled as sovereign-grade ecosystems for specialized verticals.</p>
-</div>
-
-<!-- 01 DATA CLOUD -->
-<section id="data-cloud" style="padding: 0 3rem 8rem;">
-  <div class="health-hero fade-in">
-    <div>
-      <div class="health-eyebrow" style="color:var(--electric)"><span>●</span> KOMVIA Data Cloud</div>
-      <h3 class="health-title">Sovereign <em>Data</em> Warehouse<br/>for the Continent</h3>
-      <p class="health-desc">A pan-African data repository providing high-performance warehousing, AI-ready datasets, and sovereign analytics infrastructure for governments and conglomerates.</p>
-      <div class="health-stats">
-        <div class="health-stat" style="border-top-color:var(--electric)">
-          <span class="health-stat-val" style="color:var(--electric)">PB+</span>
-          <div class="health-stat-lbl">Storage Scale</div>
-        </div>
-        <div class="health-stat" style="border-top-color:var(--electric)">
-          <span class="health-stat-val" style="color:var(--electric)">99.9%</span>
-          <div class="health-stat-lbl">AI Accuracy</div>
-        </div>
-        <div class="health-stat" style="border-top-color:var(--electric)">
-          <span class="health-stat-val" style="color:var(--electric)">Local</span>
-          <div class="health-stat-lbl">Data Residency</div>
-        </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">24/7</div>
+        <div class="hero-stat-lbl">Uptime Intelligence</div>
       </div>
     </div>
-    <div class="health-visual" style="background:rgba(0,212,255,0.03); border:1px solid var(--electric-dim); border-radius:12px; padding:2rem; display:flex; flex-direction:column; gap:1rem;">
-      <div style="font-family:'JetBrains Mono'; font-size:.6rem; color:var(--electric)">/ROOT/DATA/RECONCILIATION_LIVE</div>
-      <div style="height:2px; background:var(--electric-dim); width:100%;"></div>
-      <div style="color:var(--text-dim); font-size:.7rem; line-height:1.6;">
-        > Processing Node_Lagos_01... [SUCCESS]<br/>
-        > Syncing Regional Ledgers... [ACTIVE]<br/>
-        > Encrypting At Rest (AES-256)... [ENABLED]
-      </div>
-      <a href="waitlist.html" class="btn-outline" style="align-self:flex-start; margin-top:1rem; border-color:var(--electric); color:var(--electric);">Request Early Access</a>
+    <div class="hero-actions fade-in">
+      <a href="#divisions" class="btn-primary">Explore Platform</a>
+      <a href="waitlist.html" class="btn-outline">Join Waitlist</a>
     </div>
-  </div>
+  </section>
 
-  <!-- DATA CLOUD MODULES -->
-  <div class="health-modules">
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">💾</span>
-      <div class="hm-title">Sovereign Warehousing</div>
-      <p class="hm-desc">Ultra-secure data storage nodes hosted within African jurisdiction, ensuring full data residency compliance.</p>
-      <ul class="hm-features">
-        <li>PB-scale storage</li>
-        <li>Regional replication</li>
-        <li>End-to-end encryption</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">🧠</span>
-      <div class="hm-title">AI Training Hub</div>
-      <p class="hm-desc">Localized compute clusters for training Large Language Models on proprietary African enterprise datasets.</p>
-      <ul class="hm-features">
-        <li>GPU-accelerated nodes</li>
-        <li>MLOps integration</li>
-        <li>Dataset curation tools</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">📊</span>
-      <div class="hm-title">BI & Analytics</div>
-      <p class="hm-desc">Real-time business intelligence dashboards connected directly to your KOMVIA ERP and IFE data streams.</p>
-      <ul class="hm-features">
-        <li>Automated reporting</li>
-        <li>Predictive forecasting</li>
-        <li>Custom query engine</li>
-      </ul>
-    </a>
-  </div>
-</section>
-
-<!-- 01 DATA CLOUD -->
-<section id="data-cloud" style="padding: 0 3rem 8rem;">
-  <div class="health-hero fade-in">
-    <div>
-      <div class="health-eyebrow" style="color:var(--electric)"><span>●</span> KOMVIA Data Cloud</div>
-      <h3 class="health-title">Sovereign <em>Data</em> Warehouse<br/>for the Continent</h3>
-      <p class="health-desc">A pan-African data repository providing high-performance warehousing, AI-ready datasets, and sovereign analytics infrastructure for governments and conglomerates.</p>
-      <div class="health-stats">
-        <div class="health-stat" style="border-top-color:var(--electric)">
-          <span class="health-stat-val" style="color:var(--electric)">PB+</span>
-          <div class="health-stat-lbl">Storage Scale</div>
-        </div>
-        <div class="health-stat" style="border-top-color:var(--electric)">
-          <span class="health-stat-val" style="color:var(--electric)">99.9%</span>
-          <div class="health-stat-lbl">AI Accuracy</div>
-        </div>
-        <div class="health-stat" style="border-top-color:var(--electric)">
-          <span class="health-stat-val" style="color:var(--electric)">Local</span>
-          <div class="health-stat-lbl">Data Residency</div>
-        </div>
-      </div>
-    </div>
-    <div class="health-visual" style="background:rgba(0,212,255,0.03); border:1px solid var(--electric-dim); border-radius:12px; padding:2rem; display:flex; flex-direction:column; gap:1rem;">
-      <div style="font-family:'JetBrains Mono'; font-size:.6rem; color:var(--electric)">/ROOT/DATA/RECONCILIATION_LIVE</div>
-      <div style="height:2px; background:var(--electric-dim); width:100%;"></div>
-      <div style="color:var(--text-dim); font-size:.7rem; line-height:1.6;">
-        > Processing Node_Lagos_01... [SUCCESS]<br/>
-        > Syncing Regional Ledgers... [ACTIVE]<br/>
-        > Encrypting At Rest (AES-256)... [ENABLED]
-      </div>
-      <a href="waitlist.html" class="btn-outline" style="align-self:flex-start; margin-top:1rem; border-color:var(--electric); color:var(--electric);">Request Early Access</a>
-    </div>
-  </div>
-
-  <div class="health-modules">
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">💾</span>
-      <div class="hm-title">Sovereign Warehousing</div>
-      <p class="hm-desc">Ultra-secure data storage nodes hosted within African jurisdiction, ensuring full data residency compliance.</p>
-      <ul class="hm-features">
-        <li>PB-scale storage</li>
-        <li>Regional replication</li>
-        <li>End-to-end encryption</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">🧠</span>
-      <div class="hm-title">AI Training Hub</div>
-      <p class="hm-desc">Localized compute clusters for training Large Language Models on proprietary African enterprise datasets.</p>
-      <ul class="hm-features">
-        <li>GPU-accelerated nodes</li>
-        <li>MLOps integration</li>
-        <li>Dataset curation tools</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">📊</span>
-      <div class="hm-title">BI & Analytics</div>
-      <p class="hm-desc">Real-time business intelligence dashboards connected directly to your KOMVIA ERP and IFE data streams.</p>
-      <ul class="hm-features">
-        <li>Automated reporting</li>
-        <li>Predictive forecasting</li>
-        <li>Custom query engine</li>
-      </ul>
-    </a>
-  </div>
-</section>
-
-<!-- 02 IDENTITY -->
-<section id="identity" style="padding: 0 3rem 8rem;">
-  <div class="health-hero fade-in" style="background:var(--deep); border-color:var(--border-subtle);">
-    <div class="health-visual" style="order:2; background:rgba(201,168,76,0.03); border:1px solid var(--gold-dim); border-radius:12px; padding:2rem; text-align:center;">
-       <span style="font-size:4rem;">🆔</span>
-       <h4 style="margin-top:1rem; font-family:'Cormorant Garamond'; color:var(--gold);">Zero-Knowledge Trust</h4>
-       <p style="font-size:.75rem; color:var(--text-dim); margin-top:.5rem;">Decentralized identity protocols ensuring user privacy while maintaining regulatory compliance.</p>
-    </div>
-    <div style="order:1;">
-      <div class="health-eyebrow"><span>●</span> KOMVIA Identity</div>
-      <h3 class="health-title">The <em>Trust</em> Layer<br/>of Digital Africa</h3>
-      <p class="health-desc">Decentralized identity wallets, biometric KYB/KYC verification, and digital document notarization built for the private sector and public agencies.</p>
-      <div class="health-stats">
-        <div class="health-stat">
-          <span class="health-stat-val">100%</span>
-          <div class="health-stat-lbl">Anti-Fraud</div>
-        </div>
-        <div class="health-stat">
-          <span class="health-stat-val">Biometric</span>
-          <div class="health-stat-lbl">Verification</div>
-        </div>
-      </div>
-      <a href="waitlist.html" class="btn-primary" style="margin-top:2rem;">Join Identity Beta</a>
-    </div>
-  </div>
-
-  <div class="health-modules">
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">👤</span>
-      <div class="hm-title">Biometric KYB/KYC</div>
-      <div class="hm-desc">Instant verification of businesses and individuals using facial recognition and official registry integrations.</div>
-      <ul class="hm-features">
-        <li>Registry cross-check</li>
-        <li>Liveness detection</li>
-        <li>Instant verification</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">👛</span>
-      <div class="hm-title">Decentralized ID Wallet</div>
-      <div class="hm-desc">A self-sovereign identity wallet for users to control their credentials across the entire KOMVIA ecosystem.</div>
-      <ul class="hm-features">
-        <li>ZKP-based verification</li>
-        <li>Credential management</li>
-        <li>Privacy-first architecture</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">📜</span>
-      <div class="hm-title">Trust Registry</div>
-      <div class="hm-desc">An immutable ledger of verified business entities, reducing risk and friction in trade and financial settlement.</div>
-      <ul class="hm-features">
-        <li>Entity scoring</li>
-        <li>Compliance tracking</li>
-        <li>B2B trust-as-a-service</li>
-      </ul>
-    </a>
-  </div>
-</section>
-
-<!-- 03 TRADE NETWORK -->
-<section id="trade-network" style="padding: 0 3rem 8rem;">
-  <div class="health-hero fade-in">
-    <div>
-      <div class="health-eyebrow" style="color:var(--gold)"><span>●</span> KOMVIA Trade Network</div>
-      <h3 class="health-title">Pan-African <em>B2B</em><br/>Commerce Engine</h3>
-      <p class="health-desc">A real-time marketplace connecting ERP users across borders. Automated smart contracts, logistics tracking, and trade finance — unified.</p>
-      <div class="health-stats">
-        <div class="health-stat">
-          <span class="health-stat-val">54</span>
-          <div class="health-stat-lbl">Active Markets</div>
-        </div>
-        <div class="health-stat">
-          <span class="health-stat-val">Live</span>
-          <div class="health-stat-lbl">Logistics Tracking</div>
-        </div>
-      </div>
-    </div>
-    <div class="health-visual">
-       <div class="blockchain-chain">
-         <div class="block-node"><div class="block-info"><div class="block-title">Vendor: Nairobi Electronics</div><div class="block-meta">Order ID: #KOM-TRD-082</div></div><div class="block-status" style="background:var(--gold-dim); color:var(--gold);">In Transit</div></div>
-         <div class="block-node"><div class="block-info"><div class="block-title">Logistics: Pan-African Freight</div><div class="block-meta">Checkpoint: Lagos Port</div></div><div class="block-status">Cleared</div></div>
-       </div>
-    </div>
-  </div>
-
-  <div class="health-modules">
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">🚢</span>
-      <div class="hm-title">Logistics Visibility</div>
-      <div class="hm-desc">Real-time tracking of goods across the AfCFTA corridor, integrated with port and customs authorities.</div>
-      <ul class="hm-features">
-        <li>IoT sensor integration</li>
-        <li>Customs automation</li>
-        <li>Proof of delivery</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">🤝</span>
-      <div class="hm-title">Smart Procurement</div>
-      <div class="hm-desc">AI-driven vendor matching and automated smart contracts that trigger payments upon milestone completion.</div>
-      <ul class="hm-features">
-        <li>Automated RFPs</li>
-        <li>Escrow settlement</li>
-        <li>Dynamic pricing</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">💰</span>
-      <div class="hm-title">Trade Finance</div>
-      <div class="hm-desc">Embedded financing for buyers and sellers based on trade history and verified invoice data within the ERP.</div>
-      <ul class="hm-features">
-        <li>Invoice factoring</li>
-        <li>Inventory financing</li>
-        <li>Credit scoring AI</li>
-      </ul>
-    </a>
-  </div>
-</section>
-
-<!-- 04 CYBERSHIELD -->
-<section id="cyber-shield" style="padding: 0 3rem 8rem;">
-  <div class="health-hero fade-in" style="background:var(--deep); border-color:var(--red);">
-    <div class="health-visual" style="background:rgba(230,57,70,0.05); border:1px solid var(--red); padding:2rem; border-radius:12px;">
-       <div style="font-family:'JetBrains Mono'; font-size:.65rem; color:var(--red);">THREAT_LEVEL: MINIMAL</div>
-       <div style="margin-top:1rem; display:flex; flex-direction:column; gap:.8rem;">
-         <div style="height:4px; background:var(--red); width:80%;"></div>
-         <div style="height:4px; background:var(--red); width:40%; opacity:0.5;"></div>
-         <div style="height:4px; background:var(--red); width:60%; opacity:0.3;"></div>
-       </div>
-    </div>
-    <div>
-      <div class="health-eyebrow" style="color:var(--red)"><span>●</span> KOMVIA CyberShield</div>
-      <h3 class="health-title">Institutional <em>Hardening</em><br/>& Managed Defense</h3>
-      <p class="health-desc">24/7 Managed Security Operations Center (SOC) with AI-driven threat intelligence and fraud detection tailored for high-volume financial ecosystems.</p>
-      <div class="health-stats">
-        <div class="health-stat" style="border-top-color:var(--red)">
-          <span class="health-stat-val" style="color:var(--red)">24/7</span>
-          <div class="health-stat-lbl">Monitoring</div>
-        </div>
-        <div class="health-stat" style="border-top-color:var(--red)">
-          <span class="health-stat-val" style="color:var(--red)">Zero</span>
-          <div class="health-stat-lbl">Day Readiness</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CYBERSHIELD MODULES -->
-  <div class="health-modules">
-    <a href="waitlist.html" class="health-module fade-in" style="border-bottom: 2px solid var(--red);">
-      <span class="hm-icon">🛡️</span>
-      <div class="hm-title">Managed SOC</div>
-      <div class="hm-desc">A 24/7 Security Operations Center monitoring your institutional infrastructure for any signs of compromise.</div>
-      <ul class="hm-features">
-        <li>Threat hunting</li>
-        <li>Incident response</li>
-        <li>Vulnerability scanning</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in" style="border-bottom: 2px solid var(--red);">
-      <span class="hm-icon">📡</span>
-      <div class="hm-title">Threat Intel Feed</div>
-      <div class="hm-desc">Aggregated security intelligence across the African threat landscape, pushed in real-time to your edge nodes.</div>
-      <ul class="hm-features">
-        <li>Zero-day alerts</li>
-        <li>Malware signatures</li>
-        <li>Phishing prevention</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in" style="border-bottom: 2px solid var(--red);">
-      <span class="hm-icon">👮</span>
-      <div class="hm-title">Fraud Prevention AI</div>
-      <div class="hm-desc">ML models trained to detect anomalous transaction patterns across payments, payroll, and procurement.</div>
-      <ul class="hm-features">
-        <li>Anti-money laundering</li>
-        <li>Card fraud detection</li>
-        <li>Account takeover alerts</li>
-      </ul>
-    </a>
-  </div>
-</section>
-
-<!-- 05 ACADEMY -->
-<section id="academy" style="padding: 0 3rem 8rem;">
-  <div class="health-hero fade-in">
-    <div>
-      <div class="health-eyebrow"><span>●</span> KOMVIA Academy</div>
-      <h3 class="health-title">The <em>Talent</em> Pipeline<br/>for Digital Sovereignty</h3>
-      <p class="health-desc">Training the next generation of ERP specialists, fintech engineers, and digital architects to maintain and scale the KOMVIA infrastructure globally.</p>
-      <div class="health-stats">
-        <div class="health-stat">
-          <span class="health-stat-val">10k+</span>
-          <div class="health-stat-lbl">Certified Experts</div>
-        </div>
-        <div class="health-stat">
-          <span class="health-stat-val">100%</span>
-          <div class="health-stat-lbl">Industry Ready</div>
-        </div>
-      </div>
-    </div>
-    <div class="health-visual" style="background:var(--surface2); padding:2.5rem; text-align:center;">
-       <span style="font-size:3rem;">🎓</span>
-       <h4 style="margin-top:1rem; color:var(--gold);">Global Certification</h4>
-      <a href="waitlist.html" class="btn-outline" style="margin-top:1.5rem;">View Curriculum</a>
-    </div>
-  </div>
-
-  <!-- ACADEMY MODULES -->
-  <div class="health-modules">
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">🏆</span>
-      <div class="hm-title">ERP Specialist Track</div>
-      <div class="hm-desc">Professional certification for implementing and managing KOMVIA ERP within large-scale enterprises.</div>
-      <ul class="hm-features">
-        <li>Implementation labs</li>
-        <li>Custom module dev</li>
-        <li>Enterprise architecture</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">🏦</span>
-      <div class="hm-title">Fintech Engineering</div>
-      <div class="hm-desc">Advanced courses for building on KOMVIA IFE rails and developing compliant financial products.</div>
-      <ul class="hm-features">
-        <li>Ledger architecture</li>
-        <li>Payment system design</li>
-        <li>Compliance-as-code</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">⚖️</span>
-      <div class="hm-title">RegTech & Compliance</div>
-      <div class="hm-desc">Training for compliance officers on using the KOMVIA stack to automate tax, ESG, and regulatory filings.</div>
-      <ul class="hm-features">
-        <li>FIRS automation</li>
-        <li>Audit trails</li>
-        <li>ESG reporting</li>
-      </ul>
-    </a>
-  </div>
-</section>
-
-<!-- 06 API MARKETPLACE -->
-<section id="api-marketplace" style="padding: 0 3rem 8rem;">
-  <div class="health-hero fade-in" style="background:var(--deep); border-color:var(--electric);">
-    <div class="health-visual" style="order:2; font-family:'JetBrains Mono'; font-size:.7rem; color:var(--electric);">
-       GET /v1/komvia/payments/reconcile<br/>
-       Authorization: Bearer *********<br/>
-       {<br/>
-       &nbsp;&nbsp;"status": "success",<br/>
-       &nbsp;&nbsp;"settlement": "instant"<br/>
-       }
-    </div>
-    <div style="order:1;">
-      <div class="health-eyebrow" style="color:var(--electric)"><span>●</span> KOMVIA API Marketplace</div>
-      <h3 class="health-title">Building on the <em>Rails</em><br/>of a New Economy</h3>
-      <p class="health-desc">Exposing the power of ERP, IFE, and Identity through a unified developer portal. Build sovereign applications with institutional-grade primitives.</p>
-      <div class="health-stats">
-        <div class="health-stat" style="border-top-color:var(--electric)">
-          <span class="health-stat-val" style="color:var(--electric)">1k+</span>
-          <div class="health-stat-lbl">Endpoints</div>
-        </div>
-        <div class="health-stat" style="border-top-color:var(--electric)">
-          <span class="health-stat-val" style="color:var(--electric)">99.99%</span>
-          <div class="health-stat-lbl">Uptime</div>
-        </div>
-      </div>
-      <a href="waitlist.html" class="btn-primary" style="margin-top:2rem; background:var(--electric); color:var(--black);">Get API Key</a>
-    </div>
-  </div>
-
-  <!-- API MARKETPLACE MODULES -->
-  <div class="health-modules">
-    <a href="waitlist.html" class="health-module fade-in" style="border-bottom: 2px solid var(--electric);">
-      <span class="hm-icon">💳</span>
-      <div class="hm-title">Payments APIs</div>
-      <div class="hm-desc">Integrate card issuing, cross-border settlement, and wallet infrastructure directly into your app.</div>
-      <ul class="hm-features">
-        <li>Virtual card issuing</li>
-        <li>FX engine access</li>
-        <li>Auto-reconciliation</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in" style="border-bottom: 2px solid var(--electric);">
-      <span class="hm-icon">🧬</span>
-      <div class="hm-title">Core Infrastructure</div>
-      <div class="hm-desc">Low-level access to KOMVIA identity, data warehousing, and ledger primitives.</div>
-      <ul class="hm-features">
-        <li>Sovereign data access</li>
-        <li>Ledger webhooks</li>
-        <li>Identity verification</li>
-      </ul>
-    </a>
-    <a href="waitlist.html" class="health-module fade-in" style="border-bottom: 2px solid var(--electric);">
-      <span class="hm-icon">⚡</span>
-      <div class="hm-title">AI-as-a-Service</div>
-      <div class="hm-desc">Access KOMVIA's proprietary decision intelligence models via high-performance REST endpoints.</div>
-      <ul class="hm-features">
-        <li>Risk scoring AI</li>
-        <li>Financial forecasting</li>
-        <li>OCR & Data extraction</li>
-      </ul>
-    </a>
-  </div>
-</section>
-
-<!-- 07 HEALTH & LIFE SCIENCES -->
-<section id="healthcare" style="padding: 0 3rem 10rem; max-width: 1400px; margin: 0 auto;">
-  <div class="health-hero fade-in">
-    <div>
-      <div class="health-eyebrow" style="color:var(--green)">
-        <span>●</span> KOMVIA Health OS
-        <span class="health-badge">Now Building</span>
-      </div>
-      <h3 class="health-title">Healthcare infrastructure<br/>for <em>1.4 billion</em> Africans</h3>
-      <p class="health-desc">
-        KOMVIA Health integrates every node of the healthcare value chain — from primary care clinics to biotech research labs — under one sovereign, AI-augmented operating system.
+  <!-- VISION INTRO -->
+  <section id="vision-intro" style="padding: 10rem 3rem; background: var(--deep);">
+    <div class="section-header fade-in" style="text-align: left; max-width: 1000px; margin: 0 auto; padding: 0;">
+      <span class="section-eyebrow">Institutional Architecture</span>
+      <h2 class="section-title">Innovative Technology &<br/><em>Digital Data-driven</em> Solutions</h2>
+      <p class="section-body" style="font-size: 1.3rem;">
+        At KOMVIA LIMITED, we architect ecosystems for the digital future. We provide modular, mission-critical infrastructure for global finance and enterprise intelligence. Engineered for scale. Built for sovereignty.
       </p>
-      <div class="health-stats">
-        <div class="health-stat" style="border-top-color:var(--green)">
-          <span class="health-stat-val" style="color:var(--green)">11</span>
-          <div class="health-stat-lbl">Service Verticals</div>
-        </div>
-        <div class="health-stat" style="border-top-color:var(--green)">
-          <span class="health-stat-val" style="color:var(--green)">1</span>
-          <div class="health-stat-lbl">Unified Health ID</div>
-        </div>
-        <div class="health-stat" style="border-top-color:var(--green)">
-          <span class="health-stat-val" style="color:var(--green)">0</span>
-          <div class="health-stat-lbl">Data Silos</div>
-        </div>
-      </div>
-      <a href="waitlist.html" class="btn-primary" style="margin-top:2rem; background:var(--green); border:none; color:var(--black);">Join Health Waitlist</a>
     </div>
+  </section>
 
-    <!-- BLOCKCHAIN VISUAL -->
-    <div class="health-visual">
-      <div style="font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.8rem;">Patient Blockchain Ledger — Live Nodes</div>
-      <div class="blockchain-chain">
-        <a href="waitlist.html" class="block-node">
-          <div class="block-icon">🏥</div>
-          <div class="block-info">
-            <div class="block-title">General Hospital, Abuja</div>
-            <div class="block-meta">Last accessed: 2 hrs ago</div>
-          </div>
-          <div class="block-hash">0xA3F2...8C1D</div>
-          <div class="block-status">Verified</div>
-        </a>
-        <a href="waitlist.html" class="block-node">
-          <div class="block-icon">🔬</div>
-          <div class="block-info">
-            <div class="block-title">KOMVIA Diagnostics Lab</div>
-            <div class="block-meta">Results pushed: Today</div>
-          </div>
-          <div class="block-hash">0xB91C...3A4E</div>
-          <div class="block-status">Verified</div>
-        </a>
-      </div>
-    </div>
+  <!-- CORE ECOSYSTEM -->
+  <div class="section-header fade-in" id="divisions-header">
+    <span class="section-eyebrow">The Foundation</span>
+    <h2 class="section-title">The <em>Integrated</em> Stack</h2>
+    <p class="section-body">Seven core divisions forming the mission-critical foundation of the KOMVIA ecosystem.</p>
   </div>
 
-  <!-- HEALTH MODULES GRID -->
-  <div class="health-modules">
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">🏥</span>
-      <div class="hm-title">Hospital & Clinic Network</div>
-      <p class="hm-desc">Owned and operated hospital and clinic chains across tier-1 and tier-2 African cities, powered by KOMVIA's own Health OS.</p>
-      <ul class="hm-features">
-        <li>Multi-specialist hospitals</li>
-        <li>Primary care clinic franchises</li>
-        <li>Emergency response integration</li>
-      </ul>
-    </a>
+  <section id="divisions">
+    <div class="divisions-grid">
+      <!-- Cards 01-07 -->
+      <a href="https://komvia-erp-web.vercel.app/" class="division-card fade-in">
+        <div class="card-num">01 / 07</div>
+        <span class="card-icon">⚙️</span>
+        <div class="card-title">KOMVIA ERP Suite</div>
+        <div class="card-subtitle">Enterprise Ready</div>
+        <p class="card-desc">Advanced modular ERP suite unifying inventory, logistics, and multi-tenant operations into a single AI-optimized dashboard.</p>
+        <div class="card-tags"><span class="tag gold">Core</span><span class="tag">AI-Optimized</span></div>
+      </a>
+      <a href="https://komvia-ife-web-app.vercel.app/" class="division-card fade-in">
+        <div class="card-num">02 / 07</div>
+        <span class="card-icon">🏗️</span>
+        <div class="card-title">KOMVIA IFE</div>
+        <div class="card-subtitle">Financial Core</div>
+        <p class="card-desc">The financial infrastructure layer — encompassing treasury management, digital banking OS, and automated reconciliation rails.</p>
+        <div class="card-tags"><span class="tag gold">Payments</span><span class="tag">Banking OS</span></div>
+      </a>
+      <a href="https://komvia-token.vercel.app/" class="division-card fade-in">
+        <div class="card-num">03 / 07</div>
+        <span class="card-icon">🪙</span>
+        <div class="card-title">KOMVIA Token</div>
+        <div class="card-subtitle">Economic Engine</div>
+        <p class="card-desc">The sovereign utility and governance engine facilitating institutional settlement across the entire conglomerate stack.</p>
+        <div class="card-tags"><span class="tag gold">Governance</span><span class="tag">Liquidity</span></div>
+      </a>
+      <a href="dashboard.html" class="division-card fade-in">
+        <div class="card-num">04 / 07</div>
+        <span class="card-icon">🤖</span>
+        <div class="card-title">KOMVIA AI OS</div>
+        <div class="card-subtitle">Decision Intelligence</div>
+        <p class="card-desc">AI CFO, AI HR Manager, and Predictive Risk Engine embedded across the stack for automated institutional operations.</p>
+        <div class="card-tags"><span class="tag blue">AI/ML</span><span class="tag">Automation</span></div>
+      </a>
+      <a href="compliance.html" class="division-card fade-in">
+        <div class="card-num">05 / 07</div>
+        <span class="card-icon">🧾</span>
+        <div class="card-title">KOMVIA RegTech</div>
+        <div class="card-subtitle">Compliance Suite</div>
+        <p class="card-desc">Automated tax filing with FIRS integration, regulatory reporting, and ESG tools for enterprise and government.</p>
+        <div class="card-tags"><span class="tag gold">Tax</span><span class="tag">FIRS</span></div>
+      </a>
+      <a href="waitlist.html" class="division-card fade-in">
+        <div class="card-num">06 / 07</div>
+        <span class="card-icon">🏛️</span>
+        <div class="card-title">KOMVIA Government OS</div>
+        <div class="card-subtitle">Public Infrastructure</div>
+        <p class="card-desc">Revenue collection systems and digital procurement infrastructure for national-scale sovereign growth.</p>
+        <div class="card-tags"><span class="tag gold">GovTech</span><span class="tag">Infrastructure</span></div>
+      </a>
+      <a href="consulting.html" class="division-card fade-in">
+        <div class="card-num">07 / 07</div>
+        <span class="card-icon">💼</span>
+        <div class="card-title">KOMVIA Consulting</div>
+        <div class="card-subtitle">Implementation</div>
+        <p class="card-desc">Implementation and advisory services ensuring deep platform adoption and digital transformation.</p>
+        <div class="card-tags"><span class="tag gold">Services</span><span class="tag">Advisory</span></div>
+      </a>
+    </div>
+  </section>
 
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">📱</span>
-      <div class="hm-title">Telemedicine Platform</div>
-      <p class="hm-desc">Pan-African virtual care platform connecting patients to verified physicians, specialists, and mental health professionals instantly.</p>
-      <ul class="hm-features">
-        <li>Video & asynchronous consults</li>
-        <li>e-Prescription integration</li>
-        <li>Rural access mobile-first</li>
-      </ul>
-    </a>
-
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">🛡️</span>
-      <div class="hm-title">Health Insurance</div>
-      <p class="hm-desc">Embedded health insurance products tied to KOMVIA's IFE financial rails — enabling seamless claims and disbursement automation.</p>
-      <ul class="hm-features">
-        <li>Individual & group plans</li>
-        <li>Automated claims processing</li>
-        <li>Pre-authorization AI</li>
-      </ul>
-    </a>
-
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">💊</span>
-      <div class="hm-title">PharmaCare Retail</div>
-      <p class="hm-desc">Branded pharmacy chain integrated with KOMVIA's supply chain, offering verified pharmaceuticals and prescription fulfilment.</p>
-      <ul class="hm-features">
-        <li>Digital prescription validation</li>
-        <li>Cold chain logistics</li>
-        <li>Drug interaction AI alerts</li>
-      </ul>
-    </a>
-
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">🔬</span>
-      <div class="hm-title">Medical Diagnostics Labs</div>
-      <p class="hm-desc">Network of ISO-accredited diagnostic labs with AI-assisted interpretation and direct physician result delivery.</p>
-      <ul class="hm-features">
-        <li>Blood, imaging, pathology</li>
-        <li>AI-assisted result reading</li>
-        <li>Blockchain result certification</li>
-      </ul>
-    </a>
-
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">💻</span>
-      <div class="hm-title">HealthTech SaaS</div>
-      <p class="hm-desc">White-label hospital management software sold to clinics and hospitals across Africa — powering them while capturing data.</p>
-      <ul class="hm-features">
-        <li>Electronic Medical Records (EMR)</li>
-        <li>OPD/IPD management</li>
-        <li>Billing & insurance bridge</li>
-      </ul>
-    </a>
-
-    <a href="waitlist.html" class="health-module fade-in" style="background:var(--surface2);border:1px solid rgba(45,156,110,0.25);">
-      <span class="hm-icon">⛓️</span>
-      <div class="hm-title" style="color:var(--green)">Blockchain Patient Identity</div>
-      <p class="hm-desc" style="color:var(--text-muted)">Every patient carries a tamper-proof, self-sovereign health record accessible across any KOMVIA-connected facility.</p>
-      <ul class="hm-features">
-        <li>Universal Health ID</li>
-        <li>Cross-facility record access</li>
-        <li>Zero-knowledge privacy proofs</li>
-      </ul>
-    </a>
-    
-    <a href="waitlist.html" class="health-module fade-in">
-      <span class="hm-icon">🧬</span>
-      <div class="hm-title">Biotechnology Research</div>
-      <p class="hm-desc">R&D division focused on African-specific disease profiles, genomics research, and vaccine formulation partnerships.</p>
-      <ul class="hm-features">
-        <li>African genomics database</li>
-        <li>Tropical disease research</li>
-        <li>Clinical trial management</li>
-      </ul>
-    </a>
+  <!-- UPCOMING INFRASTRUCTURE -->
+  <div class="section-header fade-in">
+    <span class="section-eyebrow">Vision & Expansion</span>
+    <h2 class="section-title">Upcoming <em>Infrastructure</em></h2>
+    <p class="section-body">Future layers of the KOMVIA stack currently under development.</p>
   </div>
-</section>
 
-<!-- MANIFESTO BREAK -->
-<section id="manifesto">
-  <div class="manifesto-bg"></div>
-  <blockquote class="manifesto-quote fade-in">
-    "Whoever owns the <em>infrastructure</em> controls the economy.
-    KOMVIA is not a software company — it is a
-    <em>sovereignty play</em> for African enterprise."
-  </blockquote>
-  <p class="manifesto-attr">— The KOMVIA Doctrine</p>
-</section>
-        <li>Interoperable HL7/FHIR standard</li>
-        <li>Immutable audit trail</li>
-      </ul>
-    </a>
-
-  </div>
-</section>
-
-<!-- PLATFORM STACK -->
-<div class="section-header fade-in">
-  <span class="section-eyebrow">Architecture</span>
-  <h2 class="section-title">The full <em>KOMVIA Stack</em></h2>
-  <p class="section-body">A layered architecture where each division reinforces the others, creating compounding moats at every level of the digital economy.</p>
-</div>
-
-<section id="stack">
-  <div class="stack-wrap">
-    <div class="stack-layer fade-in">
-      <div class="stack-label"><div class="stack-label-text">Intelligence</div></div>
-      <div class="stack-items">
-        <a href="dashboard.html" class="stack-item featured">AI OS</a>
-        <a href="dashboard.html" class="stack-item">Data Cloud</a>
-        <a href="dashboard.html" class="stack-item">Predictive Risk</a>
-        <a href="dashboard.html" class="stack-item">AI CFO</a>
-        <a href="compliance.html" class="stack-item">AI Compliance Officer</a>
-        <a href="waitlist.html" class="stack-item health">Health AI</a>
-      </div>
-    </div>
-    <div class="stack-layer fade-in">
-      <div class="stack-label"><div class="stack-label-text">Applications</div></div>
-      <div class="stack-items">
-        <a href="https://komvia-erp-web.vercel.app/" class="stack-item featured">ERP</a>
-        <a href="https://komvia-ife-web-app.vercel.app/" class="stack-item featured">IFE</a>
-        <a href="waitlist.html" class="stack-item">Government OS</a>
-        <a href="compliance.html" class="stack-item">RegTech</a>
-        <a href="https://komvia-erp-web.vercel.app/" class="stack-item">Trade Network</a>
-        <a href="waitlist.html" class="stack-item health">HospitalOS SaaS</a>
-        <a href="waitlist.html" class="stack-item health">Telemedicine</a>
-        <a href="waitlist.html" class="stack-item health">Mental Health</a>
-      </div>
-    </div>
-    <div class="stack-layer fade-in">
-      <div class="stack-label"><div class="stack-label-text">Financial Rails</div></div>
-      <div class="stack-items">
-        <a href="https://komvia-ife-web-app.vercel.app/" class="stack-item featured">Payments</a>
-        <a href="https://komvia-ife-web-app.vercel.app/" class="stack-item featured">Banking OS</a>
-        <a href="https://komvia-ife-web-app.vercel.app/" class="stack-item">Card Issuing</a>
-        <a href="https://komvia-ife-web-app.vercel.app/" class="stack-item">FX Engine</a>
-        <a href="https://komvia-ife-web-app.vercel.app/" class="stack-item">Embedded Finance</a>
-        <a href="waitlist.html" class="stack-item health">Health Insurance</a>
-        <a href="waitlist.html" class="stack-item health">Equipment Leasing</a>
-      </div>
-    </div>
-    <div class="stack-layer fade-in">
-      <div class="stack-label"><div class="stack-label-text">Trust & Identity</div></div>
-      <div class="stack-items">
-        <a href="compliance.html" class="stack-item featured">Identity Platform</a>
-        <a href="compliance.html" class="stack-item">KYC/KYB</a>
-        <a href="waitlist.html" class="stack-item">CyberShield</a>
-        <a href="waitlist.html" class="stack-item">Fraud Detection</a>
-        <a href="waitlist.html" class="stack-item health">Patient Blockchain ID</a>
-        <a href="waitlist.html" class="stack-item health">Diagnostics Chain</a>
-      </div>
-    </div>
-    <div class="stack-layer fade-in">
-      <div class="stack-label"><div class="stack-label-text">Infrastructure</div></div>
-      <div class="stack-items">
-        <a href="waitlist.html" class="stack-item featured">API Marketplace</a>
-        <a href="waitlist.html" class="stack-item">Developer Platform</a>
-        <a href="waitlist.html" class="stack-item">Academy</a>
-        <a href="consulting.html" class="stack-item">Consulting</a>
-        <a href="waitlist.html" class="stack-item health">Biotech Research</a>
-        <a href="waitlist.html" class="stack-item health">Lab Network</a>
-        <a href="waitlist.html" class="stack-item health">PharmaCare Chain</a>
-      </div>
-    </div>
-    <div style="margin-top:1.5rem;display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;font-size:.65rem;letter-spacing:.08em;color:var(--text-dim);">
-      <span style="display:flex;align-items:center;gap:.4rem;"><span style="width:10px;height:1px;background:var(--gold);display:inline-block;"></span> Core Platform</span>
-      <span style="display:flex;align-items:center;gap:.4rem;"><span style="width:10px;height:1px;background:var(--green);display:inline-block;"></span> Healthcare Division</span>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING SECTION -->
-<div class="section-header fade-in">
-  <span class="section-eyebrow">Engagement</span>
-  <h2 class="section-title">Institutional <em>Access Tiers</em></h2>
-  <p class="section-body">Engineered for every level of the digital economy, from agile fintechs to sovereign governments.</p>
-</div>
-
-<section id="pricing">
-  <div class="pricing-grid fade-in">
-    <!-- Foundation -->
-    <div class="price-card">
-      <span class="price-tier">Foundation</span>
-      <div class="price-val">$2.5k <span>/mo</span></div>
-      <p class="price-desc">Ideal for high-growth startups and established SMBs looking for a unified ERP brain.</p>
-      <ul class="price-features">
-        <li>15 Full-Suite Modules</li>
-        <li>99.9% Uptime SLA</li>
-        <li>Standard API Access</li>
-        <li>Business Hours Support</li>
-      </ul>
-      <a href="#contact" class="btn-outline" style="width:100%; text-align:center;">Get Started</a>
-    </div>
-
-    <!-- Enterprise -->
-    <div class="price-card featured">
-      <span class="price-tier">Enterprise</span>
-      <div class="price-val">Custom <span>/yr</span></div>
-      <p class="price-desc">For conglomerates and financial institutions requiring deep integration and custom rails.</p>
-      <ul class="price-features">
-        <li>Full Ecosystem Integration</li>
-        <li>24/7 Priority Support</li>
-        <li>Private Instance Hosting</li>
-        <li>Custom Development Credits</li>
-      </ul>
-      <a href="#contact" class="btn-primary" style="width:100%; text-align:center;">Connect with Sales</a>
-    </div>
-
-    <!-- Sovereign -->
-    <div class="price-card">
-      <span class="price-tier">Sovereign</span>
-      <div class="price-val">G2G <span>Deal</span></div>
-      <p class="price-desc">State-level infrastructure for central banks and government digital transformation.</p>
-      <ul class="price-features">
-        <li>National Settlement Rails</li>
-        <li>On-Premise Sovereign Deployment</li>
-        <li>Diplomatic-Level Support</li>
-        <li>Full Source-Code Audit Access</li>
-      </ul>
-      <a href="#contact" class="btn-outline" style="width:100%; text-align:center;">Request Briefing</a>
-    </div>
-  </div>
-</section>
-
-<!-- AEO / FAQ SECTION -->
-<div class="section-header fade-in" id="aeo-header">
-  <span class="section-eyebrow">Intelligence</span>
-  <h2 class="section-title">AEO <em>Common Questions</em></h2>
-  <p class="section-body">Quick, authoritative answers for search engines, generative AI, and institutional partners.</p>
-</div>
-
-<section id="faq">
-  <div class="faq-grid fade-in">
-    <div class="faq-item">
-      <div class="faq-q">What is KOMVIA LIMITED?</div>
-      <p class="faq-a">KOMVIA LIMITED (RC-20252283) is a technology conglomerate established to provide sovereign digital infrastructure, including ERP systems and financial ecosystems (IFE), for the global economy.</p>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">What problems does the KOMVIA ERP solve?</div>
-      <p class="faq-a">It eliminates operational fragmentation by unifying inventory, logistics, and supply chain data into a single, AI-driven sovereign dashboard built for the African market.</p>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Is the IFE Ecosystem compliant with global standards?</div>
-      <p class="faq-a">Yes, the Integrated Financial Ecosystem (IFE) is built on ISO 20022 messaging standards and is PAPSS-integrated for seamless pan-African payments and settlement.</p>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">How does KOMVIA handle data privacy?</div>
-      <p class="faq-a">We are fully compliant with NDPR (Nigeria) and GDPR (Global) standards, utilizing AES-256 encryption and blockchain-grade immutability for all sensitive data transfers.</p>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">What is the utility of the KOMVIA-TOKEN?</div>
-      <p class="faq-a">The KOMVIA-TOKEN serves as the governance and liquidity asset for the entire ecosystem, facilitating institutional settlement, ecosystem voting, and deflationary value accrual.</p>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Who owns the infrastructure behind KOMVIA?</div>
-      <p class="faq-a">KOMVIA operates on a sovereignty-first model, ensuring that the underlying data and digital rails remain under the control of the enterprises and governments that use them.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-grid fade-in">
-    <div>
-      <h2 class="contact-title">Build Africa's<br/><em>future with us</em></h2>
-      <p class="contact-body">Whether you're an enterprise seeking transformation, a government modernising infrastructure, a healthcare operator scaling operations, or an investor — KOMVIA has a position for you in this stack.</p>
-      <div class="contact-links">
-        <a href="mailto:platform@komvia.com" class="contact-link">
-          <span class="contact-link-icon">✉</span>
-          platform@komvia.com
-        </a>
-        <a href="tel:+2341234567890" class="contact-link">
-          <span class="contact-link-icon">◎</span>
-          +234 (0) 123 456 7890
-        </a>
-        <a href="#" class="contact-link">
-          <span class="contact-link-icon">◉</span>
-          Victoria Island, Lagos · Maitama, Abuja
-        </a>
-      </div>
-    </div>
-    <div class="contact-form">
-      <div class="form-row">
-        <div class="form-field">
-          <label>First Name</label>
-          <input type="text" placeholder="Emeka"/>
-        </div>
-        <div class="form-field">
-          <label>Last Name</label>
-          <input type="text" placeholder="Okafor"/>
+  <!-- 01 DATA CLOUD -->
+  <section id="data-cloud" style="padding: 0 3rem 8rem;">
+    <div class="health-hero fade-in">
+      <div>
+        <div class="health-eyebrow" style="color:var(--electric)"><span>●</span> KOMVIA Data Cloud</div>
+        <h3 class="health-title">Sovereign <em>Data</em> Warehouse</h3>
+        <p class="section-body" style="font-size:1rem; text-align:left; margin-bottom:2rem;">Pan-African repository for high-performance warehousing and AI-ready datasets.</p>
+        <div class="health-stats">
+          <div class="health-stat" style="border-top-color:var(--electric)"><span class="health-stat-val">PB+</span><div class="health-stat-lbl">Scale</div></div>
+          <div class="health-stat" style="border-top-color:var(--electric)"><span class="health-stat-val">Local</span><div class="health-stat-lbl">Residency</div></div>
         </div>
       </div>
-      <div class="form-field">
-        <label>Organisation</label>
-        <input type="text" placeholder="Your organisation"/>
+      <div class="health-visual">
+         <div class="block-node"><div class="block-info"><div class="block-title">Node: Lagos_01</div><div class="block-hash">AES-256 Enabled</div></div><div class="block-status">Active</div></div>
+         <div class="block-node"><div class="block-info"><div class="block-title">Node: Nairobi_04</div><div class="block-hash">Syncing Ledgers...</div></div><div class="block-status">Syncing</div></div>
       </div>
-      <div class="form-field">
-        <label>Email</label>
-        <input type="email" placeholder="emeka@organisation.com"/>
-      </div>
-      <div class="form-field">
-        <label>Division of Interest</label>
-        <select>
-          <option>KOMVIA ERP</option>
-          <option>KOMVIA IFE — Financial Engine</option>
-          <option>KOMVIA Data Cloud</option>
-          <option>KOMVIA Payments</option>
-          <option>KOMVIA Banking OS</option>
-          <option>KOMVIA Identity</option>
-          <option>KOMVIA Trade Network</option>
-          <option>KOMVIA AI OS</option>
-          <option>KOMVIA RegTech</option>
-          <option>KOMVIA Government OS</option>
-          <option>KOMVIA CyberShield</option>
-          <option>KOMVIA Academy</option>
-          <option>KOMVIA API Marketplace</option>
-          <option>KOMVIA Consulting</option>
-          <option>KOMVIA Health & Life Sciences</option>
-          <option>Investment / Partnership</option>
-        </select>
-      </div>
-      <div class="form-field">
-        <label>Message</label>
-        <textarea rows="4" placeholder="Tell us about your requirements…"></textarea>
-      </div>
-      <button class="form-submit">Send Message →</button>
     </div>
+    <div class="health-modules">
+      <div class="health-module"><span class="hm-icon">💾</span><div class="hm-title">Warehousing</div><p class="hm-desc">Sovereign storage nodes within African jurisdiction.</p></div>
+      <div class="health-module"><span class="hm-icon">🧠</span><div class="hm-title">AI Training</div><p class="hm-desc">Compute clusters for localized LLM training.</p></div>
+      <div class="health-module"><span class="hm-icon">📊</span><div class="hm-title">Analytics</div><p class="hm-desc">Real-time BI dashboards for ERP and IFE streams.</p></div>
+    </div>
+  </section>
+
+  <!-- 07 HEALTH & LIFE SCIENCES (Institutional Refinement) -->
+  <section id="healthcare" style="padding: 0 3rem 10rem; max-width: 1400px; margin: 0 auto;">
+    <div class="health-hero fade-in">
+      <div>
+        <div class="health-eyebrow" style="color:var(--green)"><span>●</span> KOMVIA Health OS</div>
+        <h3 class="health-title">Healthcare infrastructure for <em>1.4bn</em> Africans</h3>
+        <p class="section-body" style="font-size:1rem; text-align:left; margin-bottom:2rem;">Vertically integrated ecosystem spanning clinical infrastructure, insurance, and research.</p>
+        <div class="health-stats">
+          <div class="health-stat" style="border-top-color:var(--green)"><span class="health-stat-val">50+</span><div class="health-stat-lbl">Core Units</div></div>
+          <div class="health-stat" style="border-top-color:var(--green)"><span class="health-stat-val">24/7</span><div class="health-stat-lbl">Uptime</div></div>
+          <div class="health-stat" style="border-top-color:var(--green)"><span class="health-stat-val">0</span><div class="health-stat-lbl">Data Silos</div></div>
+        </div>
+      </div>
+      <div class="health-visual">
+        <div class="blockchain-chain">
+          <div class="block-node"><div class="block-icon">🏥</div><div class="block-info"><div class="block-title">General Hospital Node</div><div class="block-hash">Verified Entry</div></div><div class="block-status">Live</div></div>
+          <div class="block-node"><div class="block-icon">🔬</div><div class="block-info"><div class="block-title">Diagnostics Chain</div><div class="block-hash">Results Pushed</div></div><div class="block-status">Synced</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="health-modules">
+      <div class="health-module"><span class="hm-icon">🏥</span><div class="hm-title">Hospital Network</div><p class="hm-desc">Owned and operated chains powered by KOMVIA Health OS.</p></div>
+      <div class="health-module"><span class="hm-icon">🛡️</span><div class="hm-title">Institutional Standards</div>
+        <ul class="hm-features">
+          <li>ISO 20022 Compliant</li>
+          <li>PCI-DSS Certified</li>
+          <li>SOC 2 Type II Readiness</li>
+          <li>GDPR & NDPR Standards</li>
+        </ul>
+      </div>
+      <div class="health-module"><span class="hm-icon">🧪</span><div class="hm-title">Biotech R&D</div><p class="hm-desc">Research division for African-specific disease profiles.</p></div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section id="manifesto">
+    <div class="manifesto-bg"></div>
+    <blockquote class="manifesto-quote fade-in">
+      "Whoever owns the <em>infrastructure</em> controls the economy. KOMVIA is not a software company — it is a <em>sovereignty play</em> for African enterprise."
+    </blockquote>
+    <p class="manifesto-attr">— The KOMVIA Doctrine</p>
+  </section>
+
+  <!-- ECOSYSTEM VISUAL (Map Image) -->
+  <section id="ecosystem-visual" style="padding: 10rem 3rem; text-align: center; background: var(--black);">
+    <div class="stack-wrap">
+      <img src="komvia_ecosystem_map_1776811162073.png" alt="Ecosystem Map" class="fade-in" style="width: 100%; border-radius: 20px; border: 1px solid var(--border-subtle);"/>
+      <div class="section-header fade-in" style="padding: 4rem 0 0;">
+         <h3 class="section-title">Global <em>Interconnectivity</em></h3>
+         <p class="section-body">Mapping the future of the African digital economy through sovereign data nodes and financial rails.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORM STACK (User Redefinition) -->
+  <section id="stack" style="padding: 10rem 3rem; background: var(--deep);">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">Technical Architecture</span>
+      <h2 class="section-title">The <em>Integrated</em> Stack</h2>
+    </div>
+    <div class="stack-wrap">
+      <div class="stack-layer fade-in">
+        <div class="stack-label"><div class="stack-label-text">Intelligence</div></div>
+        <div class="stack-items">
+          <a href="#" class="stack-item featured">AI OS</a>
+          <a href="#" class="stack-item">Data Cloud</a>
+          <a href="#" class="stack-item">Predictive Risk</a>
+          <a href="#" class="stack-item">AI CFO</a>
+          <a href="#" class="stack-item">AI Compliance Officer</a>
+          <a href="waitlist.html" class="stack-item health">Health AI</a>
+        </div>
+      </div>
+      <div class="stack-layer fade-in">
+        <div class="stack-label"><div class="stack-label-text">Applications</div></div>
+        <div class="stack-items">
+          <a href="https://komvia-erp-web.vercel.app/" class="stack-item featured">ERP</a>
+          <a href="https://komvia-ife-web-app.vercel.app/" class="stack-item featured">IFE</a>
+          <a href="waitlist.html" class="stack-item">Government OS</a>
+          <a href="compliance.html" class="stack-item">RegTech</a>
+          <a href="#" class="stack-item">Trade Network</a>
+          <a href="waitlist.html" class="stack-item health">HospitalOS SaaS</a>
+          <a href="waitlist.html" class="stack-item health">Telemedicine</a>
+          <a href="waitlist.html" class="stack-item health">Mental Health</a>
+        </div>
+      </div>
+      <div class="stack-layer fade-in">
+        <div class="stack-label"><div class="stack-label-text">Financial Rails</div></div>
+        <div class="stack-items">
+          <a href="https://komvia-ife-web-app.vercel.app/" class="stack-item featured">Payments</a>
+          <a href="https://komvia-ife-web-app.vercel.app/" class="stack-item featured">Banking OS</a>
+          <a href="#" class="stack-item">Card Issuing</a>
+          <a href="#" class="stack-item">FX Engine</a>
+          <a href="#" class="stack-item">Embedded Finance</a>
+          <a href="waitlist.html" class="stack-item health">Health Insurance</a>
+          <a href="waitlist.html" class="stack-item health">Equipment Leasing</a>
+        </div>
+      </div>
+      <div class="stack-layer fade-in">
+        <div class="stack-label"><div class="stack-label-text">Trust & Identity</div></div>
+        <div class="stack-items">
+          <a href="compliance.html" class="stack-item featured">Identity Platform</a>
+          <a href="compliance.html" class="stack-item">KYC/KYB</a>
+          <a href="waitlist.html" class="stack-item">CyberShield</a>
+          <a href="waitlist.html" class="stack-item">Fraud Detection</a>
+          <a href="waitlist.html" class="stack-item health">Patient Blockchain ID</a>
+          <a href="waitlist.html" class="stack-item health">Diagnostics Chain</a>
+        </div>
+      </div>
+      <div class="stack-layer fade-in">
+        <div class="stack-label"><div class="stack-label-text">Infrastructure</div></div>
+        <div class="stack-items">
+          <a href="waitlist.html" class="stack-item featured">API Marketplace</a>
+          <a href="waitlist.html" class="stack-item">Developer Platform</a>
+          <a href="waitlist.html" class="stack-item">Academy</a>
+          <a href="consulting.html" class="stack-item">Consulting</a>
+          <a href="waitlist.html" class="stack-item health">Biotech Research</a>
+          <a href="waitlist.html" class="stack-item health">Lab Network</a>
+          <a href="waitlist.html" class="stack-item health">PharmaCare Chain</a>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;font-size:.65rem;letter-spacing:.08em;color:var(--text-dim);">
+        <span style="display:flex;align-items:center;gap:.4rem;"><span style="width:10px;height:1px;background:var(--gold);display:inline-block;"></span> Core Platform</span>
+        <span style="display:flex;align-items:center;gap:.4rem;"><span style="width:10px;height:1px;background:var(--green);display:inline-block;"></span> Healthcare Division</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <div class="section-header fade-in" id="pricing-header">
+    <span class="section-eyebrow">Engagement</span>
+    <h2 class="section-title">Institutional <em>Access Tiers</em></h2>
   </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div>
-      <span class="footer-brand-logo">KOMVIA</span>
-      <p class="footer-brand-desc">The sovereign digital economy stack for Africa — powering enterprise, finance, healthcare, and government from a single integrated platform.</p>
+  <section id="pricing" style="padding: 0 3rem 10rem;">
+    <div class="pricing-grid fade-in">
+      <div class="price-card">
+        <span class="price-tier">Foundation</span>
+        <div class="price-val">$2.5k <span>/mo</span></div>
+        <p class="price-desc">Ideal for high-growth startups and established SMBs.</p>
+        <ul class="price-features">
+          <li>15 Full-Suite Modules</li>
+          <li>Standard API Access</li>
+        </ul>
+        <a href="#contact" class="btn-outline" style="width:100%; text-align:center; margin-left:0;">Get Started</a>
+      </div>
+      <div class="price-card featured">
+        <span class="price-tier">Enterprise</span>
+        <div class="price-val">Custom</div>
+        <p class="price-desc">For conglomerates requiring deep integration and custom rails.</p>
+        <ul class="price-features">
+          <li>Full Ecosystem Integration</li>
+          <li>Private Instance Hosting</li>
+        </ul>
+        <a href="#contact" class="btn-primary" style="width:100%; text-align:center;">Connect Sales</a>
+      </div>
+      <div class="price-card">
+        <span class="price-tier">Sovereign</span>
+        <div class="price-val">G2G</div>
+        <p class="price-desc">State-level infrastructure for central banks and governments.</p>
+        <ul class="price-features">
+          <li>National Settlement Rails</li>
+          <li>On-Premise Deployment</li>
+        </ul>
+        <a href="#contact" class="btn-outline" style="width:100%; text-align:center; margin-left:0;">Request Briefing</a>
+      </div>
     </div>
-    <div>
-      <div class="footer-col-title">Platform</div>
-      <ul class="footer-col-links">
-        <li><a href="https://komvia-erp-web.vercel.app/">KOMVIA ERP</a></li>
-        <li><a href="https://komvia-ife-web-app.vercel.app/">KOMVIA IFE</a></li>
-        <li><a href="dashboard.html">AI OS Dashboard</a></li>
-        <li><a href="https://komvia-token.vercel.app/">KOMVIA Token</a></li>
-        <li><a href="consulting.html">Consulting Services</a></li>
-      </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="padding: 8rem 3rem; max-width: 1400px; margin: 0 auto;">
+    <div class="health-hero fade-in" style="background:var(--deep); border:none; padding:4rem;">
+      <div>
+        <h2 class="health-title">Build Africa's <em>future</em> with us</h2>
+        <p class="section-body" style="text-align:left; margin-bottom:2rem;">Whether you're an enterprise, government, or investor — KOMVIA has a position for you in this stack.</p>
+        <a href="mailto:platform@komvia.com" class="btn-primary">Email Us</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div style="color:var(--text-dim); font-size:.8rem;">● Victoria Island, Lagos</div>
+        <div style="color:var(--text-dim); font-size:.8rem;">● Maitama, Abuja</div>
+        <div style="color:var(--text-dim); font-size:.8rem;">● London, UK (Implementation Center)</div>
+      </div>
     </div>
-    <div>
-      <div class="footer-col-title">Healthcare</div>
-      <ul class="footer-col-links">
-        <li><a href="waitlist.html">Hospital Network</a></li>
-        <li><a href="waitlist.html">Telemedicine</a></li>
-        <li><a href="waitlist.html">HospitalOS SaaS</a></li>
-        <li><a href="waitlist.html">Patient Blockchain</a></li>
-        <li><a href="waitlist.html">Mental Health</a></li>
-      </ul>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <span class="footer-col-title" style="font-size:1.8rem; margin-bottom:1rem; display:block;">KOMVIA</span>
+        <p style="font-size:.85rem; color:var(--text-muted);">The sovereign digital economy stack for Africa.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Platform</div>
+        <ul class="footer-col-links">
+          <li><a href="https://komvia-erp-web.vercel.app/">ERP Suite</a></li>
+          <li><a href="https://komvia-ife-web-app.vercel.app/">IFE Banking</a></li>
+          <li><a href="https://komvia-token.vercel.app/">KOMVIA Token</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Vision</div>
+        <ul class="footer-col-links">
+          <li><a href="#data-cloud">Data Cloud</a></li>
+          <li><a href="#healthcare">Health OS</a></li>
+          <li><a href="waitlist.html">Academy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-col-links">
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="compliance.html">Compliance</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <div class="footer-col-title">Government</div>
-      <ul class="footer-col-links">
-        <li><a href="waitlist.html">Government OS</a></li>
-        <li><a href="compliance.html">RegTech Suite</a></li>
-        <li><a href="compliance.html">Identity Layer</a></li>
-        <li><a href="waitlist.html">Public Finance</a></li>
-        <li><a href="waitlist.html">Social Payments</a></li>
-      </ul>
+    <div class="footer-bottom">
+      <span>© 2026 KOMVIA LIMITED (RC-20252283)</span>
+      <div><a href="#">LinkedIn</a><a href="#">Twitter</a></div>
     </div>
-    <div>
-      <div class="footer-col-title">Company</div>
-      <ul class="footer-col-links">
-        <li><a href="about.html">About KOMVIA</a></li>
-        <li><a href="https://komvia-token.vercel.app/">KOMVIA Token</a></li>
-        <li><a href="waitlist.html">Careers</a></li>
-        <li><a href="waitlist.html">Press</a></li>
-        <li><a href="waitlist.html">Investors</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 KOMVIA Technologies Ltd. All rights reserved.</span>
-    <span><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a> · <a href="waitlist.html">Security</a></span>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  // Cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
-  (function animRing(){
-    rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
-    ring.style.left=rx+'px'; ring.style.top=ry+'px';
-    requestAnimationFrame(animRing);
-  })();
-  document.querySelectorAll('a,button,.division-card,.health-module,.block-node').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{ cursor.style.width='16px'; cursor.style.height='16px'; ring.style.width='56px'; ring.style.height='56px'; });
-    el.addEventListener('mouseleave',()=>{ cursor.style.width='10px'; cursor.style.height='10px'; ring.style.width='36px'; ring.style.height='36px'; });
-  });
+  <script>
+    // Cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+    (function animRing() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); })();
 
-  // Intersection observer for fade-in
-  const obs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+    // Intersection observer
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
-  // Blockchain node animation
-  const nodes = document.querySelectorAll('.block-node');
-  let ni = 0;
-  setInterval(()=>{
-    nodes.forEach(n=>n.style.borderColor='');
-    nodes[ni].style.borderColor='var(--green)';
-    nodes[ni].style.background='var(--surface2)';
-    setTimeout(()=>{ nodes[ni].style.background=''; nodes[ni].style.borderColor=''; },800);
-    ni=(ni+1)%nodes.length;
-  }, 2000);
+    // Nav Toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    navToggle.addEventListener('click', () => { navToggle.classList.toggle('active'); navLinks.classList.toggle('active'); });
 
-  // Nav scroll effect
-  window.addEventListener('scroll',()=>{
-    const nav = document.querySelector('nav');
-    if(nav) {
-      if(window.scrollY > 50){ nav.style.background='rgba(5,6,8,0.97)'; }
-      else { nav.style.background='rgba(5,6,8,0.92)'; }
-    }
-  });
-
-  // Form submit
-  const submitBtn = document.querySelector('.form-submit');
-  if(submitBtn) {
-    submitBtn.addEventListener('click', function(e){
-      e.preventDefault();
-      this.textContent = 'Message Sent ✓';
-      this.style.background = 'var(--green)';
-      setTimeout(()=>{ this.textContent='Send Message →'; this.style.background=''; },3000);
+    // Hover effects
+    document.querySelectorAll('a,button,.division-card,.health-module').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.style.width='20px'; cursor.style.height='20px'; ring.style.width='60px'; ring.style.height='60px'; });
+      el.addEventListener('mouseleave', () => { cursor.style.width='10px'; cursor.style.height='10px'; ring.style.width='36px'; ring.style.height='36px'; });
     });
-  }
-
-  // Chatbot toggle
-  const chatToggle = document.getElementById('chatbot-toggle');
-  const chatWindow = document.getElementById('chatbot-window');
-  const chatClose = document.getElementById('chat-close');
-  if(chatToggle && chatWindow) {
-    chatToggle.addEventListener('click', () => { chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex'; });
-    chatClose.addEventListener('click', () => { chatWindow.style.display = 'none'; });
-  }
-
-  // Mobile Menu Toggle
-  const navToggle = document.getElementById('nav-toggle');
-  const navLinks = document.getElementById('nav-links');
-  if(navToggle && navLinks) {
-    navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('active');
-      navLinks.classList.toggle('active');
-    });
-    // Close menu when clicking a link
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-      });
-    });
-  }
-</script>
-
-<!-- CHATBOT WIDGET -->
-<div class="chatbot-trigger" id="chatbot-toggle">💬</div>
-<div class="chatbot-window" id="chatbot-window">
-  <div class="chat-header">
-    <h4>KOMVIA Assistant</h4>
-    <div class="chat-close" id="chat-close">×</div>
-  </div>
-  <div class="chat-body" id="chat-messages">
-    <div class="chat-msg msg-bot">Welcome to KOMVIA. How can I assist your institution today?</div>
-  </div>
-  <div class="chat-footer">
-    <input type="text" class="chat-input" placeholder="Type your message..."/>
-    <button class="chat-send">Send</button>
-  </div>
-</div>
-
+  </script>
 </body>
 </html>
