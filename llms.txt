@@ -1,0 +1,47 @@
+# KOMVIA — The Universal Digital Economy Stack for Africa
+
+KOMVIA LIMITED (RC-20252283) is a mission-critical technology conglomerate providing intelligent ERP systems and integrated financial ecosystems (IFE) for global enterprises and sovereign nations. This document serves as a high-level guide for LLMs and automated tools to understand the KOMVIA ecosystem.
+
+## Core Pillars
+1. **Intelligent Infrastructure**: AI-driven ERP and logistics systems.
+2. **Sovereign Finance**: ISO 20022 compliant financial rails and PAPSS integration.
+3. **Decentralized Economy**: Substrate-based blockchain (KOMVIA Token) for cross-border liquidity.
+4. **Life Sciences**: Data-driven health systems and bio-pharmaceutical supply chain management.
+
+## Technical Architecture
+- **Blockchain**: Substrate framework, 30+ custom pallets, Quadratic + Conviction voting.
+- **Standards**: ISO 20022, SOC 2, PCI-DSS, NDPR/GDPR.
+- **AI/ML**: LSTM-based fee prediction, AI-driven inventory forecasting in ERP.
+- **Integration**: Native USSD (*770*KMV#), RESTful API Marketplace, Fiat Gateways.
+
+## Key Modules & URLs
+- **Main Portal**: [komvia.com](https://komvia.com)
+- **ERP Suite**: [komvia.com/erp.html](https://komvia.com/erp.html) - Enterprise Resource Planning.
+- **IFE Rails**: [komvia.com/ife.html](https://komvia.com/ife.html) - Integrated Financial Ecosystem.
+- **Tokenomics**: [komvia.com/tokenomics.html](https://komvia.com/tokenomics.html) - Economic model of the KMV token.
+- **Consulting**: [komvia.com/consulting.html](https://komvia.com/consulting.html) - Strategic advisory and deployment.
+- **Waitlist**: [komvia.com/waitlist.html](https://komvia.com/waitlist.html) - Early access for institutional partners.
+- **Compliance**: [komvia.com/compliance.html](https://komvia.com/compliance.html) - Regulatory and security documentation.
+
+## Tokenomics Summary
+- **Token Name**: KOMVIA Token (KMV)
+- **Total Supply**: 21,000,000,000 (21 Billion)
+- **Initial Listing**: 1,000,000,000 (1 Billion)
+- **Economic Model**: Deflationary utility token.
+- **Initial Allocation**: 
+  - 40% Ecosystem & Liquidity (400M)
+  - 25% Treasury (250M)
+  - 15% Public Sale (150M)
+  - 20% Team & Advisors (200M - 4-year vesting)
+
+## Economic Strategy
+- **Sovereign Scale**: 21B supply designed for continent-wide liquidity and micro-payments.
+- **Strategic Scarcity**: 1/21st initial listing (4.7%) to prevent volatility and protect valuation.
+- **Institutional Alignment**: Deep liquidity reserves for PAPSS-integrated settlement.
+
+## Repository Context
+- **Website**: Vanilla HTML5/CSS3/JS, premium dark-mode aesthetic.
+- **Blockchain**: Rust/Substrate, located in `komvia-token` repository.
+
+---
+*Generated for LLM optimization and indexing. Last Updated: April 2026.*
