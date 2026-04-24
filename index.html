@@ -41,7 +41,7 @@
 </script>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400;1,9..40,500&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@600;700;800&display=swap"
     rel="stylesheet" />
   <style>
     :root {
@@ -61,6 +61,13 @@
       --text-muted: #9ca3af;
       --border: rgba(201, 168, 76, 0.15);
       --border-subtle: rgba(255, 255, 255, 0.06);
+
+      /* Ecosystem Specific Tokens */
+      --eco-accent: #00c896;
+      --eco-accent-dim: rgba(0, 200, 150, 0.1);
+      --eco-accent-glow: rgba(0, 200, 150, 0.06);
+      --font-display: 'Syne', sans-serif;
+      --eco-transition: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     *,
@@ -1645,6 +1652,487 @@
       color: var(--gold);
       font-size: .7rem;
     }
+    /* ──────────────────────────── NEW INTERACTIVE ECOSYSTEM ──────────────────────────── */
+    .eco-header {
+      padding: 6rem 3rem 4.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .eco-header-left {
+      max-width: 640px;
+    }
+
+    .eco-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--eco-accent);
+      margin-bottom: 1.75rem;
+    }
+
+    .eco-eyebrow span {
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--eco-accent);
+    }
+
+    .eco-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+    }
+
+    .eco-title em {
+      font-style: italic;
+      color: var(--eco-accent);
+    }
+
+    .eco-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .eco-header-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .eco-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--text-dim);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .products-section {
+      padding: 0 3rem 7rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .products-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .product-row {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .product-row:last-child {
+      border-bottom: none;
+    }
+
+    .product-card {
+      position: relative;
+      padding: 2.5rem 3rem;
+      background: var(--deep);
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      gap: 2.5rem;
+      align-items: center;
+      transition: background 0.25s var(--eco-transition);
+      outline: none;
+      user-select: none;
+    }
+
+    .product-card:hover {
+      background: var(--surface);
+    }
+
+    .product-row.active .product-card {
+      background: var(--surface);
+      border-bottom: 2px solid var(--eco-accent);
+    }
+
+    .card-num-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .card-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      line-height: 1;
+    }
+
+    .product-row.active .card-num {
+      color: var(--eco-accent);
+    }
+
+    .card-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 500;
+      color: var(--eco-accent);
+      background: var(--eco-accent-dim);
+      border: 1px solid rgba(0, 200, 150, 0.18);
+      border-radius: 6px;
+      padding: 4px 10px;
+      letter-spacing: 0.08em;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .product-card:hover .card-badge,
+    .product-row.active .card-badge {
+      background: rgba(0, 200, 150, 0.18);
+      border-color: rgba(0, 200, 150, 0.35);
+    }
+
+    .card-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+      line-height: 1.2;
+    }
+
+    .card-tagline {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .card-caret {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+
+    .card-caret-arrow {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      transition: all 0.25s var(--eco-transition);
+    }
+
+    .product-card:hover .card-caret,
+    .product-row.active .card-caret {
+      color: var(--eco-accent);
+    }
+
+    .product-card:hover .card-caret-arrow,
+    .product-row.active .card-caret-arrow {
+      border-color: var(--eco-accent);
+      background: var(--eco-accent-dim);
+    }
+
+    .product-row.active .card-caret-arrow {
+      transform: rotate(180deg);
+    }
+
+    .product-drawer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s var(--eco-transition);
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(0, 200, 150, 0.025) 100%);
+      border-top: 1px solid rgba(0, 200, 150, 0.15);
+    }
+
+    .product-row.active .product-drawer {
+      max-height: 800px;
+    }
+
+    .drawer-inner {
+      padding: 3rem 3rem 3rem 9.5rem;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .dl-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--eco-accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .dl-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 0.95rem;
+    }
+
+    .dl-title em {
+      font-style: italic;
+      color: var(--eco-accent);
+    }
+
+    .dl-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+    }
+
+    .dl-image {
+      width: 100%;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 1.75rem;
+      background: var(--deep);
+      position: relative;
+    }
+
+    .dl-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .dl-image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.75rem;
+      background: linear-gradient(135deg, var(--deep) 0%, var(--surface) 100%);
+    }
+
+    .dl-image-icon {
+      font-size: 2.5rem;
+      opacity: 0.3;
+    }
+
+    .dl-image-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .dl-stats {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .dl-stat-val {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--eco-accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .dl-stat-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .dl-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.35rem;
+      background: var(--eco-accent);
+      color: var(--black);
+      border-radius: 7px;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .dl-cta:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    .dl-cta.disabled {
+      opacity: 0.35;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .dl-modules {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      align-content: start;
+    }
+
+    .dl-module {
+      background: var(--deep);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 1.25rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .dl-module:hover {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .dlm-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 500;
+      color: var(--eco-accent);
+      background: var(--eco-accent-dim);
+      border-radius: 4px;
+      padding: 3px 8px;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.8rem;
+    }
+
+    .dlm-name {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+
+    .dlm-desc {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 0.7rem;
+    }
+
+    .dlm-features {
+      list-style: none;
+    }
+
+    .dlm-features li {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-dim);
+      padding: 2px 0;
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .dlm-features li::before {
+      content: '→';
+      color: var(--eco-accent);
+      opacity: 0.6;
+    }
+
+    @media (max-width: 960px) {
+      .eco-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .eco-header-meta {
+        text-align: left;
+      }
+
+      .product-card {
+        grid-template-columns: 50px 1fr auto;
+        gap: 1.5rem;
+        padding: 1.5rem 2rem;
+      }
+
+      .drawer-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2.5rem 2rem 2.5rem 6rem;
+      }
+
+      .dl-modules {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+
+      .eco-header,
+      .products-section {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .product-card {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1.5rem;
+      }
+
+      .card-num-wrap {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .card-caret {
+        justify-content: flex-end;
+      }
+
+      .drawer-inner {
+        padding: 2rem 1.5rem;
+      }
+
+      .dl-modules {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -1769,307 +2257,22 @@
     </div>
   </div>
 
-  <!-- CORE ECOSYSTEM SECTION -->
-  <div class="section-header fade-in">
-    <span class="section-eyebrow">Core Ecosystem</span>
-    <h2 class="section-title">The <em>integrated</em><br />digital economy stack</h2>
-    <p class="section-body">Six core divisions forming the mission-critical foundation of the KOMVIA ecosystem, enabling
-      enterprise-grade operations and sovereign financial rails.</p>
-  </div>
-
-  <section id="divisions">
-    <div class="divisions-grid">
-
-      <!-- 01 ERP -->
-      <section id="erp" style="padding: 0 3rem 8rem;">
-  <div class="health-hero fade-in">
-
-    <!-- LEFT CONTENT -->
-    <div>
-      <div class="health-eyebrow"><span>●</span> KOMVIA ERP Suite</div>
-      <h3 class="health-title">The <em>Operating System</em><br />for Enterprise Execution</h3>
-      <p class="health-desc">
-        A modular ERP platform unifying finance, inventory, procurement, and operations into a single
-        AI-powered control layer for enterprises operating at scale.
-      </p>
-
-      <div class="health-stats">
-        <div class="health-stat">
-          <span class="health-stat-val">100+</span>
-          <div class="health-stat-lbl">Modules</div>
-        </div>
-        <div class="health-stat">
-          <span class="health-stat-val">Multi</span>
-          <div class="health-stat-lbl">Tenant</div>
-        </div>
-        <div class="health-stat">
-          <span class="health-stat-val">Real-Time</span>
-          <div class="health-stat-lbl">Data Sync</div>
-        </div>
-      </div>
-
-      <a href="https://komvia-erp-web.vercel.app/" class="btn-primary" style="margin-top:2rem;">
-        Launch ERP
-      </a>
+  <!-- CORE ECOSYSTEM (INTERACTIVE STACK) -->
+  <header class="eco-header">
+    <div class="eco-header-left">
+      <div class="eco-eyebrow"><span></span> Core Ecosystem</div>
+      <h2 class="eco-title">The <em>integrated</em><br>digital economy stack</h2>
+      <p class="eco-desc">Seven core divisions forming the mission-critical foundation of the KOMVIA ecosystem, enabling
+        enterprise-grade operations and sovereign financial rails.</p>
     </div>
-
-    <!-- RIGHT VISUAL -->
-    <div class="health-visual">
-      <div style="font-family:'JetBrains Mono'; font-size:.65rem;">
-        > Loading Finance Module... [OK]<br />
-        > Syncing Inventory... [LIVE]<br />
-        > AI Forecast Engine... [ACTIVE]
-      </div>
+    <div class="eco-header-meta">
+      <p class="eco-count">07 Divisions</p>
     </div>
+  </header>
 
-  </div>
-
-  <!-- MODULES -->
-  <div class="health-modules">
-    <a href="#" class="health-module fade-in">
-      <span class="hm-icon">📦</span>
-      <div class="hm-title">Inventory Management</div>
-      <div class="hm-desc">Real-time stock tracking across warehouses and regions.</div>
-      <ul class="hm-features">
-        <li>Multi-warehouse</li>
-        <li>Auto-reorder</li>
-        <li>Stock valuation</li>
-      </ul>
-    </a>
-
-    <a href="#" class="health-module fade-in">
-      <span class="hm-icon">💰</span>
-      <div class="hm-title">Finance & Accounting</div>
-      <div class="hm-desc">Full general ledger, AP/AR, and financial reporting engine.</div>
-      <ul class="hm-features">
-        <li>IFRS-ready</li>
-        <li>Multi-currency</li>
-        <li>Audit trails</li>
-      </ul>
-    </a>
-
-    <a href="#" class="health-module fade-in">
-      <span class="hm-icon">🚚</span>
-      <div class="hm-title">Logistics</div>
-      <div class="hm-desc">End-to-end supply chain tracking and optimization.</div>
-      <ul class="hm-features">
-        <li>Route optimization</li>
-        <li>Fleet tracking</li>
-        <li>Delivery proof</li>
-      </ul>
-    </a>
-  </div>
-</section>
-
-      <!-- 02 IFE -->
-      <section id="ife" style="padding: 0 3rem 8rem;">
-  <div class="health-hero fade-in">
-    <div>
-      <div class="health-eyebrow"><span>●</span> KOMVIA IFE</div>
-      <h3 class="health-title">The <em>Financial Operating System</em><br />for Institutions</h3>
-      <p class="health-desc">
-        A unified financial infrastructure powering treasury, payments, digital banking, and reconciliation —
-        built for banks, fintechs, and enterprise finance teams.
-      </p>
-
-      <div class="health-stats">
-        <div class="health-stat"><span class="health-stat-val">Instant</span><div class="health-stat-lbl">Settlement</div></div>
-        <div class="health-stat"><span class="health-stat-val">Multi</span><div class="health-stat-lbl">Currency</div></div>
-        <div class="health-stat"><span class="health-stat-val">24/7</span><div class="health-stat-lbl">Processing</div></div>
-      </div>
-
-      <a href="https://komvia-ife-web-app.vercel.app/" class="btn-primary" style="margin-top:2rem;">Launch IFE</a>
-    </div>
-
-    <div class="health-visual">
-      <div style="font-family:'JetBrains Mono'; font-size:.65rem;">
-        > Payments Engine... [ACTIVE]<br/>
-        > Treasury Sync... [OK]<br/>
-        > Reconciliation AI... [RUNNING]
-      </div>
-    </div>
-  </div>
-
-  <div class="health-modules">
-    <a href="#" class="health-module fade-in">
-      <span class="hm-icon">💳</span>
-      <div class="hm-title">Payments Engine</div>
-      <div class="hm-desc">Process local and cross-border payments seamlessly.</div>
-      <ul class="hm-features"><li>Card issuing</li><li>Wallets</li><li>FX routing</li></ul>
-    </a>
-
-    <a href="#" class="health-module fade-in">
-      <span class="hm-icon">🏦</span>
-      <div class="hm-title">Digital Banking OS</div>
-      <div class="hm-desc">Launch full-stack digital banking infrastructure.</div>
-      <ul class="hm-features"><li>Core banking</li><li>Accounts</li><li>Lending</li></ul>
-    </a>
-
-    <a href="#" class="health-module fade-in">
-      <span class="hm-icon">🔄</span>
-      <div class="hm-title">Auto Reconciliation</div>
-      <div class="hm-desc">AI-powered financial matching and ledger balancing.</div>
-      <ul class="hm-features"><li>Bank sync</li><li>Exception detection</li><li>Audit logs</li></ul>
-    </a>
-  </div>
-</section>
-
-      <!-- 03 TOKEN -->
-      <section id="token" style="padding: 0 3rem 8rem; background:var(--deep);">
-  <div class="health-hero fade-in">
-    <div>
-      <div class="health-eyebrow"><span>●</span> KOMVIA Token</div>
-      <h3 class="health-title">Programmable <em>Economic Infrastructure</em></h3>
-      <p class="health-desc">
-        A sovereign utility token powering settlement, governance, and liquidity across the KOMVIA ecosystem.
-      </p>
-
-      <div class="health-stats">
-        <div class="health-stat"><span class="health-stat-val">21B</span><div class="health-stat-lbl">Supply</div></div>
-        <div class="health-stat"><span class="health-stat-val">1B</span><div class="health-stat-lbl">Initial Float</div></div>
-        <div class="health-stat"><span class="health-stat-val">Global</span><div class="health-stat-lbl">Settlement</div></div>
-      </div>
-
-      <a href="https://komvia-token.vercel.app/" class="btn-primary" style="margin-top:2rem;">Explore Token</a>
-    </div>
-
-    <div class="health-visual">
-      <div style="font-family:'JetBrains Mono'; font-size:.65rem;">
-        > Ledger Sync... [CONFIRMED]<br/>
-        > Smart Contracts... [EXECUTED]<br/>
-        > Liquidity Pools... [STABLE]
-      </div>
-    </div>
-  </div>
-
-  <div class="health-modules">
-    <a href="#" class="health-module fade-in">
-      <span class="hm-icon">🪙</span>
-      <div class="hm-title">Settlement Layer</div>
-      <div class="hm-desc">Instant institutional value transfer.</div>
-      <ul class="hm-features"><li>Cross-border</li><li>Low latency</li><li>Secure</li></ul>
-    </a>
-
-    <a href="#" class="health-module fade-in">
-      <span class="hm-icon">⚖️</span>
-      <div class="hm-title">Governance</div>
-      <div class="hm-desc">Token-based ecosystem decision making.</div>
-      <ul class="hm-features"><li>Voting</li><li>DAO structure</li><li>Protocol control</li></ul>
-    </a>
-
-    <a href="#" class="health-module fade-in">
-      <span class="hm-icon">💧</span>
-      <div class="hm-title">Liquidity Engine</div>
-      <div class="hm-desc">Market stability and liquidity provisioning.</div>
-      <ul class="hm-features"><li>AMM</li><li>Staking</li><li>Reserves</li></ul>
-    </a>
-  </div>
-</section>
-
-      <!-- 04 AI OS -->
-      <section id="ai-os" style="padding: 0 3rem 8rem;">
-  <div class="health-hero fade-in">
-    <div>
-      <div class="health-eyebrow"><span>●</span> KOMVIA AI OS</div>
-      <h3 class="health-title">Autonomous <em>Decision Intelligence</em></h3>
-      <p class="health-desc">
-        AI agents embedded across finance, HR, and operations — transforming data into automated decisions.
-      </p>
-
-      <div class="health-stats">
-        <div class="health-stat"><span class="health-stat-val">AI</span><div class="health-stat-lbl">CFO</div></div>
-        <div class="health-stat"><span class="health-stat-val">Predictive</span><div class="health-stat-lbl">Risk</div></div>
-        <div class="health-stat"><span class="health-stat-val">Auto</span><div class="health-stat-lbl">Decisions</div></div>
-      </div>
-    </div>
-
-    <div class="health-visual">🤖</div>
-  </div>
-
-  <div class="health-modules">
-    <a href="#" class="health-module fade-in">
-      <span class="hm-icon">📊</span>
-      <div class="hm-title">AI CFO</div>
-      <div class="hm-desc">Financial forecasting and decision automation.</div>
-    </a>
-
-    <a href="#" class="health-module fade-in">
-      <span class="hm-icon">👥</span>
-      <div class="hm-title">AI HR</div>
-      <div class="hm-desc">Workforce analytics and optimization.</div>
-    </a>
-
-    <a href="#" class="health-module fade-in">
-      <span class="hm-icon">⚠️</span>
-      <div class="hm-title">Risk Engine</div>
-      <div class="hm-desc">Predictive risk detection across operations.</div>
-    </a>
-  </div>
-</section>
-
-      <!-- 05 REGTECH -->
-      <section id="regtech" style="padding: 0 3rem 8rem; background:var(--deep);">
-  <div class="health-hero fade-in">
-    <div>
-      <div class="health-eyebrow"><span>●</span> KOMVIA RegTech</div>
-      <h3 class="health-title">Compliance-as-<em>Code</em></h3>
-      <p class="health-desc">
-        Automated tax, ESG, and regulatory compliance built into your operations.
-      </p>
-
-      <a href="compliance.html" class="btn-primary" style="margin-top:2rem;">Explore Compliance</a>
-    </div>
-  </div>
-
-  <div class="health-modules">
-    <a href="#" class="health-module fade-in"><span class="hm-icon">🧾</span><div class="hm-title">Tax Automation</div></a>
-    <a href="#" class="health-module fade-in"><span class="hm-icon">📊</span><div class="hm-title">Regulatory Reporting</div></a>
-    <a href="#" class="health-module fade-in"><span class="hm-icon">🌱</span><div class="hm-title">ESG Tracking</div></a>
-  </div>
-</section>
-
-      <!-- 06 GOVERNMENT OS -->
-      <section id="gov-os" style="padding: 0 3rem 8rem;">
-  <div class="health-hero fade-in">
-    <div>
-      <div class="health-eyebrow"><span>●</span> KOMVIA Government OS</div>
-      <h3 class="health-title">Digital <em>Sovereign Infrastructure</em></h3>
-      <p class="health-desc">
-        Powering revenue, procurement, and public finance systems for governments.
-      </p>
-
-      <a href="waitlist.html" class="btn-primary" style="margin-top:2rem;">Partner with Us</a>
-    </div>
-  </div>
-
-  <div class="health-modules">
-    <a href="#" class="health-module fade-in"><span class="hm-icon">💰</span><div class="hm-title">Revenue Systems</div></a>
-    <a href="#" class="health-module fade-in"><span class="hm-icon">📑</span><div class="hm-title">Procurement</div></a>
-    <a href="#" class="health-module fade-in"><span class="hm-icon">📊</span><div class="hm-title">Public Finance</div></a>
-  </div>
-</section>
-
-      <!-- 07 CONSULTING -->
-      <section id="consulting" style="padding: 0 3rem 8rem; background:var(--deep);">
-  <div class="health-hero fade-in">
-    <div>
-      <div class="health-eyebrow"><span>●</span> KOMVIA Consulting</div>
-      <h3 class="health-title">Enterprise <em>Transformation</em> Services</h3>
-      <p class="health-desc">
-        Implementation, advisory, and digital transformation for large-scale organizations.
-      </p>
-
-      <a href="consulting.html" class="btn-primary" style="margin-top:2rem;">Engage Consulting</a>
-    </div>
-  </div>
-
-  <div class="health-modules">
-    <a href="#" class="health-module fade-in"><span class="hm-icon">⚙️</span><div class="hm-title">ERP Deployment</div></a>
-    <a href="#" class="health-module fade-in"><span class="hm-icon">📊</span><div class="hm-title">Finance Transformation</div></a>
-    <a href="#" class="health-module fade-in"><span class="hm-icon">🚀</span><div class="hm-title">Digital Strategy</div></a>
-  </div>
-</section>
-
+  <section id="divisions" class="products-section" aria-label="KOMVIA product divisions">
+    <div class="products-stack" id="productsStack" role="list">
+      <!-- Injected by JS -->
     </div>
   </section>
 
@@ -3059,6 +3262,245 @@
     if (chatToggle && chatWindow) {
       chatToggle.addEventListener('click', () => { chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex'; });
       chatClose.addEventListener('click', () => { chatWindow.style.display = 'none'; });
+    }
+
+    // ── INTERACTIVE ECOSYSTEM STACK ──
+    const products = [
+      {
+        id: 'erp',
+        num: '01', badge: 'ERP', label: 'KOMVIA ERP Suite',
+        name: 'ERP Suite',
+        tagline: 'Operating system for enterprise execution',
+        title: 'The <em>Operating System</em> for Enterprise Execution',
+        desc: 'A modular ERP platform unifying finance, inventory, procurement, and operations into a single AI-powered control layer for enterprises operating at scale.',
+        image: null,
+        stats: [{ v: '100+', l: 'Modules' }, { v: 'Multi', l: 'Tenant' }, { v: 'Real-Time', l: 'Data Sync' }],
+        modules: [
+          { code: 'INV', name: 'Inventory Management', desc: 'Real-time stock tracking across warehouses and regions.', features: ['Multi-warehouse', 'Auto-reorder', 'Stock valuation'] },
+          { code: 'FIN', name: 'Finance & Accounting', desc: 'Full GL, AP/AR, and financial reporting engine.', features: ['IFRS-ready', 'Multi-currency', 'Audit trails'] },
+          { code: 'LOG', name: 'Logistics', desc: 'End-to-end supply chain tracking and optimization.', features: ['Route optimization', 'Fleet tracking', 'Delivery proof'] }
+        ],
+        link: 'https://komvia-erp-web.vercel.app/', cta: 'Launch ERP'
+      },
+      {
+        id: 'ife',
+        num: '02', badge: 'IFE', label: 'KOMVIA IFE',
+        name: 'Financial OS',
+        tagline: 'Financial infrastructure for institutions',
+        title: 'The <em>Financial Operating System</em> for Institutions',
+        desc: 'A unified financial infrastructure powering treasury, payments, digital banking, and reconciliation — built for banks, fintechs, and enterprise finance teams.',
+        image: null,
+        stats: [{ v: 'Instant', l: 'Settlement' }, { v: 'Multi', l: 'Currency' }, { v: '24/7', l: 'Processing' }],
+        modules: [
+          { code: 'PAY', name: 'Payments Engine', desc: 'Process local and cross-border payments seamlessly.', features: ['Card issuing', 'Wallets', 'FX routing'] },
+          { code: 'BNK', name: 'Digital Banking', desc: 'Launch full-stack digital banking infrastructure.', features: ['Core banking', 'Accounts', 'Lending'] },
+          { code: 'REC', name: 'Auto Reconciliation', desc: 'AI-powered financial matching and ledger balancing.', features: ['Bank sync', 'Exception detection', 'Audit logs'] }
+        ],
+        link: 'https://komvia-ife-web-app.vercel.app/', cta: 'Launch IFE'
+      },
+      {
+        id: 'token',
+        num: '03', badge: 'TKN', label: 'KOMVIA Token',
+        name: 'Token',
+        tagline: 'Programmable economic infrastructure',
+        title: 'Programmable <em>Economic Infrastructure</em>',
+        desc: 'A sovereign utility token powering settlement, governance, and liquidity across the KOMVIA ecosystem.',
+        image: null,
+        stats: [{ v: '21B', l: 'Total Supply' }, { v: '1B', l: 'Initial Float' }, { v: 'Global', l: 'Settlement' }],
+        modules: [
+          { code: 'SET', name: 'Settlement Layer', desc: 'Instant institutional value transfer.', features: ['Cross-border', 'Low latency', 'Secure'] },
+          { code: 'GOV', name: 'Governance', desc: 'Token-based ecosystem decision making.', features: ['Voting', 'DAO structure', 'Protocol control'] },
+          { code: 'LIQ', name: 'Liquidity Engine', desc: 'Market stability and liquidity provisioning.', features: ['AMM', 'Staking', 'Reserves'] }
+        ],
+        link: 'https://komvia-token.vercel.app/', cta: 'Explore Token'
+      },
+      {
+        id: 'ai-os',
+        num: '04', badge: 'AI', label: 'KOMVIA AI OS',
+        name: 'AI OS',
+        tagline: 'Autonomous decision intelligence',
+        title: 'Autonomous <em>Decision Intelligence</em>',
+        desc: 'AI agents embedded across finance, HR, and operations — transforming raw data into automated, high-confidence decisions at enterprise scale.',
+        image: null,
+        stats: [{ v: 'AI', l: 'CFO Agent' }, { v: 'Predictive', l: 'Risk Engine' }, { v: 'Auto', l: 'Decisions' }],
+        modules: [
+          { code: 'CFO', name: 'AI CFO', desc: 'Financial forecasting and decision automation.', features: ['Budget AI', 'Cash flow', 'Forecasting'] },
+          { code: 'HR', name: 'AI HR', desc: 'Workforce analytics and optimization.', features: ['Talent AI', 'Scheduling', 'Analytics'] },
+          { code: 'RSK', name: 'Risk Engine', desc: 'Predictive risk detection across operations.', features: ['Fraud detection', 'Compliance AI', 'Alerts'] }
+        ],
+        link: null, cta: 'Coming Soon'
+      },
+      {
+        id: 'regtech',
+        num: '05', badge: 'REG', label: 'KOMVIA RegTech',
+        name: 'RegTech',
+        tagline: 'Compliance-as-code, built in',
+        title: 'Compliance-as-<em>Code</em>',
+        desc: 'Automated tax, ESG, and regulatory compliance built directly into your operations — reducing manual effort, audit risk, and regulatory overhead.',
+        image: null,
+        stats: [{ v: 'Auto', l: 'Tax Filing' }, { v: 'ESG', l: 'Reporting' }, { v: 'Real-Time', l: 'Audit Trail' }],
+        modules: [
+          { code: 'TAX', name: 'Tax Automation', desc: 'Automated tax calculation and filing.', features: ['Multi-jurisdiction', 'Auto-filing', 'Reconciliation'] },
+          { code: 'RPT', name: 'Regulatory Reporting', desc: 'Regulatory report generation and submission.', features: ['IFRS', 'Basel III', 'FATCA'] },
+          { code: 'ESG', name: 'ESG Tracking', desc: 'Environmental, social, governance metrics.', features: ['Carbon tracking', 'Social scores', 'Governance'] }
+        ],
+        link: 'compliance.html', cta: 'Explore Compliance'
+      },
+      {
+        id: 'gov-os',
+        num: '06', badge: 'GOV', label: 'KOMVIA Government OS',
+        name: 'Government OS',
+        tagline: 'Digital sovereign infrastructure',
+        title: 'Digital <em>Sovereign Infrastructure</em>',
+        desc: 'Powering revenue collection, procurement, and public finance systems for modern governments — built to the highest security and audit standards.',
+        image: null,
+        stats: [{ v: 'Gov', l: 'Grade Security' }, { v: 'Open', l: 'API First' }, { v: 'Full', l: 'Audit Trail' }],
+        modules: [
+          { code: 'REV', name: 'Revenue Systems', desc: 'Government revenue collection and management.', features: ['Tax systems', 'e-Receipts', 'Collection'] },
+          { code: 'PRC', name: 'Procurement', desc: 'Transparent public procurement platform.', features: ['e-Tendering', 'Vendor mgmt', 'Compliance'] },
+          { code: 'PFN', name: 'Public Finance', desc: 'National budget and expenditure management.', features: ['Budget mgmt', 'Expenditure', 'Reporting'] }
+        ],
+        link: 'waitlist.html', cta: 'Partner with Us'
+      },
+      {
+        id: 'consulting',
+        num: '07', badge: 'CON', label: 'KOMVIA Consulting',
+        name: 'Consulting',
+        tagline: 'Enterprise transformation services',
+        title: 'Enterprise <em>Transformation</em> Services',
+        desc: 'Implementation, advisory, and digital transformation for large-scale organizations — from ERP rollouts to full finance function modernization.',
+        image: null,
+        stats: [{ v: 'End-to-End', l: 'Delivery' }, { v: 'Expert', l: 'Advisory' }, { v: 'Global', l: 'Reach' }],
+        modules: [
+          { code: 'ERP', name: 'ERP Deployment', desc: 'Full ERP implementation and integration.', features: ['Planning', 'Migration', 'Training'] },
+          { code: 'FTX', name: 'Finance Transform', desc: 'Finance function modernization.', features: ['Process design', 'Automation', 'Governance'] },
+          { code: 'STR', name: 'Digital Strategy', desc: 'Digital roadmap and transformation advisory.', features: ['Assessment', 'Roadmap', 'Execution'] }
+        ],
+        link: 'consulting.html', cta: 'Engage Consulting'
+      }
+    ];
+
+    const ecoStack = document.getElementById('productsStack');
+    let activeEcoRow = null;
+    let closeEcoTimer = null;
+
+    if (ecoStack) {
+      products.forEach((p, i) => {
+        const row = document.createElement('div');
+        row.className = 'product-row';
+        row.setAttribute('data-product', p.id);
+        row.setAttribute('role', 'listitem');
+
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', p.label + ' — ' + p.tagline);
+        card.setAttribute('aria-expanded', 'false');
+
+        card.innerHTML = `
+          <div class="card-num-wrap">
+            <div class="card-num">${p.num}</div>
+            <div class="card-badge">${p.badge}</div>
+          </div>
+          <div class="card-content">
+            <div class="card-label">${p.label}</div>
+            <div class="card-name">${p.name}</div>
+            <div class="card-tagline">${p.tagline}</div>
+          </div>
+          <div class="card-caret">
+            <span class="card-caret-arrow">↓</span>
+          </div>`;
+
+        const drawer = document.createElement('div');
+        drawer.className = 'product-drawer';
+        drawer.innerHTML = `<div class="drawer-inner">${buildEcoDrawer(p)}</div>`;
+
+        card.addEventListener('mouseenter', () => handleEcoHover(row, card));
+        card.addEventListener('mouseleave', scheduleEcoClose);
+        drawer.addEventListener('mouseenter', () => clearTimeout(closeEcoTimer));
+        drawer.addEventListener('mouseleave', scheduleEcoClose);
+
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleEcoHover(row, card);
+          }
+        });
+
+        row.appendChild(card);
+        row.appendChild(drawer);
+        ecoStack.appendChild(row);
+      });
+    }
+
+    function handleEcoHover(row, card) {
+      clearTimeout(closeEcoTimer);
+      if (activeEcoRow && activeEcoRow !== row) {
+        activeEcoRow.classList.remove('active');
+        const prevCard = activeEcoRow.querySelector('.product-card');
+        if (prevCard) prevCard.setAttribute('aria-expanded', 'false');
+      }
+      row.classList.add('active');
+      card.setAttribute('aria-expanded', 'true');
+      activeEcoRow = row;
+    }
+
+    function scheduleEcoClose() {
+      clearTimeout(closeEcoTimer);
+      closeEcoTimer = setTimeout(() => {
+        if (activeEcoRow) {
+          activeEcoRow.classList.remove('active');
+          const card = activeEcoRow.querySelector('.product-card');
+          if (card) card.setAttribute('aria-expanded', 'false');
+          activeEcoRow = null;
+        }
+      }, 280);
+    }
+
+    function buildEcoDrawer(p) {
+      const imageHTML = p.image
+        ? \`<div class="dl-image"><img src="${p.image}" alt="${p.label}" loading="lazy"></div>\`
+        : \`<div class="dl-image">
+             <div class="dl-image-placeholder">
+               <div class="dl-image-icon">📊</div>
+               <div class="dl-image-text">Product Preview</div>
+             </div>
+           </div>\`;
+
+      const stats = p.stats.map(s =>
+        \`<div class="dl-stat">
+           <span class="dl-stat-val">\${s.v}</span>
+           <span class="dl-stat-lbl">\${s.l}</span>
+         </div>\`
+      ).join('');
+
+      const modules = p.modules.map(m =>
+        \`<div class="dl-module">
+           <span class="dlm-badge">\${m.code}</span>
+           <div class="dlm-name">\${m.name}</div>
+           <div class="dlm-desc">\${m.desc}</div>
+           <ul class="dlm-features">
+             \${m.features.map(f => \`<li>\${f}</li>\`).join('')}
+           </ul>
+         </div>\`
+      ).join('');
+
+      const cta = p.link
+        ? \`<a href="\${p.link}" class="dl-cta">\${p.cta} ↗</a>\`
+        : \`<span class="dl-cta disabled">\${p.cta}</span>\`;
+
+      return \`
+        <div class="dl-left">
+          <div class="dl-tag">\${p.label}</div>
+          <h3 class="dl-title">\${p.title}</h3>
+          <p class="dl-desc">\${p.desc}</p>
+          \${imageHTML}
+          <div class="dl-stats">\${stats}</div>
+          \${cta}
+        </div>
+        <div class="dl-right">
+          <div class="dl-modules">\${modules}</div>
+        </div>\`;
     }
 
     // Mobile Menu Toggle
