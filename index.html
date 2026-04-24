@@ -87,7 +87,8 @@
       background: var(--black);
       color: var(--text);
       overflow-x: hidden;
-      cursor: auto; /* Default to auto */
+      cursor: auto;
+      /* Default to auto */
     }
 
     /* Custom cursor only on desktop */
@@ -1272,7 +1273,7 @@
       }
 
       .nav-links {
-        position: fixed;
+        position: absolute;
         top: 70px;
         left: 0;
         right: 0;
@@ -1282,13 +1283,18 @@
         gap: 1.5rem;
         text-align: center;
         border-bottom: 1px solid var(--border);
-        transform: translateY(-150%);
-        transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 999;
-        display: flex;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-20px);
+        transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: -1;
       }
 
       .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
         transform: translateY(0);
       }
 
@@ -1666,6 +1672,79 @@
       color: var(--gold);
       font-size: .7rem;
     }
+
+    /* ──────────────────────────── 3D ECOSYSTEM ORBIT ──────────────────────────── */
+    .orbit-wrapper {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+      perspective: 2000px;
+    }
+
+    .orbit-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transform: translate(-50%, -50%) rotateX(-15deg);
+      z-index: 5;
+    }
+
+    .orbit-node {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: center;
+      animation: orbit3d 35s linear infinite;
+      animation-delay: var(--delay);
+      padding: 10px 20px;
+      background: rgba(10, 12, 16, 0.85);
+      border: 1px solid var(--eco-accent);
+      border-radius: 30px;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 20px rgba(0, 200, 150, 0.15);
+    }
+
+    @keyframes orbit3d {
+      0% { transform: translate(-50%, -50%) rotateY(0deg) translateZ(45vw) rotateY(0deg) rotateX(15deg); z-index: 20; }
+      25% { z-index: 5; }
+      50% { transform: translate(-50%, -50%) rotateY(180deg) translateZ(45vw) rotateY(-180deg) rotateX(15deg); z-index: 1; }
+      75% { z-index: 5; }
+      100% { transform: translate(-50%, -50%) rotateY(360deg) translateZ(45vw) rotateY(-360deg) rotateX(15deg); z-index: 20; }
+    }
+
+    @media (max-width: 1024px) {
+      @keyframes orbit3d {
+        0% { transform: translate(-50%, -50%) rotateY(0deg) translateZ(350px) rotateY(0deg) rotateX(15deg); z-index: 20; }
+        25% { z-index: 5; }
+        50% { transform: translate(-50%, -50%) rotateY(180deg) translateZ(350px) rotateY(-180deg) rotateX(15deg); z-index: 1; }
+        75% { z-index: 5; }
+        100% { transform: translate(-50%, -50%) rotateY(360deg) translateZ(350px) rotateY(-360deg) rotateX(15deg); z-index: 20; }
+      }
+    }
+
+    @media (max-width: 640px) {
+      .orbit-wrapper { min-height: 400px; }
+      @keyframes orbit3d {
+        0% { transform: translate(-50%, -50%) rotateY(0deg) translateZ(200px) rotateY(0deg) rotateX(15deg); z-index: 20; }
+        25% { z-index: 5; }
+        50% { transform: translate(-50%, -50%) rotateY(180deg) translateZ(200px) rotateY(-180deg) rotateX(15deg); z-index: 1; }
+        75% { z-index: 5; }
+        100% { transform: translate(-50%, -50%) rotateY(360deg) translateZ(200px) rotateY(-360deg) rotateX(15deg); z-index: 20; }
+      }
+    }
+
     /* ──────────────────────────── NEW INTERACTIVE ECOSYSTEM ──────────────────────────── */
     .eco-header {
       padding: 6rem 3rem 4.5rem;
@@ -2175,7 +2254,8 @@
         style="padding: .6rem 1.2rem; font-size: .65rem; border-color: var(--gold-dim);">Join Waitlist</a>
       <a href="#contact" class="nav-cta">Launch Suite</a>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
-        <span style="font-family:'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); margin-right: 8px; text-transform: uppercase; letter-spacing: 1px; display: block; height: auto; width: auto; background: none;">Menu</span>
+        <span
+          style="font-family:'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); margin-right: 8px; text-transform: uppercase; letter-spacing: 1px; display: block; height: auto; width: auto; background: none;">Menu</span>
         <div style="display: flex; flex-direction: column; gap: 4px;">
           <span></span><span></span><span></span>
         </div>
@@ -2894,16 +2974,39 @@
     <p class="manifesto-attr">— The KOMVIA Doctrine</p>
   </section>
 
-  <!-- ECOSYSTEM VISUAL (Map Image) -->
-  <section id="ecosystem-visual" style="padding: 10rem 3rem; text-align: center; background: var(--black);">
-    <div class="stack-wrap">
-      <img src="assets/komvia_ecosystem_map.png" alt="Ecosystem Map" class="fade-in"
-        style="width: 100%; border-radius: 20px; border: 1px solid var(--border-subtle);" />
-      <div class="section-header fade-in" style="padding: 4rem 0 0;">
-        <h3 class="section-title">Global <em>Interconnectivity</em></h3>
-        <p class="section-body">Mapping the future of the African digital economy through sovereign data nodes and
-          financial rails.</p>
+  <!-- ECOSYSTEM VISUAL (Map Image with 3D Orbit) -->
+  <section id="ecosystem-visual" style="padding: 10rem 3rem; text-align: center; background: var(--black); overflow: hidden;">
+    <div class="orbit-wrapper fade-in">
+      
+      <!-- 3D Floating Orbits (Core + Upcoming) -->
+      <div class="orbit-container">
+        <!-- Core -->
+        <div class="orbit-node" style="--delay: 0s;"><span>⚙️ ERP Suite</span></div>
+        <div class="orbit-node" style="--delay: -2.5s;"><span>🏗️ IFE</span></div>
+        <div class="orbit-node" style="--delay: -5s;"><span>🪙 Token</span></div>
+        <div class="orbit-node" style="--delay: -7.5s;"><span>🤖 AI OS</span></div>
+        <div class="orbit-node" style="--delay: -10s;"><span>🧾 RegTech</span></div>
+        <div class="orbit-node" style="--delay: -12.5s;"><span>🌍 Gov OS</span></div>
+        <div class="orbit-node" style="--delay: -15s;"><span>💼 Consulting</span></div>
+        <!-- Upcoming -->
+        <div class="orbit-node" style="--delay: -17.5s;"><span>💾 Data Cloud</span></div>
+        <div class="orbit-node" style="--delay: -20s;"><span>🆔 Identity</span></div>
+        <div class="orbit-node" style="--delay: -22.5s;"><span>🚢 Trade Net</span></div>
+        <div class="orbit-node" style="--delay: -25s;"><span>🛡️ CyberShield</span></div>
+        <div class="orbit-node" style="--delay: -27.5s;"><span>🎓 Academy</span></div>
+        <div class="orbit-node" style="--delay: -30s;"><span>⚡ API Market</span></div>
+        <div class="orbit-node" style="--delay: -32.5s;"><span>🏥 Health OS</span></div>
+        
+        <!-- The Image in the center of the orbit -->
+        <img src="assets/komvia_ecosystem_map.png" alt="Ecosystem Map" 
+          style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotateX(15deg); width: 100%; max-width: 800px; border-radius: 20px; border: 1px solid var(--border-subtle); box-shadow: 0 0 100px rgba(0,200,150,0.1);" />
       </div>
+
+    </div>
+    <div class="section-header fade-in" style="padding: 4rem 0 0; position: relative; z-index: 10;">
+      <h3 class="section-title">Global <em>Interconnectivity</em></h3>
+      <p class="section-body">Mapping the future of the African digital economy through sovereign data nodes and
+        financial rails.</p>
     </div>
   </section>
 
@@ -3464,10 +3567,21 @@
         drawer.addEventListener('mouseenter', () => clearTimeout(closeEcoTimer));
         drawer.addEventListener('mouseleave', scheduleEcoClose);
 
+        card.addEventListener('click', (e) => {
+          // If user clicks the caret or card, toggle state
+          if (row.classList.contains('active')) {
+            row.classList.remove('active');
+            card.setAttribute('aria-expanded', 'false');
+            activeEcoRow = null;
+          } else {
+            handleEcoHover(row, card);
+          }
+        });
+
         card.addEventListener('keydown', e => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            handleEcoHover(row, card);
+            card.click();
           }
         });
 
@@ -3498,7 +3612,7 @@
           if (card) card.setAttribute('aria-expanded', 'false');
           activeEcoRow = null;
         }
-      }, 280);
+      }, 350);
     }
 
     function buildEcoDrawer(p) {
