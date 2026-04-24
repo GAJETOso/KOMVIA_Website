@@ -87,7 +87,14 @@
       background: var(--black);
       color: var(--text);
       overflow-x: hidden;
-      cursor: none;
+      cursor: auto; /* Default to auto */
+    }
+
+    /* Custom cursor only on desktop */
+    @media (pointer: fine) {
+      body {
+        cursor: none;
+      }
     }
 
     /* CUSTOM CURSOR */
@@ -1233,6 +1240,12 @@
       transform: translateY(0);
     }
 
+    /* Fix: Ensure visibility if JS is disabled or fails */
+    .no-js .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* RESPONSIVE */
     /* MOBILE NAV */
     .nav-toggle {
@@ -1247,9 +1260,10 @@
 
     .nav-toggle span {
       width: 24px;
-      height: 1px;
+      height: 2px;
       background: var(--gold);
       transition: .3s;
+      border-radius: 2px;
     }
 
     @media (max-width: 1024px) {
@@ -1282,16 +1296,16 @@
         display: flex;
       }
 
-      .nav-toggle.active span:nth-child(1) {
-        transform: translateY(5px) rotate(45deg);
+      .nav-toggle.active div span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
       }
 
-      .nav-toggle.active span:nth-child(2) {
+      .nav-toggle.active div span:nth-child(2) {
         opacity: 0;
       }
 
-      .nav-toggle.active span:nth-child(3) {
-        transform: translateY(-5px) rotate(-45deg);
+      .nav-toggle.active div span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
       }
 
       #hero {
@@ -2133,10 +2147,10 @@
         grid-template-columns: 1fr;
       }
     }
-  </style>
+  <script>document.documentElement.className = 'js';</script>
 </head>
 
-<body>
+<body class="no-js">
 
   <!-- CURSOR -->
   <div class="cursor" id="cursor"></div>
@@ -2159,8 +2173,11 @@
       <a href="waitlist.html" class="btn-outline"
         style="padding: .6rem 1.2rem; font-size: .65rem; border-color: var(--gold-dim);">Join Waitlist</a>
       <a href="#contact" class="nav-cta">Launch Suite</a>
-      <button class="nav-toggle" id="nav-toggle">
-        <span></span><span></span><span></span>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+        <span style="font-family:'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); margin-right: 8px; text-transform: uppercase; letter-spacing: 1px; display: block; height: auto; width: auto; background: none;">Menu</span>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <span></span><span></span><span></span>
+        </div>
       </button>
     </div>
   </nav>
@@ -3207,16 +3224,42 @@
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursorRing');
     let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
-    (function animRing() {
-      rx += (mx - rx) * .12; ry += (my - ry) * .12;
-      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-      requestAnimationFrame(animRing);
-    })();
-    document.querySelectorAll('a,button,.division-card,.health-module,.block-node').forEach(el => {
-      el.addEventListener('mouseenter', () => { cursor.style.width = '16px'; cursor.style.height = '16px'; ring.style.width = '56px'; ring.style.height = '56px'; });
-      el.addEventListener('mouseleave', () => { cursor.style.width = '10px'; cursor.style.height = '10px'; ring.style.width = '36px'; ring.style.height = '36px'; });
-    });
+
+    // Only run custom cursor on non-touch devices
+    if (window.matchMedia('(pointer: fine)').matches && cursor && ring) {
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX;
+        my = e.clientY;
+        cursor.style.left = mx + 'px';
+        cursor.style.top = my + 'px';
+      });
+
+      (function animRing() {
+        rx += (mx - rx) * .12;
+        ry += (my - ry) * .12;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+        requestAnimationFrame(animRing);
+      })();
+
+      document.querySelectorAll('a, button, .product-card, .division-card, .health-module, .block-node').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.style.width = '16px';
+          cursor.style.height = '16px';
+          ring.style.width = '56px';
+          ring.style.height = '56px';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.style.width = '10px';
+          cursor.style.height = '10px';
+          ring.style.width = '36px';
+          ring.style.height = '36px';
+        });
+      });
+    } else {
+      if (cursor) cursor.style.display = 'none';
+      if (ring) ring.style.display = 'none';
+    }
 
     // Intersection observer for fade-in
     const obs = new IntersectionObserver((entries) => {
@@ -3459,48 +3502,48 @@
 
     function buildEcoDrawer(p) {
       const imageHTML = p.image
-        ? \`<div class="dl-image"><img src="${p.image}" alt="${p.label}" loading="lazy"></div>\`
-        : \`<div class="dl-image">
+        ? `<div class="dl-image"><img src="${p.image}" alt="${p.label}" loading="lazy"></div>`
+        : `<div class="dl-image">
              <div class="dl-image-placeholder">
                <div class="dl-image-icon">📊</div>
                <div class="dl-image-text">Product Preview</div>
              </div>
-           </div>\`;
+           </div>`;
 
       const stats = p.stats.map(s =>
-        \`<div class="dl-stat">
-           <span class="dl-stat-val">\${s.v}</span>
-           <span class="dl-stat-lbl">\${s.l}</span>
-         </div>\`
+        `<div class="dl-stat">
+           <span class="dl-stat-val">${s.v}</span>
+           <span class="dl-stat-lbl">${s.l}</span>
+         </div>`
       ).join('');
 
       const modules = p.modules.map(m =>
-        \`<div class="dl-module">
-           <span class="dlm-badge">\${m.code}</span>
-           <div class="dlm-name">\${m.name}</div>
-           <div class="dlm-desc">\${m.desc}</div>
+        `<div class="dl-module">
+           <span class="dlm-badge">${m.code}</span>
+           <div class="dlm-name">${m.name}</div>
+           <div class="dlm-desc">${m.desc}</div>
            <ul class="dlm-features">
-             \${m.features.map(f => \`<li>\${f}</li>\`).join('')}
+             ${m.features.map(f => `<li>${f}</li>`).join('')}
            </ul>
-         </div>\`
+         </div>`
       ).join('');
 
       const cta = p.link
-        ? \`<a href="\${p.link}" class="dl-cta">\${p.cta} ↗</a>\`
-        : \`<span class="dl-cta disabled">\${p.cta}</span>\`;
+        ? `<a href="${p.link}" class="dl-cta">${p.cta} ↗</a>`
+        : `<span class="dl-cta disabled">${p.cta}</span>`;
 
-      return \`
+      return `
         <div class="dl-left">
-          <div class="dl-tag">\${p.label}</div>
-          <h3 class="dl-title">\${p.title}</h3>
-          <p class="dl-desc">\${p.desc}</p>
-          \${imageHTML}
-          <div class="dl-stats">\${stats}</div>
-          \${cta}
+          <div class="dl-tag">${p.label}</div>
+          <h3 class="dl-title">${p.title}</h3>
+          <p class="dl-desc">${p.desc}</p>
+          ${imageHTML}
+          <div class="dl-stats">${stats}</div>
+          ${cta}
         </div>
         <div class="dl-right">
-          <div class="dl-modules">\${modules}</div>
-        </div>\`;
+          <div class="dl-modules">${modules}</div>
+        </div>`;
     }
 
     // Mobile Menu Toggle
