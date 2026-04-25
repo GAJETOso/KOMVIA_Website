@@ -780,22 +780,25 @@
       background: var(--border-subtle);
       border: 1px solid var(--border-subtle);
       border-top: none;
-      
+
       /* Expansion logic */
       max-height: 0;
       overflow: hidden;
       opacity: 0;
       transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
       position: relative;
-      pointer-events: none; /* Prevent clicks when hidden */
+      pointer-events: none;
+      /* Prevent clicks when hidden */
     }
 
     .health-modules.active {
       max-height: 2000px;
       opacity: 1;
       border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 5rem; /* Space for close button */
-      pointer-events: auto; /* Enable clicks when visible */
+      padding-bottom: 5rem;
+      /* Space for close button */
+      pointer-events: auto;
+      /* Enable clicks when visible */
     }
 
     .close-sub-details {
@@ -814,7 +817,7 @@
       z-index: 100;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       color: var(--gold);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       opacity: 0;
       transform: translateY(20px);
       pointer-events: none;
@@ -836,7 +839,8 @@
       width: 20px;
       height: 20px;
       stroke-width: 2.5;
-      transform: rotate(180deg); /* Point up */
+      transform: rotate(180deg);
+      /* Point up */
     }
 
     .health-hero {
@@ -1784,31 +1788,85 @@
     }
 
     @keyframes orbit3d {
-      0% { transform: translate(-50%, -50%) rotateY(0deg) translateZ(45vw) rotateY(0deg) rotateX(15deg); z-index: 20; }
-      25% { z-index: 5; }
-      50% { transform: translate(-50%, -50%) rotateY(180deg) translateZ(45vw) rotateY(-180deg) rotateX(15deg); z-index: 1; }
-      75% { z-index: 5; }
-      100% { transform: translate(-50%, -50%) rotateY(360deg) translateZ(45vw) rotateY(-360deg) rotateX(15deg); z-index: 20; }
+      0% {
+        transform: translate(-50%, -50%) rotateY(0deg) translateZ(45vw) rotateY(0deg) rotateX(15deg);
+        z-index: 20;
+      }
+
+      25% {
+        z-index: 5;
+      }
+
+      50% {
+        transform: translate(-50%, -50%) rotateY(180deg) translateZ(45vw) rotateY(-180deg) rotateX(15deg);
+        z-index: 1;
+      }
+
+      75% {
+        z-index: 5;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotateY(360deg) translateZ(45vw) rotateY(-360deg) rotateX(15deg);
+        z-index: 20;
+      }
     }
 
     @media (max-width: 1024px) {
       @keyframes orbit3d {
-        0% { transform: translate(-50%, -50%) rotateY(0deg) translateZ(350px) rotateY(0deg) rotateX(15deg); z-index: 20; }
-        25% { z-index: 5; }
-        50% { transform: translate(-50%, -50%) rotateY(180deg) translateZ(350px) rotateY(-180deg) rotateX(15deg); z-index: 1; }
-        75% { z-index: 5; }
-        100% { transform: translate(-50%, -50%) rotateY(360deg) translateZ(350px) rotateY(-360deg) rotateX(15deg); z-index: 20; }
+        0% {
+          transform: translate(-50%, -50%) rotateY(0deg) translateZ(350px) rotateY(0deg) rotateX(15deg);
+          z-index: 20;
+        }
+
+        25% {
+          z-index: 5;
+        }
+
+        50% {
+          transform: translate(-50%, -50%) rotateY(180deg) translateZ(350px) rotateY(-180deg) rotateX(15deg);
+          z-index: 1;
+        }
+
+        75% {
+          z-index: 5;
+        }
+
+        100% {
+          transform: translate(-50%, -50%) rotateY(360deg) translateZ(350px) rotateY(-360deg) rotateX(15deg);
+          z-index: 20;
+        }
       }
     }
 
     @media (max-width: 640px) {
-      .orbit-wrapper { min-height: 400px; }
+      .orbit-wrapper {
+        min-height: 400px;
+      }
+
       @keyframes orbit3d {
-        0% { transform: translate(-50%, -50%) rotateY(0deg) translateZ(200px) rotateY(0deg) rotateX(15deg); z-index: 20; }
-        25% { z-index: 5; }
-        50% { transform: translate(-50%, -50%) rotateY(180deg) translateZ(200px) rotateY(-180deg) rotateX(15deg); z-index: 1; }
-        75% { z-index: 5; }
-        100% { transform: translate(-50%, -50%) rotateY(360deg) translateZ(200px) rotateY(-360deg) rotateX(15deg); z-index: 20; }
+        0% {
+          transform: translate(-50%, -50%) rotateY(0deg) translateZ(200px) rotateY(0deg) rotateX(15deg);
+          z-index: 20;
+        }
+
+        25% {
+          z-index: 5;
+        }
+
+        50% {
+          transform: translate(-50%, -50%) rotateY(180deg) translateZ(200px) rotateY(-180deg) rotateX(15deg);
+          z-index: 1;
+        }
+
+        75% {
+          z-index: 5;
+        }
+
+        100% {
+          transform: translate(-50%, -50%) rotateY(360deg) translateZ(200px) rotateY(-360deg) rotateX(15deg);
+          z-index: 20;
+        }
       }
     }
 
@@ -2335,19 +2393,33 @@
     <div class="ticker-track">
       <div class="ticker-item">KOMVIA ERP <span>◆</span> Enterprise Intelligence</div>
       <div class="ticker-item">KOMVIA IFE <span>◆</span> Financial Infrastructure</div>
-      <div class="ticker-item">KOMVIA DATA CLOUD <span>◆</span> Sovereign Analytics</div>
-      <div class="ticker-item">KOMVIA PAYMENTS <span>◆</span> African Financial Rails</div>
-      <div class="ticker-item">KOMVIA HEALTH <span>◆</span> Life Sciences Platform</div>
-      <div class="ticker-item">KOMVIA GOV OS <span>◆</span> Digital Government</div>
+      <div class="ticker-item">KOMVIA TOKEN <span>◆</span> Programmable Economy</div>
       <div class="ticker-item">KOMVIA AI OS <span>◆</span> Decision Intelligence</div>
+      <div class="ticker-item">KOMVIA REGTECH <span>◆</span> Compliance-as-Code</div>
+      <div class="ticker-item">KOMVIA GOV OS <span>◆</span> Digital Government</div>
+      <div class="ticker-item">KOMVIA CONSULTING <span>◆</span> Enterprise Transformation</div>
+      <div class="ticker-item">KOMVIA DATA CLOUD <span>◆</span> Sovereign Analytics</div>
+      <div class="ticker-item">KOMVIA IDENTITY <span>◆</span> Zero-Knowledge Trust</div>
+      <div class="ticker-item">KOMVIA TRADE NETWORK <span>◆</span> B2B Commerce Engine</div>
+      <div class="ticker-item">KOMVIA CYBERSHIELD <span>◆</span> Institutional Defense</div>
+      <div class="ticker-item">KOMVIA ACADEMY <span>◆</span> Digital Talent Pipeline</div>
+      <div class="ticker-item">KOMVIA API MARKETPLACE <span>◆</span> Ecosystem Endpoints</div>
+      <div class="ticker-item">KOMVIA HEALTH <span>◆</span> Life Sciences Platform</div>
       <!-- duplicated for seamless loop -->
       <div class="ticker-item">KOMVIA ERP <span>◆</span> Enterprise Intelligence</div>
       <div class="ticker-item">KOMVIA IFE <span>◆</span> Financial Infrastructure</div>
-      <div class="ticker-item">KOMVIA DATA CLOUD <span>◆</span> Sovereign Analytics</div>
-      <div class="ticker-item">KOMVIA PAYMENTS <span>◆</span> African Financial Rails</div>
-      <div class="ticker-item">KOMVIA HEALTH <span>◆</span> Life Sciences Platform</div>
-      <div class="ticker-item">KOMVIA GOV OS <span>◆</span> Digital Government</div>
+      <div class="ticker-item">KOMVIA TOKEN <span>◆</span> Programmable Economy</div>
       <div class="ticker-item">KOMVIA AI OS <span>◆</span> Decision Intelligence</div>
+      <div class="ticker-item">KOMVIA REGTECH <span>◆</span> Compliance-as-Code</div>
+      <div class="ticker-item">KOMVIA GOV OS <span>◆</span> Digital Government</div>
+      <div class="ticker-item">KOMVIA CONSULTING <span>◆</span> Enterprise Transformation</div>
+      <div class="ticker-item">KOMVIA DATA CLOUD <span>◆</span> Sovereign Analytics</div>
+      <div class="ticker-item">KOMVIA IDENTITY <span>◆</span> Zero-Knowledge Trust</div>
+      <div class="ticker-item">KOMVIA TRADE NETWORK <span>◆</span> B2B Commerce Engine</div>
+      <div class="ticker-item">KOMVIA CYBERSHIELD <span>◆</span> Institutional Defense</div>
+      <div class="ticker-item">KOMVIA ACADEMY <span>◆</span> Digital Talent Pipeline</div>
+      <div class="ticker-item">KOMVIA API MARKETPLACE <span>◆</span> Ecosystem Endpoints</div>
+      <div class="ticker-item">KOMVIA HEALTH <span>◆</span> Life Sciences Platform</div>
     </div>
   </div>
 
@@ -2427,627 +2499,18 @@
     <div class="eco-header-left">
       <div class="eco-eyebrow"><span></span> Core Ecosystem</div>
       <h2 class="eco-title">The <em>integrated</em><br>digital economy stack</h2>
-      <p class="eco-desc">Seven core divisions forming the mission-critical foundation of the KOMVIA ecosystem, enabling
+      <p class="eco-desc">Fourteen core divisions forming the mission-critical foundation of the KOMVIA ecosystem,
+        enabling
         enterprise-grade operations and sovereign financial rails.</p>
     </div>
     <div class="eco-header-meta">
-      <p class="eco-count">07 Divisions</p>
+      <p class="eco-count">14 Divisions</p>
     </div>
   </header>
 
   <section id="divisions" class="products-section" aria-label="KOMVIA product divisions">
     <div class="products-stack" id="productsStack" role="list">
       <!-- Injected by JS -->
-    </div>
-  </section>
-
-  <!-- UPCOMING INFRASTRUCTURE EXPANDED -->
-  <div class="section-header fade-in">
-    <span class="section-eyebrow">Vision & Expansion</span>
-    <h2 class="section-title">Upcoming <em>Infrastructure</em></h2>
-    <p class="section-body">Future layers of the KOMVIA stack currently under development, modeled as sovereign-grade
-      ecosystems for specialized verticals.</p>
-  </div>
-
-  <!-- 01 DATA CLOUD -->
-  <section id="data-cloud" style="padding: 0 3rem 8rem;">
-    <div class="health-hero fade-in">
-      <div>
-        <div class="health-eyebrow" style="color:var(--electric)"><span>●</span> KOMVIA Data Cloud</div>
-        <h3 class="health-title">Sovereign <em>Data</em> Warehouse<br />for the Continent</h3>
-        <p class="health-desc">A pan-African data repository providing high-performance warehousing, AI-ready datasets,
-          and sovereign analytics infrastructure for governments and conglomerates.</p>
-        <div class="health-stats">
-          <div class="health-stat" style="border-top-color:var(--electric)">
-            <span class="health-stat-val" style="color:var(--electric)">PB+</span>
-            <div class="health-stat-lbl">Storage Scale</div>
-          </div>
-          <div class="health-stat" style="border-top-color:var(--electric)">
-            <span class="health-stat-val" style="color:var(--electric)">99.9%</span>
-            <div class="health-stat-lbl">AI Accuracy</div>
-          </div>
-          <div class="health-stat" style="border-top-color:var(--electric)">
-            <span class="health-stat-val" style="color:var(--electric)">Local</span>
-            <div class="health-stat-lbl">Data Residency</div>
-          </div>
-        </div>
-      </div>
-      <div class="health-visual"
-        style="background:rgba(0,212,255,0.03); border:1px solid var(--electric-dim); border-radius:12px; padding:2rem; display:flex; flex-direction:column; gap:1rem;">
-        <div style="font-family:'JetBrains Mono'; font-size:.6rem; color:var(--electric)">/ROOT/DATA/RECONCILIATION_LIVE
-        </div>
-        <div style="height:2px; background:var(--electric-dim); width:100%;"></div>
-        <div style="color:var(--text-dim); font-size:.7rem; line-height:1.6;">
-          > Processing Node_Lagos_01... [SUCCESS]<br />
-          > Syncing Regional Ledgers... [ACTIVE]<br />
-          > Encrypting At Rest (AES-256)... [ENABLED]
-        </div>
-        <a href="waitlist.html" class="btn-outline"
-          style="align-self:flex-start; margin-top:1rem; border-color:var(--electric); color:var(--electric);">Request
-          Early Access</a>
-      </div>
-    </div>
-
-    <!-- DATA CLOUD MODULES -->
-    <div class="health-modules">
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">💾</span>
-        <div class="hm-title">Sovereign Warehousing</div>
-        <p class="hm-desc">Ultra-secure data storage nodes hosted within African jurisdiction, ensuring full data
-          residency compliance.</p>
-        <ul class="hm-features">
-          <li>PB-scale storage</li>
-          <li>Regional replication</li>
-          <li>End-to-end encryption</li>
-        </ul>
-      </a>
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">🧠</span>
-        <div class="hm-title">AI Training Hub</div>
-        <p class="hm-desc">Localized compute clusters for training Large Language Models on proprietary African
-          enterprise datasets.</p>
-        <ul class="hm-features">
-          <li>GPU-accelerated nodes</li>
-          <li>MLOps integration</li>
-          <li>Dataset curation tools</li>
-        </ul>
-      </a>
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">📊</span>
-        <div class="hm-title">BI & Analytics</div>
-        <p class="hm-desc">Real-time business intelligence dashboards connected directly to your KOMVIA ERP and IFE data
-          streams.</p>
-        <ul class="hm-features">
-          <li>Automated reporting</li>
-          <li>Predictive forecasting</li>
-          <li>Custom query engine</li>
-        </ul>
-      </a>
-      <div class="close-sub-details" title="Close Details">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- 02 IDENTITY -->
-  <section id="identity" style="padding: 0 3rem 8rem;">
-    <div class="health-hero fade-in" style="background:var(--deep); border-color:var(--border-subtle);">
-      <div class="health-visual"
-        style="order:2; background:rgba(201,168,76,0.03); border:1px solid var(--gold-dim); border-radius:12px; padding:2rem; text-align:center;">
-        <span style="font-size:4rem;">🆔</span>
-        <h4 style="margin-top:1rem; font-family:'Cormorant Garamond'; color:var(--gold);">Zero-Knowledge Trust</h4>
-        <p style="font-size:.75rem; color:var(--text-dim); margin-top:.5rem;">Decentralized identity protocols ensuring
-          user privacy while maintaining regulatory compliance.</p>
-      </div>
-      <div style="order:1;">
-        <div class="health-eyebrow"><span>●</span> KOMVIA Identity</div>
-        <h3 class="health-title">The <em>Trust</em> Layer<br />of Digital Africa</h3>
-        <p class="health-desc">Decentralized identity wallets, biometric KYB/KYC verification, and digital document
-          notarization built for the private sector and public agencies.</p>
-        <div class="health-stats">
-          <div class="health-stat">
-            <span class="health-stat-val">100%</span>
-            <div class="health-stat-lbl">Anti-Fraud</div>
-          </div>
-          <div class="health-stat">
-            <span class="health-stat-val">Biometric</span>
-            <div class="health-stat-lbl">Verification</div>
-          </div>
-        </div>
-        <a href="waitlist.html" class="btn-primary" style="margin-top:2rem;">Join Identity Beta</a>
-      </div>
-    </div>
-
-    <div class="health-modules">
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">👤</span>
-        <div class="hm-title">Biometric KYB/KYC</div>
-        <div class="hm-desc">Instant verification of businesses and individuals using facial recognition and official
-          registry integrations.</div>
-        <ul class="hm-features">
-          <li>Registry cross-check</li>
-          <li>Liveness detection</li>
-          <li>Instant verification</li>
-        </ul>
-      </a>
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">👛</span>
-        <div class="hm-title">Decentralized ID Wallet</div>
-        <div class="hm-desc">A self-sovereign identity wallet for users to control their credentials across the entire
-          KOMVIA ecosystem.</div>
-        <ul class="hm-features">
-          <li>ZKP-based verification</li>
-          <li>Credential management</li>
-          <li>Privacy-first architecture</li>
-        </ul>
-      </a>
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">📜</span>
-        <div class="hm-title">Trust Registry</div>
-        <div class="hm-desc">An immutable ledger of verified business entities, reducing risk and friction in trade and
-          financial settlement.</div>
-        <ul class="hm-features">
-          <li>Entity scoring</li>
-          <li>Compliance tracking</li>
-          <li>B2B trust-as-a-service</li>
-        </ul>
-      </a>
-      <div class="close-sub-details" title="Close Details">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- 03 TRADE NETWORK -->
-  <section id="trade-network" style="padding: 0 3rem 8rem;">
-    <div class="health-hero fade-in">
-      <div>
-        <div class="health-eyebrow" style="color:var(--gold)"><span>●</span> KOMVIA Trade Network</div>
-        <h3 class="health-title">Pan-African <em>B2B</em><br />Commerce Engine</h3>
-        <p class="health-desc">A real-time marketplace connecting ERP users across borders. Automated smart contracts,
-          logistics tracking, and trade finance — unified.</p>
-        <div class="health-stats">
-          <div class="health-stat">
-            <span class="health-stat-val">54</span>
-            <div class="health-stat-lbl">Active Markets</div>
-          </div>
-          <div class="health-stat">
-            <span class="health-stat-val">Live</span>
-            <div class="health-stat-lbl">Logistics Tracking</div>
-          </div>
-        </div>
-      </div>
-      <div class="health-visual">
-        <div class="blockchain-chain">
-          <div class="block-node">
-            <div class="block-info">
-              <div class="block-title">Vendor: Nairobi Electronics</div>
-              <div class="block-meta">Order ID: #KOM-TRD-082</div>
-            </div>
-            <div class="block-status" style="background:var(--gold-dim); color:var(--gold);">In Transit</div>
-          </div>
-          <div class="block-node">
-            <div class="block-info">
-              <div class="block-title">Logistics: Pan-African Freight</div>
-              <div class="block-meta">Checkpoint: Lagos Port</div>
-            </div>
-            <div class="block-status">Cleared</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="health-modules">
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">🚢</span>
-        <div class="hm-title">Logistics Visibility</div>
-        <div class="hm-desc">Real-time tracking of goods across the AfCFTA corridor, integrated with port and customs
-          authorities.</div>
-        <ul class="hm-features">
-          <li>IoT sensor integration</li>
-          <li>Customs automation</li>
-          <li>Proof of delivery</li>
-        </ul>
-      </a>
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">🤝</span>
-        <div class="hm-title">Smart Procurement</div>
-        <div class="hm-desc">AI-driven vendor matching and automated smart contracts that trigger payments upon
-          milestone completion.</div>
-        <ul class="hm-features">
-          <li>Automated RFPs</li>
-          <li>Escrow settlement</li>
-          <li>Dynamic pricing</li>
-        </ul>
-      </a>
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">💰</span>
-        <div class="hm-title">Trade Finance</div>
-        <div class="hm-desc">Embedded financing for buyers and sellers based on trade history and verified invoice data
-          within the ERP.</div>
-        <ul class="hm-features">
-          <li>Invoice factoring</li>
-          <li>Inventory financing</li>
-          <li>Credit scoring AI</li>
-        </ul>
-      </a>
-      <div class="close-sub-details" title="Close Details">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- 04 CYBERSHIELD -->
-  <section id="cyber-shield" style="padding: 0 3rem 8rem;">
-    <div class="health-hero fade-in" style="background:var(--deep); border-color:var(--red);">
-      <div class="health-visual"
-        style="background:rgba(230,57,70,0.05); border:1px solid var(--red); padding:2rem; border-radius:12px;">
-        <div style="font-family:'JetBrains Mono'; font-size:.65rem; color:var(--red);">THREAT_LEVEL: MINIMAL</div>
-        <div style="margin-top:1rem; display:flex; flex-direction:column; gap:.8rem;">
-          <div style="height:4px; background:var(--red); width:80%;"></div>
-          <div style="height:4px; background:var(--red); width:40%; opacity:0.5;"></div>
-          <div style="height:4px; background:var(--red); width:60%; opacity:0.3;"></div>
-        </div>
-      </div>
-      <div>
-        <div class="health-eyebrow" style="color:var(--red)"><span>●</span> KOMVIA CyberShield</div>
-        <h3 class="health-title">Institutional <em>Hardening</em><br />& Managed Defense</h3>
-        <p class="health-desc">24/7 Managed Security Operations Center (SOC) with AI-driven threat intelligence and
-          fraud detection tailored for high-volume financial ecosystems.</p>
-        <div class="health-stats">
-          <div class="health-stat" style="border-top-color:var(--red)">
-            <span class="health-stat-val" style="color:var(--red)">24/7</span>
-            <div class="health-stat-lbl">Monitoring</div>
-          </div>
-          <div class="health-stat" style="border-top-color:var(--red)">
-            <span class="health-stat-val" style="color:var(--red)">Zero</span>
-            <div class="health-stat-lbl">Day Readiness</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CYBERSHIELD MODULES -->
-    <div class="health-modules">
-      <a href="waitlist.html" class="health-module fade-in" style="border-bottom: 2px solid var(--red);">
-        <span class="hm-icon">🛡️</span>
-        <div class="hm-title">Managed SOC</div>
-        <div class="hm-desc">A 24/7 Security Operations Center monitoring your institutional infrastructure for any
-          signs of compromise.</div>
-        <ul class="hm-features">
-          <li>Threat hunting</li>
-          <li>Incident response</li>
-          <li>Vulnerability scanning</li>
-        </ul>
-      </a>
-      <a href="waitlist.html" class="health-module fade-in" style="border-bottom: 2px solid var(--red);">
-        <span class="hm-icon">📡</span>
-        <div class="hm-title">Threat Intel Feed</div>
-        <div class="hm-desc">Aggregated security intelligence across the African threat landscape, pushed in real-time
-          to your edge nodes.</div>
-        <ul class="hm-features">
-          <li>Zero-day alerts</li>
-          <li>Malware signatures</li>
-          <li>Phishing prevention</li>
-        </ul>
-      </a>
-      <a href="waitlist.html" class="health-module fade-in" style="border-bottom: 2px solid var(--red);">
-        <span class="hm-icon">👮</span>
-        <div class="hm-title">Fraud Prevention AI</div>
-        <div class="hm-desc">ML models trained to detect anomalous transaction patterns across payments, payroll, and
-          procurement.</div>
-        <ul class="hm-features">
-          <li>Anti-money laundering</li>
-          <li>Card fraud detection</li>
-          <li>Account takeover alerts</li>
-        </ul>
-      </a>
-      <div class="close-sub-details" title="Close Details">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- 05 ACADEMY -->
-  <section id="academy" style="padding: 0 3rem 8rem;">
-    <div class="health-hero fade-in">
-      <div>
-        <div class="health-eyebrow"><span>●</span> KOMVIA Academy</div>
-        <h3 class="health-title">The <em>Talent</em> Pipeline<br />for Digital Sovereignty</h3>
-        <p class="health-desc">Training the next generation of ERP specialists, fintech engineers, and digital
-          architects to maintain and scale the KOMVIA infrastructure globally.</p>
-        <div class="health-stats">
-          <div class="health-stat">
-            <span class="health-stat-val">10k+</span>
-            <div class="health-stat-lbl">Certified Experts</div>
-          </div>
-          <div class="health-stat">
-            <span class="health-stat-val">100%</span>
-            <div class="health-stat-lbl">Industry Ready</div>
-          </div>
-        </div>
-      </div>
-      <div class="health-visual" style="background:var(--surface2); padding:2.5rem; text-align:center;">
-        <span style="font-size:3rem;">🎓</span>
-        <h4 style="margin-top:1rem; color:var(--gold);">Global Certification</h4>
-        <a href="waitlist.html" class="btn-outline" style="margin-top:1.5rem;">View Curriculum</a>
-      </div>
-    </div>
-
-    <!-- ACADEMY MODULES -->
-    <div class="health-modules">
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">🏆</span>
-        <div class="hm-title">ERP Specialist Track</div>
-        <div class="hm-desc">Professional certification for implementing and managing KOMVIA ERP within large-scale
-          enterprises.</div>
-        <ul class="hm-features">
-          <li>Implementation labs</li>
-          <li>Custom module dev</li>
-          <li>Enterprise architecture</li>
-        </ul>
-      </a>
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">🏦</span>
-        <div class="hm-title">Fintech Engineering</div>
-        <div class="hm-desc">Advanced courses for building on KOMVIA IFE rails and developing compliant financial
-          products.</div>
-        <ul class="hm-features">
-          <li>Ledger architecture</li>
-          <li>Payment system design</li>
-          <li>Compliance-as-code</li>
-        </ul>
-      </a>
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">⚖️</span>
-        <div class="hm-title">RegTech & Compliance</div>
-        <div class="hm-desc">Training for compliance officers on using the KOMVIA stack to automate tax, ESG, and
-          regulatory filings.</div>
-        <ul class="hm-features">
-          <li>FIRS automation</li>
-          <li>Audit trails</li>
-          <li>ESG reporting</li>
-        </ul>
-      </a>
-      <div class="close-sub-details" title="Close Details">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- 06 API MARKETPLACE -->
-  <section id="api-marketplace" style="padding: 0 3rem 8rem;">
-    <div class="health-hero fade-in" style="background:var(--deep); border-color:var(--electric);">
-      <div class="health-visual" style="order:2; font-family:'JetBrains Mono'; font-size:.7rem; color:var(--electric);">
-        GET /v1/komvia/payments/reconcile<br />
-        Authorization: Bearer *********<br />
-        {<br />
-        &nbsp;&nbsp;"status": "success",<br />
-        &nbsp;&nbsp;"settlement": "instant"<br />
-        }
-      </div>
-      <div style="order:1;">
-        <div class="health-eyebrow" style="color:var(--electric)"><span>●</span> KOMVIA API Marketplace</div>
-        <h3 class="health-title">Building on the <em>Rails</em><br />of a New Economy</h3>
-        <p class="health-desc">Exposing the power of ERP, IFE, and Identity through a unified developer portal. Build
-          sovereign applications with institutional-grade primitives.</p>
-        <div class="health-stats">
-          <div class="health-stat" style="border-top-color:var(--electric)">
-            <span class="health-stat-val" style="color:var(--electric)">1k+</span>
-            <div class="health-stat-lbl">Endpoints</div>
-          </div>
-          <div class="health-stat" style="border-top-color:var(--electric)">
-            <span class="health-stat-val" style="color:var(--electric)">99.99%</span>
-            <div class="health-stat-lbl">Uptime</div>
-          </div>
-        </div>
-        <a href="waitlist.html" class="btn-primary"
-          style="margin-top:2rem; background:var(--electric); color:var(--black);">Get API Key</a>
-      </div>
-    </div>
-
-    <!-- API MARKETPLACE MODULES -->
-    <div class="health-modules">
-      <a href="waitlist.html" class="health-module fade-in" style="border-bottom: 2px solid var(--electric);">
-        <span class="hm-icon">💳</span>
-        <div class="hm-title">Payments APIs</div>
-        <div class="hm-desc">Integrate card issuing, cross-border settlement, and wallet infrastructure directly into
-          your app.</div>
-        <ul class="hm-features">
-          <li>Virtual card issuing</li>
-          <li>FX engine access</li>
-          <li>Auto-reconciliation</li>
-        </ul>
-      </a>
-      <a href="waitlist.html" class="health-module fade-in" style="border-bottom: 2px solid var(--electric);">
-        <span class="hm-icon">🧬</span>
-        <div class="hm-title">Core Infrastructure</div>
-        <div class="hm-desc">Low-level access to KOMVIA identity, data warehousing, and ledger primitives.</div>
-        <ul class="hm-features">
-          <li>Sovereign data access</li>
-          <li>Ledger webhooks</li>
-          <li>Identity verification</li>
-        </ul>
-      </a>
-      <a href="waitlist.html" class="health-module fade-in" style="border-bottom: 2px solid var(--electric);">
-        <span class="hm-icon">⚡</span>
-        <div class="hm-title">AI-as-a-Service</div>
-        <div class="hm-desc">Access KOMVIA's proprietary decision intelligence models via high-performance REST
-          endpoints.</div>
-        <ul class="hm-features">
-          <li>Risk scoring AI</li>
-          <li>Financial forecasting</li>
-          <li>OCR & Data extraction</li>
-        </ul>
-      </a>
-      <div class="close-sub-details" title="Close Details">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- 07 HEALTH & LIFE SCIENCES -->
-  <section id="healthcare" style="padding: 0 3rem 10rem; max-width: 1400px; margin: 0 auto;">
-    <div class="health-hero fade-in">
-      <div>
-        <div class="health-eyebrow" style="color:var(--green)">
-          <span>●</span> KOMVIA Health OS
-          <span class="health-badge">Now Building</span>
-        </div>
-        <h3 class="health-title">Healthcare infrastructure<br />for <em>1.4 billion</em> Africans</h3>
-        <p class="health-desc">
-          KOMVIA Health integrates every node of the healthcare value chain — from primary care clinics to biotech
-          research labs — under one sovereign, AI-augmented operating system.
-        </p>
-        <div class="health-stats">
-          <div class="health-stat" style="border-top-color:var(--green)">
-            <span class="health-stat-val" style="color:var(--green)">11</span>
-            <div class="health-stat-lbl">Service Verticals</div>
-          </div>
-          <div class="health-stat" style="border-top-color:var(--green)">
-            <span class="health-stat-val" style="color:var(--green)">1</span>
-            <div class="health-stat-lbl">Unified Health ID</div>
-          </div>
-          <div class="health-stat" style="border-top-color:var(--green)">
-            <span class="health-stat-val" style="color:var(--green)">0</span>
-            <div class="health-stat-lbl">Data Silos</div>
-          </div>
-        </div>
-        <a href="waitlist.html" class="btn-primary"
-          style="margin-top:2rem; background:var(--green); border:none; color:var(--black);">Join Health Waitlist</a>
-      </div>
-
-      <!-- BLOCKCHAIN VISUAL -->
-      <div class="health-visual">
-        <div
-          style="font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.8rem;">
-          Patient Blockchain Ledger — Live Nodes</div>
-        <div class="blockchain-chain">
-          <a href="waitlist.html" class="block-node">
-            <div class="block-icon">🏥</div>
-            <div class="block-info">
-              <div class="block-title">General Hospital, Abuja</div>
-              <div class="block-meta">Last accessed: 2 hrs ago</div>
-            </div>
-            <div class="block-hash">0xA3F2...8C1D</div>
-            <div class="block-status">Verified</div>
-          </a>
-          <a href="waitlist.html" class="block-node">
-            <div class="block-icon">🔬</div>
-            <div class="block-info">
-              <div class="block-title">KOMVIA Diagnostics Lab</div>
-              <div class="block-meta">Results pushed: Today</div>
-            </div>
-            <div class="block-hash">0xB91C...3A4E</div>
-            <div class="block-status">Verified</div>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- HEALTH MODULES GRID -->
-    <div class="health-modules">
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">🏥</span>
-        <div class="hm-title">Hospital & Clinic Network</div>
-        <p class="hm-desc">Owned and operated hospital and clinic chains across tier-1 and tier-2 African cities,
-          powered by KOMVIA's own Health OS.</p>
-        <ul class="hm-features">
-          <li>Multi-specialist hospitals</li>
-          <li>Primary care clinic franchises</li>
-          <li>Emergency response integration</li>
-        </ul>
-      </a>
-
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">📱</span>
-        <div class="hm-title">Telemedicine Platform</div>
-        <p class="hm-desc">Pan-African virtual care platform connecting patients to verified physicians, specialists,
-          and mental health professionals instantly.</p>
-        <ul class="hm-features">
-          <li>Video & asynchronous consults</li>
-          <li>e-Prescription integration</li>
-          <li>Rural access mobile-first</li>
-        </ul>
-      </a>
-
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">🛡️</span>
-        <div class="hm-title">Institutional Standards</div>
-        <p class="hm-desc">Embedded health insurance products tied to KOMVIA's IFE financial rails — enabling seamless
-          claims and disbursement automation.</p>
-        <ul class="hm-features">
-          <li>ISO 20022 Compliant</li>
-          <li>PCI-DSS Certified</li>
-          <li>SOC 2 Type II Readiness</li>
-          <li>GDPR & NDPR Standards</li>
-        </ul>
-      </a>
-
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">💊</span>
-        <div class="hm-title">PharmaCare Retail</div>
-        <p class="hm-desc">Branded pharmacy chain integrated with KOMVIA's supply chain, offering verified
-          pharmaceuticals and prescription fulfilment.</p>
-        <ul class="hm-features">
-          <li>Digital prescription validation</li>
-          <li>Cold chain logistics</li>
-          <li>Drug interaction AI alerts</li>
-        </ul>
-      </a>
-
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">🔬</span>
-        <div class="hm-title">Medical Diagnostics Labs</div>
-        <p class="hm-desc">Network of ISO-accredited diagnostic labs with AI-assisted interpretation and direct
-          physician result delivery.</p>
-        <ul class="hm-features">
-          <li>Blood, imaging, pathology</li>
-          <li>AI-assisted result reading</li>
-          <li>Blockchain result certification</li>
-        </ul>
-      </a>
-
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">💻</span>
-        <div class="hm-title">HealthTech SaaS</div>
-        <p class="hm-desc">White-label hospital management software sold to clinics and hospitals across Africa —
-          powering them while capturing data.</p>
-        <ul class="hm-features">
-          <li>Electronic Medical Records (EMR)</li>
-          <li>OPD/IPD management</li>
-          <li>Billing & insurance bridge</li>
-        </ul>
-      </a>
-
-      <a href="waitlist.html" class="health-module fade-in"
-        style="background:var(--surface2);border:1px solid rgba(45,156,110,0.25);">
-        <span class="hm-icon">⛓️</span>
-        <div class="hm-title" style="color:var(--green)">Blockchain Patient Identity</div>
-        <p class="hm-desc" style="color:var(--text-muted)">Every patient carries a tamper-proof, self-sovereign health
-          record accessible across any KOMVIA-connected facility.</p>
-        <ul class="hm-features">
-          <li>Universal Health ID</li>
-          <li>Cross-facility record access</li>
-          <li>Zero-knowledge privacy proofs</li>
-        </ul>
-      </a>
-
-      <a href="waitlist.html" class="health-module fade-in">
-        <span class="hm-icon">🧬</span>
-        <div class="hm-title">Biotechnology Research</div>
-        <p class="hm-desc">R&D division focused on African-specific disease profiles, genomics research, and vaccine
-          formulation partnerships.</p>
-        <ul class="hm-features">
-          <li>ISO 20022 Compliant</li>
-          <li>PCI-DSS Certified</li>
-          <li>SOC 2 Type II Readiness</li>
-          <li>GDPR & NDPR Standards</li>
-        </ul>
-      </a>
-      <div class="close-sub-details" title="Close Details">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
-      </div>
     </div>
   </section>
 
@@ -3063,9 +2526,10 @@
   </section>
 
   <!-- ECOSYSTEM VISUAL (Map Image with 3D Orbit) -->
-  <section id="ecosystem-visual" style="padding: 10rem 3rem; text-align: center; background: var(--black); overflow: hidden;">
+  <section id="ecosystem-visual"
+    style="padding: 10rem 3rem; text-align: center; background: var(--black); overflow: hidden;">
     <div class="orbit-wrapper fade-in">
-      
+
       <!-- 3D Floating Orbits (Core + Upcoming) -->
       <div class="orbit-container">
         <!-- Core -->
@@ -3076,7 +2540,6 @@
         <div class="orbit-node" style="--delay: -10s;"><span>🧾 RegTech</span></div>
         <div class="orbit-node" style="--delay: -12.5s;"><span>🌍 Gov OS</span></div>
         <div class="orbit-node" style="--delay: -15s;"><span>💼 Consulting</span></div>
-        <!-- Upcoming -->
         <div class="orbit-node" style="--delay: -17.5s;"><span>💾 Data Cloud</span></div>
         <div class="orbit-node" style="--delay: -20s;"><span>🆔 Identity</span></div>
         <div class="orbit-node" style="--delay: -22.5s;"><span>🚢 Trade Net</span></div>
@@ -3084,9 +2547,9 @@
         <div class="orbit-node" style="--delay: -27.5s;"><span>🎓 Academy</span></div>
         <div class="orbit-node" style="--delay: -30s;"><span>⚡ API Market</span></div>
         <div class="orbit-node" style="--delay: -32.5s;"><span>🏥 Health OS</span></div>
-        
+
         <!-- The Image in the center of the orbit -->
-        <img src="assets/komvia_ecosystem_map.png" alt="Ecosystem Map" 
+        <img src="assets/komvia_ecosystem_map.png" alt="Ecosystem Map"
           style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotateX(15deg); width: 100%; max-width: 800px; border-radius: 20px; border: 1px solid var(--border-subtle); box-shadow: 0 0 100px rgba(0,200,150,0.1);" />
       </div>
 
@@ -3111,11 +2574,11 @@
         </div>
         <div class="stack-items">
           <a href="dashboard.html" class="stack-item featured">AI OS</a>
-          <a href="dashboard.html" class="stack-item">Data Cloud</a>
+          <a href="https://komvia-data-cloud.vercel.app/" class="stack-item">Data Cloud</a>
           <a href="dashboard.html" class="stack-item">Predictive Risk</a>
           <a href="dashboard.html" class="stack-item">AI CFO</a>
           <a href="compliance.html" class="stack-item">AI Compliance Officer</a>
-          <a href="waitlist.html" class="stack-item health">Health AI</a>
+          <a href="https://komvia-health.vercel.app/" class="stack-item health">Health AI</a>
         </div>
       </div>
       <div class="stack-layer fade-in">
@@ -3127,10 +2590,10 @@
           <a href="https://komvia-ife-web-app.vercel.app/" class="stack-item featured">IFE</a>
           <a href="waitlist.html" class="stack-item">Government OS</a>
           <a href="compliance.html" class="stack-item">RegTech</a>
-          <a href="https://komvia-erp-web.vercel.app/" class="stack-item">Trade Network</a>
-          <a href="waitlist.html" class="stack-item health">HospitalOS SaaS</a>
-          <a href="waitlist.html" class="stack-item health">Telemedicine</a>
-          <a href="waitlist.html" class="stack-item health">Mental Health</a>
+          <a href="https://komvia-trade-network.vercel.app/" class="stack-item">Trade Network</a>
+          <a href="https://komvia-health.vercel.app/" class="stack-item health">HospitalOS SaaS</a>
+          <a href="https://komvia-health.vercel.app/" class="stack-item health">Telemedicine</a>
+          <a href="https://komvia-health.vercel.app/" class="stack-item health">Mental Health</a>
         </div>
       </div>
       <div class="stack-layer fade-in">
@@ -3143,7 +2606,7 @@
           <a href="https://komvia-ife-web-app.vercel.app/" class="stack-item">Card Issuing</a>
           <a href="https://komvia-ife-web-app.vercel.app/" class="stack-item">FX Engine</a>
           <a href="https://komvia-ife-web-app.vercel.app/" class="stack-item">Embedded Finance</a>
-          <a href="waitlist.html" class="stack-item health">Health Insurance</a>
+          <a href="https://komvia-health.vercel.app/" class="stack-item health">Health Insurance</a>
           <a href="waitlist.html" class="stack-item health">Equipment Leasing</a>
         </div>
       </div>
@@ -3152,12 +2615,12 @@
           <div class="stack-label-text">Trust & Identity</div>
         </div>
         <div class="stack-items">
-          <a href="compliance.html" class="stack-item featured">Identity Platform</a>
-          <a href="compliance.html" class="stack-item">KYC/KYB</a>
-          <a href="waitlist.html" class="stack-item">CyberShield</a>
-          <a href="waitlist.html" class="stack-item">Fraud Detection</a>
-          <a href="waitlist.html" class="stack-item health">Patient Blockchain ID</a>
-          <a href="waitlist.html" class="stack-item health">Diagnostics Chain</a>
+          <a href="https://komvia-identity.vercel.app/" class="stack-item featured">Identity Platform</a>
+          <a href="https://komvia-identity.vercel.app/" class="stack-item">KYC/KYB</a>
+          <a href="https://komvia-cyber-security.vercel.app/" class="stack-item">CyberShield</a>
+          <a href="https://komvia-cyber-security.vercel.app/" class="stack-item">Fraud Detection</a>
+          <a href="https://komvia-health.vercel.app/" class="stack-item health">Patient Blockchain ID</a>
+          <a href="https://komvia-health.vercel.app/" class="stack-item health">Diagnostics Chain</a>
         </div>
       </div>
       <div class="stack-layer fade-in">
@@ -3165,13 +2628,13 @@
           <div class="stack-label-text">Infrastructure</div>
         </div>
         <div class="stack-items">
-          <a href="waitlist.html" class="stack-item featured">API Marketplace</a>
-          <a href="waitlist.html" class="stack-item">Developer Platform</a>
-          <a href="waitlist.html" class="stack-item">Academy</a>
+          <a href="https://komvia-api-market-place.vercel.app/" class="stack-item featured">API Marketplace</a>
+          <a href="https://komvia-api-market-place.vercel.app/" class="stack-item">Developer Platform</a>
+          <a href="https://komvia-academy.vercel.app/" class="stack-item">Academy</a>
           <a href="consulting.html" class="stack-item">Consulting</a>
-          <a href="waitlist.html" class="stack-item health">Biotech Research</a>
-          <a href="waitlist.html" class="stack-item health">Lab Network</a>
-          <a href="waitlist.html" class="stack-item health">PharmaCare Chain</a>
+          <a href="https://komvia-health.vercel.app/" class="stack-item health">Biotech Research</a>
+          <a href="https://komvia-health.vercel.app/" class="stack-item health">Lab Network</a>
+          <a href="https://komvia-health.vercel.app/" class="stack-item health">PharmaCare Chain</a>
         </div>
       </div>
       <div
@@ -3612,6 +3075,118 @@
           { code: 'STR', name: 'Digital Strategy', desc: 'Digital roadmap and transformation advisory.', features: ['Assessment', 'Roadmap', 'Execution'] }
         ],
         link: 'consulting.html', cta: 'Engage Consulting'
+      },
+      {
+        id: 'data-cloud',
+        num: '08', badge: 'DAT', label: 'KOMVIA Data Cloud',
+        name: 'Data Cloud',
+        tagline: 'Sovereign data warehouse',
+        title: 'Sovereign <em>Data</em> Warehouse',
+        desc: 'A pan-African data repository providing high-performance warehousing, AI-ready datasets, and sovereign analytics infrastructure.',
+        image: null,
+        stats: [{ v: 'PB+', l: 'Storage Scale' }, { v: '99.9%', l: 'AI Accuracy' }, { v: 'Local', l: 'Data Residency' }],
+        modules: [
+          { code: 'DWH', name: 'Sovereign Warehousing', desc: 'Ultra-secure data storage nodes within African jurisdiction.', features: ['PB-scale storage', 'Regional replication', 'End-to-end encryption'] },
+          { code: 'AIH', name: 'AI Training Hub', desc: 'Localized compute clusters for training LLMs on enterprise datasets.', features: ['GPU-accelerated nodes', 'MLOps integration', 'Dataset curation'] },
+          { code: 'BI', name: 'BI & Analytics', desc: 'Real-time business intelligence dashboards connected to data streams.', features: ['Automated reporting', 'Predictive forecasting', 'Custom query engine'] }
+        ],
+        link: 'https://komvia-data-cloud.vercel.app/', cta: 'Launch Data Cloud'
+      },
+      {
+        id: 'identity',
+        num: '09', badge: 'ID', label: 'KOMVIA Identity',
+        name: 'Identity',
+        tagline: 'The trust layer of digital Africa',
+        title: 'The <em>Trust</em> Layer of Digital Africa',
+        desc: 'Decentralized identity wallets, biometric KYB/KYC verification, and digital document notarization built for the private sector and public agencies.',
+        image: null,
+        stats: [{ v: '100%', l: 'Anti-Fraud' }, { v: 'Biometric', l: 'Verification' }, { v: 'ZKP', l: 'Privacy' }],
+        modules: [
+          { code: 'KYC', name: 'Biometric KYB/KYC', desc: 'Instant verification of businesses and individuals.', features: ['Registry cross-check', 'Liveness detection', 'Instant verification'] },
+          { code: 'DID', name: 'Decentralized ID Wallet', desc: 'A self-sovereign identity wallet for users to control their credentials.', features: ['ZKP-based verification', 'Credential management', 'Privacy-first architecture'] },
+          { code: 'REG', name: 'Trust Registry', desc: 'An immutable ledger of verified business entities.', features: ['Entity scoring', 'Compliance tracking', 'B2B trust-as-a-service'] }
+        ],
+        link: 'https://komvia-identity.vercel.app/', cta: 'Launch Identity'
+      },
+      {
+        id: 'trade-network',
+        num: '10', badge: 'TRD', label: 'KOMVIA Trade Network',
+        name: 'Trade Network',
+        tagline: 'Pan-African B2B commerce engine',
+        title: 'Pan-African <em>B2B</em> Commerce Engine',
+        desc: 'A real-time marketplace connecting ERP users across borders. Automated smart contracts, logistics tracking, and trade finance.',
+        image: null,
+        stats: [{ v: '54', l: 'Active Markets' }, { v: 'Live', l: 'Logistics Tracking' }, { v: 'B2B', l: 'Escrow' }],
+        modules: [
+          { code: 'LOG', name: 'Logistics Visibility', desc: 'Real-time tracking of goods across the AfCFTA corridor.', features: ['IoT sensor integration', 'Customs automation', 'Proof of delivery'] },
+          { code: 'PRC', name: 'Smart Procurement', desc: 'AI-driven vendor matching and automated smart contracts.', features: ['Automated RFPs', 'Escrow settlement', 'Dynamic pricing'] },
+          { code: 'FIN', name: 'Trade Finance', desc: 'Embedded financing for buyers and sellers based on trade history.', features: ['Invoice factoring', 'Inventory financing', 'Credit scoring AI'] }
+        ],
+        link: 'https://komvia-trade-network.vercel.app/', cta: 'Launch Trade Network'
+      },
+      {
+        id: 'cybershield',
+        num: '11', badge: 'SHD', label: 'KOMVIA Cybershield',
+        name: 'Cybershield',
+        tagline: 'Institutional hardening & managed defense',
+        title: 'Institutional <em>Hardening</em> & Managed Defense',
+        desc: '24/7 Managed Security Operations Center (SOC) with AI-driven threat intelligence and fraud detection tailored for high-volume financial ecosystems.',
+        image: null,
+        stats: [{ v: '24/7', l: 'Monitoring' }, { v: 'Zero', l: 'Day Readiness' }, { v: 'AI', l: 'Fraud Engine' }],
+        modules: [
+          { code: 'SOC', name: 'Managed SOC', desc: 'A 24/7 Security Operations Center monitoring your institutional infrastructure.', features: ['Threat hunting', 'Incident response', 'Vulnerability scanning'] },
+          { code: 'INT', name: 'Threat Intel Feed', desc: 'Aggregated security intelligence across the African threat landscape.', features: ['Zero-day alerts', 'Malware signatures', 'Phishing prevention'] },
+          { code: 'AI', name: 'Fraud Prevention AI', desc: 'ML models trained to detect anomalous transaction patterns.', features: ['Anti-money laundering', 'Card fraud detection', 'Account takeover alerts'] }
+        ],
+        link: 'https://komvia-cyber-security.vercel.app/', cta: 'Launch Cybershield'
+      },
+      {
+        id: 'academy',
+        num: '12', badge: 'ACD', label: 'KOMVIA Academy',
+        name: 'Academy',
+        tagline: 'The talent pipeline for digital sovereignty',
+        title: 'The <em>Talent</em> Pipeline for Digital Sovereignty',
+        desc: 'Training the next generation of ERP specialists, fintech engineers, and digital architects to maintain and scale the KOMVIA infrastructure globally.',
+        image: null,
+        stats: [{ v: '10k+', l: 'Certified Experts' }, { v: '100%', l: 'Industry Ready' }, { v: 'Global', l: 'Certification' }],
+        modules: [
+          { code: 'ERP', name: 'ERP Specialist Track', desc: 'Professional certification for implementing and managing KOMVIA ERP.', features: ['Implementation labs', 'Custom module dev', 'Enterprise architecture'] },
+          { code: 'FIN', name: 'Fintech Engineering', desc: 'Advanced courses for building on KOMVIA IFE rails.', features: ['Ledger architecture', 'Payment system design', 'Compliance-as-code'] },
+          { code: 'REG', name: 'RegTech & Compliance', desc: 'Training for compliance officers on using the KOMVIA stack.', features: ['FIRS automation', 'Audit trails', 'ESG reporting'] }
+        ],
+        link: 'https://komvia-academy.vercel.app/', cta: 'Launch Academy'
+      },
+      {
+        id: 'api-marketplace',
+        num: '13', badge: 'API', label: 'KOMVIA API Marketplace',
+        name: 'API Marketplace',
+        tagline: 'Building on the rails of a new economy',
+        title: 'Building on the <em>Rails</em> of a New Economy',
+        desc: 'Exposing the power of ERP, IFE, and Identity through a unified developer portal. Build sovereign applications with institutional-grade primitives.',
+        image: null,
+        stats: [{ v: '1k+', l: 'Endpoints' }, { v: '99.99%', l: 'Uptime' }, { v: 'REST', l: 'Architecture' }],
+        modules: [
+          { code: 'PAY', name: 'Payments APIs', desc: 'Integrate card issuing, cross-border settlement, and wallet infrastructure.', features: ['Virtual card issuing', 'FX engine access', 'Auto-reconciliation'] },
+          { code: 'COR', name: 'Core Infrastructure', desc: 'Low-level access to KOMVIA identity, data warehousing, and ledger primitives.', features: ['Sovereign data access', 'Ledger webhooks', 'Identity verification'] },
+          { code: 'AI', name: 'AI-as-a-Service', desc: "Access KOMVIA's proprietary decision intelligence models.", features: ['Risk scoring AI', 'Financial forecasting', 'OCR & Data extraction'] }
+        ],
+        link: 'https://komvia-api-market-place.vercel.app/', cta: 'Launch API Marketplace'
+      },
+      {
+        id: 'health',
+        num: '14', badge: 'HLT', label: 'KOMVIA Health',
+        name: 'Health OS',
+        tagline: 'Healthcare infrastructure for 1.4 billion Africans',
+        title: 'Healthcare <em>Infrastructure</em> for 1.4 billion Africans',
+        desc: 'KOMVIA Health integrates every node of the healthcare value chain — from primary care clinics to biotech research labs — under one sovereign, AI-augmented operating system.',
+        image: null,
+        stats: [{ v: '11', l: 'Service Verticals' }, { v: '1', l: 'Unified Health ID' }, { v: '0', l: 'Data Silos' }],
+        modules: [
+          { code: 'HOS', name: 'Hospital & Clinic Network', desc: 'Owned and operated hospital and clinic chains across tier-1 and tier-2 cities.', features: ['Multi-specialist hospitals', 'Primary care clinic franchises', 'Emergency response integration'] },
+          { code: 'TEL', name: 'Telemedicine Platform', desc: 'Pan-African virtual care platform connecting patients to verified physicians.', features: ['Video & asynchronous consults', 'e-Prescription integration', 'Rural access mobile-first'] },
+          { code: 'ID', name: 'Blockchain Patient Identity', desc: 'Every patient carries a tamper-proof, self-sovereign health record.', features: ['Universal Health ID', 'Cross-facility record access', 'Zero-knowledge privacy proofs'] }
+        ],
+        link: 'https://komvia-health.vercel.app/', cta: 'Launch Health OS'
       }
     ];
 
@@ -3786,7 +3361,7 @@
           // Smooth scroll back to hero to maintain context
           const hero = modules.previousElementSibling;
           if (hero) {
-             hero.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            hero.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
         }
       });
