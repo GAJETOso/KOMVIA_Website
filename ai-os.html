@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KOMVIA AI OS — Autonomous Decision Intelligence</title>
+  <meta name="description"
+    content="KOMVIA AI OS: The enterprise-grade autonomous decision intelligence layer. AI agents embedded across finance, HR, and operations." />
+  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400;1,9..40,500&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  
+  <style>
+    :root {
+      --ai-accent: #00d4ff;
+      --ai-accent-dim: rgba(0, 212, 255, 0.1);
+      --ai-glow: rgba(0, 212, 255, 0.05);
+      --ai-font: 'Syne', sans-serif;
+    }
+
+    body {
+      background: #050608;
+      color: #e8eaf0;
+    }
+
+    /* AI OS Portal Styles */
+    .ai-hero {
+      padding: 160px 3rem 100px;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .ai-hero-visual {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+
+    .ai-grid-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(var(--ai-accent-dim) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at center, black, transparent 80%);
+      opacity: 0.5;
+    }
+
+    .ai-hero-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--ai-accent-dim) 0%, transparent 70%);
+      filter: blur(80px);
+      animation: ai-pulse 10s ease-in-out infinite;
+    }
+
+    @keyframes ai-pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
+    }
+
+    .ai-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ai-accent);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      padding: 0.6rem 1.4rem;
+      margin-bottom: 2.5rem;
+      background: rgba(0, 212, 255, 0.05);
+      backdrop-filter: blur(10px);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .ai-title {
+      font-family: var(--ai-font);
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: 0.9;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .ai-title span {
+      display: block;
+      background: linear-gradient(to bottom, #fff, var(--ai-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 20px var(--ai-accent-dim));
+    }
+
+    .ai-subtitle {
+      font-size: 1.15rem;
+      color: #9ca3af;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .ai-features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      padding: 0 3rem 8rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .ai-card {
+      background: #0a0c10;
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 3.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .ai-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .ai-card:hover::before {
+      opacity: 1;
+    }
+
+    .ai-card:hover {
+      border-color: var(--ai-accent);
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .ai-card-icon {
+      font-size: 3rem;
+      margin-bottom: 2.5rem;
+      display: block;
+      filter: drop-shadow(0 0 10px var(--ai-accent-dim));
+    }
+
+    .ai-card-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ai-accent);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .ai-card-title {
+      font-family: var(--ai-font);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: #fff;
+    }
+
+    .ai-card-desc {
+      font-size: 0.95rem;
+      color: #6b7280;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .ai-card-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .ai-card-list li {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .ai-card-list li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: var(--ai-accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--ai-accent);
+    }
+
+    /* CFO Section */
+    .ai-cfo-section {
+      background: #0a0c10;
+      padding: 120px 3rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .cfo-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .cfo-visual {
+      position: relative;
+      background: #050608;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 3rem;
+      border-radius: 4px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+    }
+
+    .cfo-visual-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .cfo-terminal-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--ai-accent);
+      letter-spacing: 0.1em;
+    }
+
+    .cfo-status-dot {
+      width: 8px; height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #22c55e;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .cfo-chart-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .cfo-chart-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .cfo-chart-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: #4b5563;
+      text-transform: uppercase;
+    }
+
+    .cfo-progress-bar {
+      height: 6px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cfo-progress-fill {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: var(--p, 0%);
+      background: linear-gradient(90deg, var(--ai-accent-dim), var(--ai-accent));
+      box-shadow: 0 0 15px var(--ai-accent-dim);
+      transition: width 2s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .cfo-stats-grid {
+      margin-top: 4rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 2rem;
+    }
+
+    .cfo-stat-item {
+      text-align: left;
+    }
+
+    .cfo-stat-val {
+      font-family: var(--ai-font);
+      font-size: 1.4rem;
+      color: #fff;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .cfo-stat-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .cfo-content h2 {
+      font-family: var(--ai-font);
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      line-height: 1;
+    }
+
+    .cfo-content p {
+      font-size: 1.1rem;
+      color: #9ca3af;
+      line-height: 1.8;
+      margin-bottom: 3.5rem;
+      font-weight: 300;
+    }
+
+    .cfo-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .cfo-feat h4 {
+      font-family: var(--ai-font);
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+
+    .cfo-feat p {
+      font-size: 0.85rem;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    /* Nav adjustment */
+    nav {
+      background: rgba(5, 6, 8, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .active-ai {
+      color: var(--ai-accent) !important;
+    }
+
+    @media (max-width: 1024px) {
+      .cfo-container { grid-template-columns: 1fr; gap: 4rem; }
+      .ai-hero { padding: 120px 1.5rem 80px; }
+      .ai-features-grid { padding: 0 1.5rem 6rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="assets/komvia_logo.png" alt="KOMVIA Logo" style="height: 32px; width: auto; margin-right: 12px;" />
+      KOM<span>VIA</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Ecosystem</a></li>
+      <li><a href="ai-os.html" class="active-ai">AI OS</a></li>
+      <li><a href="tokenomics.html">Tokenomics</a></li>
+      <li><a href="waitlist.html">Waitlist</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <span></span><span></span><span></span>
+      </div>
+    </button>
+  </nav>
+
+  <main>
+    <section class="ai-hero">
+      <div class="ai-hero-visual">
+        <div class="ai-grid-dots"></div>
+        <div class="ai-hero-glow"></div>
+      </div>
+      
+      <div class="ai-tag">
+        <span class="hero-tag-dot"></span>
+        Autonomous Decision Intelligence
+      </div>
+      
+      <h1 class="ai-title">
+        KOMVIA <span>AI OS</span>
+      </h1>
+      
+      <p class="ai-subtitle">
+        The unified intelligence layer for the sovereign enterprise. Transforming institutional data into high-confidence, automated decisions at global scale.
+      </p>
+      
+      <div class="hero-actions">
+        <a href="#preview" class="btn-primary" style="background:var(--ai-accent); color:#000;">Explore Agents</a>
+        <a href="waitlist.html" class="btn-outline" style="border-color:var(--ai-accent); color:var(--ai-accent);">Get Early Access</a>
+      </div>
+    </section>
+
+    <section id="preview" class="ai-features-grid">
+      <div class="ai-card">
+        <span class="ai-card-icon">📊</span>
+        <span class="ai-card-tag">Agent_01</span>
+        <h3 class="ai-card-title">CFO AGENT</h3>
+        <p class="ai-card-desc">Autonomous treasury management, real-time liquidity optimization, and predictive financial modeling.</p>
+        <ul class="ai-card-list">
+          <li>Automated Reconciliation</li>
+          <li>Cash Flow Optimization</li>
+          <li>Capital Allocation Logic</li>
+        </ul>
+      </div>
+
+      <div class="ai-card">
+        <span class="ai-card-icon">🛡️</span>
+        <span class="ai-card-tag">Engine_02</span>
+        <h3 class="ai-card-title">RISK ENGINE</h3>
+        <p class="ai-card-desc">Predictive threat assessment and automated mitigation strategies for complex enterprise operations.</p>
+        <ul class="ai-card-list">
+          <li>Anomaly Detection</li>
+          <li>Market Risk Simulation</li>
+          <li>Compliance Guardrails</li>
+        </ul>
+      </div>
+
+      <div class="ai-card">
+        <span class="ai-card-icon">⚡</span>
+        <span class="ai-card-tag">Logic_03</span>
+        <h3 class="ai-card-title">AUTO DECISIONS</h3>
+        <p class="ai-card-desc">High-frequency autonomous execution of routine operational decisions based on institutional policy.</p>
+        <ul class="ai-card-list">
+          <li>Strategic Procurement</li>
+          <li>Dynamic Inventory Logic</li>
+          <li>Workflow Optimization</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="ai-cfo-section">
+      <div class="cfo-container">
+        <div class="cfo-visual">
+          <div class="cfo-visual-header">
+            <div class="cfo-terminal-label">> EXEC_MODEL: FINANCIAL_AUTONOMY</div>
+            <div class="cfo-status-dot"></div>
+          </div>
+          
+          <div class="cfo-chart-group">
+            <div class="cfo-chart-row">
+              <div class="cfo-chart-label">Budget Allocation Accuracy</div>
+              <div class="cfo-progress-bar"><div class="cfo-progress-fill" style="--p: 98.4%"></div></div>
+            </div>
+            <div class="cfo-chart-row">
+              <div class="cfo-chart-label">Risk Mitigation Latency</div>
+              <div class="cfo-progress-bar"><div class="cfo-progress-fill" style="--p: 12%"></div></div>
+            </div>
+            <div class="cfo-chart-row">
+              <div class="cfo-chart-label">Autonomous Decision Rate</div>
+              <div class="cfo-progress-bar"><div class="cfo-progress-fill" style="--p: 85.2%"></div></div>
+            </div>
+          </div>
+          
+          <div class="cfo-stats-grid">
+            <div class="cfo-stat-item">
+              <span class="cfo-stat-val">99.9%</span>
+              <span class="cfo-stat-lbl">Confidence</span>
+            </div>
+            <div class="cfo-stat-item">
+              <span class="cfo-stat-val">12ms</span>
+              <span class="cfo-stat-lbl">Latency</span>
+            </div>
+            <div class="cfo-stat-item">
+              <span class="cfo-stat-val">24/7</span>
+              <span class="cfo-stat-lbl">Active</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cfo-content">
+          <div class="ai-card-tag" style="margin-bottom: 1rem;">Core Infrastructure</div>
+          <h2>Enterprise AI<br /><span>Without Compromise</span></h2>
+          <p>
+            The KOMVIA AI OS is not a wrapper. It is a deep-integrated intelligence layer built into the core ERP and IFE infrastructure, ensuring data privacy and institutional control.
+          </p>
+          
+          <div class="cfo-features">
+            <div class="cfo-feat">
+              <h4>Sovereign Data</h4>
+              <p>Your AI models are trained on your data, within your jurisdiction, for your business only.</p>
+            </div>
+            <div class="cfo-feat">
+              <h4>Real-time Logic</h4>
+              <p>Execute complex decisions at the speed of data, removing human latency from routine operations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background: #050608; border-top: 1px solid rgba(255,255,255,0.05); padding: 6rem 3rem 3rem;">
+    <div class="footer-grid" style="max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-brand-logo" style="font-family:'Cormorant Garamond'; font-size:2rem; color:var(--ai-accent); text-decoration:none; display:block; margin-bottom:1.5rem;">KOMVIA<span>.</span></a>
+        <p style="font-size:0.85rem; color:#6b7280; line-height:1.7; max-width:300px;">
+          Building the digital infrastructure for Africa's sovereign economy.
+        </p>
+      </div>
+      <div>
+        <h4 style="font-family:'JetBrains Mono'; font-size:0.65rem; text-transform:uppercase; color:var(--ai-accent); margin-bottom:1.5rem; letter-spacing:0.15em;">OS Suite</h4>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.8rem;">
+          <li><a href="ai-os.html" style="font-size:0.8rem; color:#9ca3af; text-decoration:none;">AI OS</a></li>
+          <li><a href="index.html#divisions" style="font-size:0.8rem; color:#9ca3af; text-decoration:none;">Enterprise ERP</a></li>
+          <li><a href="ife.html" style="font-size:0.8rem; color:#9ca3af; text-decoration:none;">Financial Stack</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-family:'JetBrains Mono'; font-size:0.65rem; text-transform:uppercase; color:var(--ai-accent); margin-bottom:1.5rem; letter-spacing:0.15em;">Company</h4>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.8rem;">
+          <li><a href="about.html" style="font-size:0.8rem; color:#9ca3af; text-decoration:none;">About</a></li>
+          <li><a href="tokenomics.html" style="font-size:0.8rem; color:#9ca3af; text-decoration:none;">Tokenomics</a></li>
+          <li><a href="waitlist.html" style="font-size:0.8rem; color:#9ca3af; text-decoration:none;">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-family:'JetBrains Mono'; font-size:0.65rem; text-transform:uppercase; color:var(--ai-accent); margin-bottom:1.5rem; letter-spacing:0.15em;">Support</h4>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.8rem;">
+          <li><a href="index.html#contact" style="font-size:0.8rem; color:#9ca3af; text-decoration:none;">Contact</a></li>
+          <li><a href="privacy.html" style="font-size:0.8rem; color:#9ca3af; text-decoration:none;">Privacy</a></li>
+          <li><a href="terms.html" style="font-size:0.8rem; color:#9ca3af; text-decoration:none;">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="max-width: 1300px; margin: 2.5rem auto 0; display: flex; justify-content: space-between; font-size: 0.7rem; color: #4b5563; font-family: 'JetBrains Mono', monospace;">
+      <p>&copy; 2026 KOMVIA LIMITED. All rights reserved.</p>
+      <p>ISO 27001 // SOC2 COMPLIANT</p>
+    </div>
+  </footer>
+
+  <script>
+    // Navigation Logic
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+    }
+
+    // Card Hover Effect
+    document.querySelectorAll('.ai-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / card.clientWidth) * 100;
+        const y = ((e.clientY - rect.top) / card.clientHeight) * 100;
+        card.style.setProperty('--x', `${x}%`);
+        card.style.setProperty('--y', `${y}%`);
+      });
+    });
+
+    // Custom Cursor
+    const cursor = document.getElementById('cursor');
+    const cursorRing = document.getElementById('cursor-ring');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      cursorRing.style.left = e.clientX + 'px';
+      cursorRing.style.top = e.clientY + 'px';
+    });
+  </script>
+</body>
+
+</html>

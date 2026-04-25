@@ -780,6 +780,73 @@
       background: var(--border-subtle);
       border: 1px solid var(--border-subtle);
       border-top: none;
+      
+      /* Expansion logic */
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+      position: relative;
+      pointer-events: none; /* Prevent clicks when hidden */
+    }
+
+    .health-modules.active {
+      max-height: 2000px;
+      opacity: 1;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 5rem; /* Space for close button */
+      pointer-events: auto; /* Enable clicks when visible */
+    }
+
+    .close-sub-details {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      color: var(--gold);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+    }
+
+    .health-modules.active .close-sub-details {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .close-sub-details:hover {
+      background: var(--gold);
+      color: var(--black);
+      transform: scale(1.1);
+    }
+
+    .close-sub-details svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.5;
+      transform: rotate(180deg); /* Point up */
+    }
+
+    .health-hero {
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .health-hero:hover {
+      background: var(--surface2);
+      border-color: var(--gold);
     }
 
     .health-module {
@@ -2243,10 +2310,10 @@
       KOM<span>VIA</span>
     </a>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#divisions">Ecosystem</a></li>
-      <li><a href="#data-cloud">Vision</a></li>
-      <li><a href="#pricing">Suite</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="index.html">Ecosystem</a></li>
+      <li><a href="ai-os.html">AI OS</a></li>
+      <li><a href="tokenomics.html">Tokenomics</a></li>
+      <li><a href="waitlist.html">Waitlist</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div style="display:flex; align-items:center; gap:1.2rem;">
@@ -2456,6 +2523,9 @@
           <li>Custom query engine</li>
         </ul>
       </a>
+      <div class="close-sub-details" title="Close Details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
+      </div>
     </div>
   </section>
 
@@ -2522,6 +2592,9 @@
           <li>B2B trust-as-a-service</li>
         </ul>
       </a>
+      <div class="close-sub-details" title="Close Details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
+      </div>
     </div>
   </section>
 
@@ -2598,6 +2671,9 @@
           <li>Credit scoring AI</li>
         </ul>
       </a>
+      <div class="close-sub-details" title="Close Details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
+      </div>
     </div>
   </section>
 
@@ -2666,6 +2742,9 @@
           <li>Account takeover alerts</li>
         </ul>
       </a>
+      <div class="close-sub-details" title="Close Details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
+      </div>
     </div>
   </section>
 
@@ -2730,6 +2809,9 @@
           <li>ESG reporting</li>
         </ul>
       </a>
+      <div class="close-sub-details" title="Close Details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
+      </div>
     </div>
   </section>
 
@@ -2798,6 +2880,9 @@
           <li>OCR & Data extraction</li>
         </ul>
       </a>
+      <div class="close-sub-details" title="Close Details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
+      </div>
     </div>
   </section>
 
@@ -2960,6 +3045,9 @@
           <li>GDPR & NDPR Standards</li>
         </ul>
       </a>
+      <div class="close-sub-details" title="Close Details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"/></svg>
+      </div>
     </div>
   </section>
 
@@ -3677,6 +3765,32 @@
         });
       });
     }
+
+    // ── UPCOMING INFRASTRUCTURE HOVER EXPANSION ──
+    document.querySelectorAll('.health-hero').forEach(hero => {
+      hero.addEventListener('mouseenter', () => {
+        const modules = hero.nextElementSibling;
+        if (modules && modules.classList.contains('health-modules')) {
+          modules.classList.add('active');
+        }
+      });
+    });
+
+    document.querySelectorAll('.close-sub-details').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const modules = btn.closest('.health-modules');
+        if (modules) {
+          modules.classList.remove('active');
+          // Smooth scroll back to hero to maintain context
+          const hero = modules.previousElementSibling;
+          if (hero) {
+             hero.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      });
+    });
   </script>
 
   <!-- CHATBOT WIDGET -->
