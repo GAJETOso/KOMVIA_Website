@@ -2391,6 +2391,9 @@
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
       .footer-col { display: flex; flex-direction: column; align-items: center; }
       .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+
+      /* Ticker: push below the taller stacked nav on mobile */
+      .ticker-offset { margin-top: 160px !important; }
     }
 
   </style>
@@ -2406,8 +2409,7 @@
   <!-- NAV -->
   <nav>
     <a href="index.html" class="nav-logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
-      <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #c99d42, #a67f33); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 1.1rem; color: #fff; box-shadow: 0 4px 16px rgba(201,157,66,0.4);">K</div>
-      <span style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: 0.04em; color: var(--text);">KOMVIA</span>
+      <img src="assets/komvia_logo.png" alt="KOMVIA" style="height: 36px; width: auto;" />
     </a>
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -2429,7 +2431,7 @@
   </nav>
 
   <!-- TICKER -->
-  <div class="ticker-wrap" style="margin-top:70px">
+  <div class="ticker-wrap ticker-offset">
     <div class="ticker-track">
       <div class="ticker-item">KOMVIA ERP <span>◆</span> Enterprise Intelligence</div>
       <div class="ticker-item">KOMVIA IFE <span>◆</span> Financial Infrastructure</div>
